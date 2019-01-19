@@ -2,28 +2,22 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RouterModule, Routes } from '@angular/router';
-import { MatMomentDateModule } from '@angular/material-moment-adapter';
-import { MatButtonModule, MatIconModule } from '@angular/material';
+import {AppRoutingModule} from './app-routing.module';
 import { TranslateModule } from '@ngx-translate/core';
 import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
-import { FuseSharedModule } from '@fuse/shared.module';
 import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
 import { AppComponent } from 'app/app.component';
 import { LayoutModule } from 'app/layout/layout.module';
-import { SampleModule } from 'app/main/sample/sample.module';
+import {CoreModule} from '@core/core.module';
+import {VtigerServiceService} from '@service/vtiger.Service';
+import {JumboBackEndService} from '@service/jumbo-back-end.service';
 
-const appRoutes: Routes = [
-    {
-        path      : '**',
-        redirectTo: 'sample'
-    }
-];
+
 
 @NgModule({
     declarations: [
@@ -33,27 +27,23 @@ const appRoutes: Routes = [
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        RouterModule.forRoot(appRoutes),
+        AppRoutingModule,
 
         TranslateModule.forRoot(),
 
-        // Material moment date module
-        MatMomentDateModule,
-
-        // Material
-        MatButtonModule,
-        MatIconModule,
+        CoreModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
-        FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
 
         // App modules
         LayoutModule,
-        SampleModule
+    ],
+    providers: [
+        VtigerServiceService, JumboBackEndService
     ],
     bootstrap   : [
         AppComponent

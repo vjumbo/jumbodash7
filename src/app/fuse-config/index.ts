@@ -1,4 +1,5 @@
 import { FuseConfig } from '@fuse/types';
+import {customfuseConfig} from '@configs/constantes';
 
 /**
  * Default Fuse Configuration
@@ -8,7 +9,9 @@ import { FuseConfig } from '@fuse/types';
  * constructor method to learn more about changing these options per component basis.
  */
 
-export const fuseConfig: FuseConfig = {
+export const fuseConfig: FuseConfig = customfuseConfig;
+
+/*export const fuseConfig: FuseConfig = {
     // Color themes can be defined in src/app/app.theme.scss
     colorTheme      : 'theme-default',
     customScrollbars: true,
@@ -40,4 +43,4 @@ export const fuseConfig: FuseConfig = {
             position: 'right'
         }
     }
-};
+};*/

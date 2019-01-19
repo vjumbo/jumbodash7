@@ -9,8 +9,20 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "paths": {
-            "@fuse": [
-                "@fuse/"
+            "@configs/*": [
+                "@configs/*"
+            ],
+            "@core/*":[
+                "@core/*"
+            ],
+            "@fuse/*": [
+                "@fuse/*"
+            ],
+            "@service/*": [
+                "@service/*"
+            ],
+            "@utilities/*": [
+                "@utilities/*"
             ]
         },
         "target": "es5",

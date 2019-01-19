@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "fuse": {
+        "vjumbo": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -52,8 +52,8 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
+                                    "maximumWarning": "4mb",
+                                    "maximumError": "8mb"
                                 }
                             ]
                         },
@@ -74,25 +74,25 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "fuse:build"
+                        "browserTarget": "vjumbo:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "fuse:build:production"
+                            "browserTarget": "vjumbo:build:production"
                         },
                         "hmr": {
                             "hmr": true,
-                            "browserTarget": "fuse:build:hmr"
+                            "browserTarget": "vjumbo:build:hmr"
                         },
                         "ec": {
-                            "browserTarget": "fuse:build:ec"
+                            "browserTarget": "vjumbo:build:ec"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "fuse:build"
+                        "browserTarget": "vjumbo:build"
                     }
                 },
                 "test": {
@@ -126,7 +126,7 @@
                 }
             }
         },
-        "fuse-e2e": {
+        "vjumbo-e2e": {
             "root": "e2e/",
             "projectType": "application",
             "prefix": "",
@@ -135,11 +135,11 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "e2e/protractor.conf.js",
-                        "devServerTarget": "fuse:serve"
+                        "devServerTarget": "vjumbo:serve"
                     },
                     "configurations": {
                         "production": {
-                            "devServerTarget": "fuse:serve:production"
+                            "devServerTarget": "vjumbo:serve:production"
                         }
                     }
                 },
@@ -155,5 +155,5 @@
             }
         }
     },
-    "defaultProject": "fuse"
+    "defaultProject": "vjumbo"
 }

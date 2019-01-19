@@ -1,0 +1,49 @@
+@import "src/@fuse/scss/fuse";
+
+jum-penalidades {
+
+    .entidades-table {
+
+        .mat-column-id {
+            flex: 0 1 10%;
+        }
+
+        .mat-column-fechasini {
+            flex: 0 1 20%;
+        }
+
+        .mat-column-fechaFin {
+            flex: 0 1 20%;
+        }
+
+        .mat-column-cancelacionesDias {
+            flex: 0 1 10%;
+        }
+
+        .mat-column-cargo, .mat-column-nombre {
+            flex: 0 1 20%;
+        }
+
+        .mat-column-descripcion {
+            flex: 0 1 50%;
+        }
+
+        .mat-column-usuario {
+            flex: 0 1 20%;
+        }
+
+        .mat-column-image {
+            flex: 0 1 84px;
+
+            .entidad-image {
+                width: 52px;
+                height: 52px;
+                border: 1px solid rgba(0, 0, 0, .12);
+            }
+        }
+
+        .mat-column-costo {
+            flex: 0 1 20%;
+        }
+    }
+}
