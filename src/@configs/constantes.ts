@@ -9,12 +9,13 @@ export const CrmConst = {
 };
 
 export const BackEndConst = {
-    backEndUrl: 'http://157.230.134.208:3000',
+    backEndUrl: 'http://157.230.134.208:3000', // 'http://157.230.134.208:3000', http://127.0.0.1:3000
     endPoints: {
         usuarios: '/jumboApi/usuarios',
         servicios: '/jumboApi/servicios',
         penalidades: '/jumboApi/penalidades',
         habitaciones: '/jumboApi/habitaciones',
+        hoteles: '/jumboApi/hoteles',
         docs: '/jumboApi/docs'
     }
 };

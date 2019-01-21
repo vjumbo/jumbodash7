@@ -8,10 +8,15 @@ const hotelTypes = require("../def/hotelTypes");
 router.options('*', cors());
 
 router.get('/', cors(), (req, res, next) => {
-  Hotel.find( (err, products) => {
-    if (err) return next(err);
-    res.json(products);
-  });
+  Hotel.find( (err, hoteles) => {
+      if (!hoteles) {
+          res.json([]);
+      } else {
+          if (err) return next(err);
+          res.json(hoteles);
+      }
+  }).populate('habitaciones').populate('servicios')
+      .populate('serviciosNoIncluidos').populate('penalidades');
 });
 
 router.get('/hoteltypes', cors(), (req, res, next) => {
@@ -22,7 +27,8 @@ router.get('/hotel/:id', cors(), (req, res, next) => {
   Hotel.findById(req.params.id,  (err, post) => {
     if (err) return next(err);
     res.json(post);
-  });
+  }).populate('habitaciones').populate('servicios')
+      .populate('serviciosNoIncluidos').populate('penalidades');
 });
 
 router.get('/hotelesby/:search/:field', cors(), (req, res, next)=> {
@@ -35,7 +41,8 @@ router.get('/hotelesby/:search/:field', cors(), (req, res, next)=> {
   Hotel.findOne(user,  (err, post) => {
     if (err) return next(err);
     res.json(post);
-  });
+  }).populate('habitaciones').populate('servicios')
+      .populate('serviciosNoIncluidos').populate('penalidades');
 });
 
 router.post('/', cors(),(req, res, next) => {

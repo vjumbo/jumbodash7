@@ -2,6 +2,7 @@ import { FuseNavigation } from '@fuse/types';
 import {ServicioConst} from '../main/apps/jumboMod/servicio/servicio.model';
 import {HabitacionConst} from '../main/apps/jumboMod/habitacion/habitacion.model';
 import {PenalidadConst} from '../main/apps/jumboMod/penalidad/penalidad.model';
+import {HotelConst} from '../main/apps/jumboMod/hotel/hotel.model';
 
 export const navigation: FuseNavigation[] = [
     {
@@ -34,6 +35,14 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : PenalidadConst.icon,
                 url  : PenalidadConst.urlEntidades
+            },
+            {
+                id       : 'hoteles',
+                title    : HotelConst.names,
+                // 'translate': 'NAV.SERVICES.TITLE',
+                type     : 'item',
+                icon     : HotelConst.icon,
+                url  : HotelConst.urlEntidades
             }
         ]
     },

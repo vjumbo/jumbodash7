@@ -17,7 +17,7 @@ const HotelSchema = new Schema({
   servicios: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],
   serviciosNoIncluidos: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],
   penalidades: [{type: Schema.Types.ObjectId, ref: 'Penalidad'}],
-  region: {type: Schema.Types.ObjectId, ref: 'Region'},
+  region: String,// {type: Schema.Types.ObjectId, ref: 'Region'},
   regimenAlimentacion: [
     {
       nombreRegimen: String,

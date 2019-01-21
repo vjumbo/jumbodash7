@@ -79,3 +79,82 @@ export interface Habitacion {
   tipoCama: string;
   sistema?: Sistema;
 }
+
+export interface FormaPago {
+    tarjetaCredito: {
+        disponible: boolean;
+        porcentaje: number;
+    };
+    transferencia: {
+        disponible: boolean;
+        costoTransferencia: number;
+    };
+    efectivo: {
+        disponible: boolean;
+    };
+}
+
+export interface CuentaBancariaSchema {
+    _id?: string;
+    razonSocial: string;
+    pais: string;
+    nombreBeneficiario: string;
+    nombreBancoBeneficiario: string;
+    numeroCuenta: string;
+    tipoCuenta: string;
+    aba: string;
+    swift: string;
+    bancoIntermediario: string;
+    cuentaIntermediaria: string;
+    formaPago: FormaPago;
+    descripcion: string;
+    sistema?: Sistema;
+}
+
+export type HotelType = 'Adulto' | 'Familias' | 'LGTB';
+export type TipoTarifaType = 'Habitacion' | 'Personas';
+
+export interface Hotel {
+    _id?: string;
+    nombre: string;
+    segmeto: HotelType;
+    habitaciones?: Habitacion[];
+    servicios?: Servicio[];
+    serviciosNoIncluidos?: Servicio[];
+    penalidades?: Penalidad[];
+    region: string;
+    regimenAlimentacion?: [
+        {
+            nombreRegimen: string;
+            descripcion: string
+        }
+        ];
+    tipoPlan?: [{
+        nombrePlna: string;
+        descripcion: string
+    }];
+    tipoTarifa?: [{
+        tipoHabitacion: Habitacion;
+        numPersonas: number;
+        tipo: TipoTarifaType;
+        monto: number
+    }];
+    email?: {
+        pagos?: string;
+        reservas?: string;
+        jefeReservas?: string;
+    };
+    telefonos?: {
+        pagos?: string;
+        reservas?: string;
+        jefeReservas?: string;
+    };
+    ejecutivoVentas?: {
+        nombre: string;
+        telefono: string;
+        email: string;
+    };
+    cuentaBancaria?: CuentaBancariaSchema;
+    descripcion: string;
+    sistema: Sistema;
+}
