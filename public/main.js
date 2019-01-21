@@ -346,7 +346,7 @@ var CrmConst = {
     homeDir: ''
 };
 var BackEndConst = {
-    backEndUrl: 'http://127.0.0.1:3000',
+    backEndUrl: 'http://157.230.134.208:3000',
     endPoints: {
         usuarios: '/jumboApi/usuarios',
         servicios: '/jumboApi/servicios',
@@ -11653,7 +11653,7 @@ var QuickPanelModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-toolbar class=\"p-0 mat-elevation-z1\">\n\n    <div fxFlex fxFill fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n        <div fxFlex=\"1 0 auto\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n            <button mat-icon-button class=\"navbar-toggle-button\"\n                    *ngIf=\"!hiddenNavbar && !rightNavbar\" (click)=\"toggleSidebarOpen('navbar')\" fxHide.gt-md>\n                <mat-icon class=\"secondary-text\">menu</mat-icon>\n            </button>\n\n            <div class=\"toolbar-separator\" *ngIf=\"!hiddenNavbar && !rightNavbar\" fxHide.gt-md></div>\n\n            <div fxLayout=\"row\" fxLayoutAlign=\"start center\" *ngIf=\"horizontalNavbar\">\n                <div class=\"logo ml-16\">\n                    <img class=\"logo-icon\" src=\"assets/images/logos/fuse.svg\">\n                </div>\n            </div>\n\n            <div class=\"px-8 px-md-16\">\n                <fuse-shortcuts [navigation]=\"navigation\"></fuse-shortcuts>\n            </div>\n\n        </div>\n\n        <div class=\"\" fxFlex=\"0 1 auto\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n            <button mat-button [matMenuTriggerFor]=\"userMenu\"\n                    class=\"user-button\">\n                <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n                    <img class=\"avatar mr-0 mr-sm-16\" src=\"assets/images/avatars/Velazquez.jpg\">\n                    <span class=\"username mr-12\" fxHide fxShow.gt-sm>Charlie Adams</span>\n                    <mat-icon class=\"s-16\" fxHide.xs>keyboard_arrow_down</mat-icon>\n                </div>\n            </button>\n\n            <mat-menu #userMenu=\"matMenu\" [overlapTrigger]=\"false\">\n\n                <button mat-menu-item>\n                    <mat-icon>account_circle</mat-icon>\n                    <span>My Profile</span>\n                </button>\n\n                <button mat-menu-item class=\"\">\n                    <mat-icon>mail</mat-icon>\n                    <span>Inbox</span>\n                </button>\n\n                <button mat-menu-item class=\"\">\n                    <mat-icon>exit_to_app</mat-icon>\n                    <span>Logout</span>\n                </button>\n\n            </mat-menu>\n\n            <div class=\"toolbar-separator\"></div>\n\n            <fuse-search-bar (input)=\"search($event)\"></fuse-search-bar>\n\n            <div class=\"toolbar-separator\"></div>\n\n            <!--<button mat-button fxHide fxShow.gt-xs\n                    class=\"language-button\"\n                    [matMenuTriggerFor]=\"languageMenu\">\n                <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n                    <img class=\"flag mr-8\" [src]=\"'assets/icons/flags/'+selectedLanguage.flag+'.png'\">\n                    <span class=\"iso text-uppercase\">{{selectedLanguage.id}}</span>\n                </div>\n            </button>-->\n\n            <mat-menu #languageMenu=\"matMenu\" [overlapTrigger]=\"false\">\n\n                <button mat-menu-item *ngFor=\"let lang of languages\" (click)=\"setLanguage(lang)\">\n                    <span fxLayout=\"row\" fxLayoutAlign=\"start center\">\n                        <img class=\"flag mr-16\" [src]=\"'assets/icons/flags/'+lang.flag+'.png'\">\n                        <span class=\"iso\">{{lang.title}}</span>\n                    </span>\n                </button>\n\n            </mat-menu>\n\n            <div class=\"toolbar-separator\" fxHide fxShow.gt-xs></div>\n\n            <button mat-icon-button\n                    class=\"quick-panel-toggle-button\"\n                    (click)=\"toggleSidebarOpen('quickPanel')\"\n                    aria-label=\"Toggle quick panel\">\n                <mat-icon class=\"secondary-text\">format_list_bulleted</mat-icon>\n            </button>\n\n            <div class=\"toolbar-separator\" *ngIf=\"!hiddenNavbar && rightNavbar\" fxHide fxShow.gt-xs></div>\n\n            <button mat-icon-button class=\"navbar-toggle-button\"\n                    *ngIf=\"!hiddenNavbar && rightNavbar\" (click)=\"toggleSidebarOpen('navbar')\" fxHide.gt-md>\n                <mat-icon class=\"secondary-text\">menu</mat-icon>\n            </button>\n\n        </div>\n\n    </div>\n\n</mat-toolbar>\n"
+module.exports = "<mat-toolbar class=\"p-0 mat-elevation-z1\">\n\n    <div fxFlex fxFill fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n        <div fxFlex=\"1 0 auto\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n            <button mat-icon-button class=\"navbar-toggle-button\"\n                    *ngIf=\"!hiddenNavbar && !rightNavbar\" (click)=\"toggleSidebarOpen('navbar')\" fxHide.gt-md>\n                <mat-icon class=\"secondary-text\">menu</mat-icon>\n            </button>\n\n            <div class=\"toolbar-separator\" *ngIf=\"!hiddenNavbar && !rightNavbar\" fxHide.gt-md></div>\n\n            <div fxLayout=\"row\" fxLayoutAlign=\"start center\" *ngIf=\"horizontalNavbar\">\n                <div class=\"logo ml-16\">\n                    <img class=\"logo-icon\" src=\"assets/images/logos/fuse.svg\">\n                </div>\n            </div>\n\n            <div class=\"px-8 px-md-16\">\n                <fuse-shortcuts [navigation]=\"navigation\"></fuse-shortcuts>\n            </div>\n\n        </div>\n\n        <div class=\"\" fxFlex=\"0 1 auto\" fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n            <button mat-button [matMenuTriggerFor]=\"userMenu\"\n                    class=\"user-button\">\n                <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n                    <!--<img class=\"avatar mr-0 mr-sm-16\" src=\"assets/images/avatars/Velazquez.jpg\">-->\n                    <span class=\"username mr-12\" fxHide fxShow.gt-sm>Charlie Adams</span>\n                    <mat-icon class=\"s-16\" fxHide.xs>keyboard_arrow_down</mat-icon>\n                </div>\n            </button>\n\n            <mat-menu #userMenu=\"matMenu\" [overlapTrigger]=\"false\">\n\n                <!--<button mat-menu-item>\n                    <mat-icon>account_circle</mat-icon>\n                    <span>My Profile</span>\n                </button>\n\n                <button mat-menu-item class=\"\">\n                    <mat-icon>mail</mat-icon>\n                    <span>Inbox</span>\n                </button>-->\n\n                <button mat-menu-item class=\"\" (click)=\"logOut()\">\n                    <mat-icon>exit_to_app</mat-icon>\n                    <span>Logout</span>\n                </button>\n\n            </mat-menu>\n\n            <div class=\"toolbar-separator\"></div>\n\n            <fuse-search-bar (input)=\"search($event)\"></fuse-search-bar>\n\n            <div class=\"toolbar-separator\"></div>\n\n            <!--<button mat-button fxHide fxShow.gt-xs\n                    class=\"language-button\"\n                    [matMenuTriggerFor]=\"languageMenu\">\n                <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n                    <img class=\"flag mr-8\" [src]=\"'assets/icons/flags/'+selectedLanguage.flag+'.png'\">\n                    <span class=\"iso text-uppercase\">{{selectedLanguage.id}}</span>\n                </div>\n            </button>-->\n\n            <mat-menu #languageMenu=\"matMenu\" [overlapTrigger]=\"false\">\n\n                <button mat-menu-item *ngFor=\"let lang of languages\" (click)=\"setLanguage(lang)\">\n                    <span fxLayout=\"row\" fxLayoutAlign=\"start center\">\n                        <img class=\"flag mr-16\" [src]=\"'assets/icons/flags/'+lang.flag+'.png'\">\n                        <span class=\"iso\">{{lang.title}}</span>\n                    </span>\n                </button>\n\n            </mat-menu>\n\n            <div class=\"toolbar-separator\" fxHide fxShow.gt-xs></div>\n\n            <button mat-icon-button\n                    class=\"quick-panel-toggle-button\"\n                    (click)=\"toggleSidebarOpen('quickPanel')\"\n                    aria-label=\"Toggle quick panel\">\n                <mat-icon class=\"secondary-text\">format_list_bulleted</mat-icon>\n            </button>\n\n            <div class=\"toolbar-separator\" *ngIf=\"!hiddenNavbar && rightNavbar\" fxHide fxShow.gt-xs></div>\n\n            <button mat-icon-button class=\"navbar-toggle-button\"\n                    *ngIf=\"!hiddenNavbar && rightNavbar\" (click)=\"toggleSidebarOpen('navbar')\" fxHide.gt-md>\n                <mat-icon class=\"secondary-text\">menu</mat-icon>\n            </button>\n\n        </div>\n\n    </div>\n\n</mat-toolbar>\n"
 
 /***/ }),
 
@@ -11687,6 +11687,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fuse_services_config_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @fuse/services/config.service */ "./src/@fuse/services/config.service.ts");
 /* harmony import */ var _fuse_components_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fuse/components/sidebar/sidebar.service */ "./src/@fuse/components/sidebar/sidebar.service.ts");
 /* harmony import */ var app_navigation_navigation__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! app/navigation/navigation */ "./src/app/navigation/navigation.ts");
+/* harmony import */ var _utilities_utilities__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @utilities/utilities */ "./src/@utilities/utilities.ts");
+/* harmony import */ var _configs_constantes__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @configs/constantes */ "./src/@configs/constantes.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11704,6 +11707,9 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
+
+
 var ToolbarComponent = /** @class */ (function () {
     /**
      * Constructor
@@ -11711,11 +11717,13 @@ var ToolbarComponent = /** @class */ (function () {
      * @param {FuseConfigService} _fuseConfigService
      * @param {FuseSidebarService} _fuseSidebarService
      * @param {TranslateService} _translateService
+     * @param _router
      */
-    function ToolbarComponent(_fuseConfigService, _fuseSidebarService, _translateService) {
+    function ToolbarComponent(_fuseConfigService, _fuseSidebarService, _translateService, _router) {
         this._fuseConfigService = _fuseConfigService;
         this._fuseSidebarService = _fuseSidebarService;
         this._translateService = _translateService;
+        this._router = _router;
         // Set the defaults
         this.userStatusOptions = [
             {
@@ -11818,6 +11826,10 @@ var ToolbarComponent = /** @class */ (function () {
         // Use the selected language for translations
         this._translateService.use(lang.id);
     };
+    ToolbarComponent.prototype.logOut = function () {
+        _utilities_utilities__WEBPACK_IMPORTED_MODULE_8__["Utilities"].logins.logOff();
+        this._router.navigate([_configs_constantes__WEBPACK_IMPORTED_MODULE_9__["CrmConst"].loginDir]);
+    };
     ToolbarComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'toolbar',
@@ -11827,7 +11839,8 @@ var ToolbarComponent = /** @class */ (function () {
         }),
         __metadata("design:paramtypes", [_fuse_services_config_service__WEBPACK_IMPORTED_MODULE_5__["FuseConfigService"],
             _fuse_components_sidebar_sidebar_service__WEBPACK_IMPORTED_MODULE_6__["FuseSidebarService"],
-            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"]])
+            _ngx_translate_core__WEBPACK_IMPORTED_MODULE_3__["TranslateService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_10__["Router"]])
     ], ToolbarComponent);
     return ToolbarComponent;
 }());
