@@ -74,22 +74,41 @@
 
                             <div class="tab-content p-24" fusePerfectScrollbar>
 
-                                <mat-form-field class="w-100-p">
+                                <mat-form-field class="w-50-p">
                                     <input matInput
                                            name="nombre"
                                            formControlName="nombre"
-                                           placeholder="Nombre del Servicio"
+                                           placeholder="Nombre del Hotel"
                                            required>
                                     <mat-error *ngIf="entidadForm.get('nombre').hasError('required')">
-                                        Se requiere el nombre del Servicio
+                                        Se requiere el nombre del Hotel
                                     </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-50-p">
+                                    <input matInput
+                                           name="segmento"
+                                           formControlName="segmento"
+                                           placeholder="Segmento del Hotel"
+                                           required>
+                                    <mat-error *ngIf="entidadForm.get('segmento').hasError('required')">
+                                        Se requiere el Segmento del Hotel
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-50-p">
+                                    <input matInput
+                                           name="region"
+                                           formControlName="region"
+                                           placeholder="Region del Hotel"
+                                           >
                                 </mat-form-field>
 
                                 <mat-form-field class="w-100-p">
                                     <textarea matInput
                                               name="descripcion"
                                               formControlName="descripcion"
-                                              placeholder="Descripcion del Servicio"
+                                              placeholder="Descripcion del Hotel"
                                               rows="5">
                                     </textarea>
                                 </mat-form-field>
@@ -103,6 +122,118 @@
                                 </mat-form-field>-->
                             </div>
 
+                        </mat-tab>
+
+                        <mat-tab label="Regimen Alimentacion">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div class="w-30-p">
+                                    <button mat-button (click)="addRegimenAlimentacion()">Agregar Regimen Alimentacion</button><br><br>
+                                </div>
+
+                                <div class="w-100-p" formArrayName="regimenAlimentacion"
+                                     *ngFor="let regAli of regimenAlimentacion.controls; let i = index;">
+                                    <h3>Regimen {{i+1}}: </h3>
+                                    <div [formGroupName]="i">
+                                        <mat-form-field class="w-80-p">
+                                            <input matInput
+                                                   name="nombreRegimen"
+                                                   formControlName="nombreRegimen"
+                                                   placeholder="Nombre del Regimen"
+                                            >
+                                        </mat-form-field>
+                                        <mat-form-field class="w-80-p">
+                                            <textarea matInput
+                                                      name="descripcion"
+                                                      formControlName="descripcion"
+                                                      placeholder="Descripcion del Hotel"
+                                                      rows="5">
+                                            </textarea>
+                                        </mat-form-field>
+                                        <span class="w-20-p">
+                                            <button mat-button (click)="removeRegimenAlimentacion(i)">
+                                                Borrar Regimen
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Tipo Plan">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div class="w-30-p">
+                                    <button mat-button (click)="addTipoPlan()">Agregar Tipo Plan</button><br><br>
+                                </div>
+
+                                <div class="w-100-p" formArrayName="tipoPlan"
+                                     *ngFor="let tipoP of tipoPlan.controls; let i = index;">
+                                    <h3>Tipo Plan {{i+1}}: </h3>
+                                    <div [formGroupName]="i">
+                                        <mat-form-field class="w-80-p">
+                                            <input matInput
+                                                   name="nombrePlna"
+                                                   formControlName="nombrePlna"
+                                                   placeholder="Nombre del Plan"
+                                            >
+                                        </mat-form-field>
+                                        <mat-form-field class="w-80-p">
+                                            <textarea matInput
+                                                      name="descripcion"
+                                                      formControlName="descripcion"
+                                                      placeholder="Descripcion del Hotel"
+                                                      rows="5">
+                                            </textarea>
+                                        </mat-form-field>
+                                        <span class="w-20-p">
+                                            <button mat-button (click)="removeTipoPlan(i)">
+                                                Borrar Plan
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Tipo Tarifa">
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div class="w-30-p">
+                                    <button mat-button (click)="addTipoTarifa()">Agregar Tipo Tarifa</button><br><br>
+                                </div>
+
+                                <div class="w-100-p" formArrayName="tipoTarifa"
+                                     *ngFor="let tipoT of tipoTarifa.controls; let i = index;">
+                                    <h3>Tipo Tarifa {{i+1}}: </h3>
+                                    <div [formGroupName]="i">
+
+                                        <!-- tipoHabitacion -->
+
+                                        <mat-form-field class="w-40-p">
+                                            <input matInput
+                                                   name="numPersonas"
+                                                   type="number"
+                                                   formControlName="numPersonas"
+                                                   placeholder="Numero Personas"
+                                            >
+                                        </mat-form-field>
+
+                                        <!-- tipo -->
+
+                                        <mat-form-field class="w-40-p">
+                                            <input matInput
+                                                   name="monto"
+                                                   type="number"
+                                                   formControlName="monto"
+                                                   placeholder="Monto"
+                                            >
+                                        </mat-form-field>
+                                        <span class="w-20-p">
+                                            <button mat-button (click)="removeTipoTarifa(i)">
+                                                Borrar Tarifa
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </mat-tab>
 
                     </mat-tab-group>

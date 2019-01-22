@@ -11624,7 +11624,7 @@ var HabitacionesService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=\"entidad\" class=\"page-layout carded fullwidth inner-scroll\">\n\n    <!-- TOP BACKGROUND -->\n    <div class=\"top-bg mat-accent-bg\"></div>\n    <!-- / TOP BACKGROUND -->\n\n    <!-- CENTER -->\n    <div class=\"center\">\n\n        <!-- HEADER -->\n        <div class=\"header mat-accent-bg\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n\n            <!-- APP TITLE -->\n            <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n                <button mat-icon-button class=\"mr-0 mr-sm-16\" [routerLink]=\"entidadConst.urlEntidades\">\n                    <mat-icon>arrow_back</mat-icon>\n                </button>\n\n                <div class=\"entidad-image mr-8 mr-sm-16\" [@animate]=\"{value:'*',params:{delay:'50ms',scale:'0.2'}}\">\n                    <!--<img *ngIf=\"entidad.images[0]\" [src]=\"entidad.images[0].url\">\n                    <img *ngIf=\"!entidad.images[0]\" [src]=\"'assets/images/ecommerce/entidad-image-placeholder.png'\">-->\n                </div>\n\n                <div fxLayout=\"column\" fxLayoutAlign=\"start start\"\n                     [@animate]=\"{value:'*',params:{delay:'100ms',x:'-25px'}}\">\n                    <div class=\"h2\" *ngIf=\"pageType ==='edit'\">\n                        {{entidad.nombre}}\n                    </div>\n                    <div class=\"h2\" *ngIf=\"pageType ==='new'\">\n                        Nuevo {{entidadConst.name}}\n                    </div>\n                    <div class=\"subtitle secondary-text\">\n                        <span>Detalle {{entidadConst.name}}</span>\n                    </div>\n                </div>\n            </div>\n            <!-- / APP TITLE -->\n            <div fxLayout=\"row\" fxLayoutAlign=\"end\">\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        [disabled]=\"entidadForm.invalid\"\n                        *ngIf=\"pageType ==='new'\" (click)=\"addEntidad()\">\n                    <span>Agregar</span>\n                </button>\n\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        [disabled]=\"entidadForm.invalid || entidadForm.pristine\"\n                        *ngIf=\"pageType ==='edit'\" (click)=\"saveEntidad()\">\n                    <span>Guardar</span>\n                </button>\n\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        *ngIf=\"pageType ==='edit'\" (click)=\"removeEntidad()\">\n                    <span>Borrar</span>\n                </button>\n            </div>\n        </div>\n        <!-- / HEADER -->\n\n        <!-- CONTENT CARD -->\n        <div class=\"content-card mat-white-bg\">\n\n            <!-- CONTENT -->\n            <div class=\"content\">\n\n                <form name=\"entidadForm\" [formGroup]=\"entidadForm\" class=\"entidad w-100-p\" fxLayout=\"column\" fxFlex>\n\n                    <mat-tab-group>\n\n                        <mat-tab label=\"Informacion {{entidadConst.name}}\">\n\n                            <div class=\"tab-content p-24\" fusePerfectScrollbar>\n\n                                <mat-form-field class=\"w-100-p\">\n                                    <input matInput\n                                           name=\"nombre\"\n                                           formControlName=\"nombre\"\n                                           placeholder=\"Nombre del Servicio\"\n                                           required>\n                                    <mat-error *ngIf=\"entidadForm.get('nombre').hasError('required')\">\n                                        Se requiere el nombre del Servicio\n                                    </mat-error>\n                                </mat-form-field>\n\n                                <mat-form-field class=\"w-100-p\">\n                                    <textarea matInput\n                                              name=\"descripcion\"\n                                              formControlName=\"descripcion\"\n                                              placeholder=\"Descripcion del Servicio\"\n                                              rows=\"5\">\n                                    </textarea>\n                                </mat-form-field>\n\n                                <!--<mat-form-field fxFlex=\"100\">\n                                    <mat-select placeholder=\"Moneda\" formControlName=\"moneda\">\n                                        <mat-option *ngFor=\"let moneda of monedas\" [value]=\"moneda.id\">\n                                            {{moneda.nombre}}\n                                        </mat-option>\n                                    </mat-select>\n                                </mat-form-field>-->\n                            </div>\n\n                        </mat-tab>\n\n                    </mat-tab-group>\n                </form>\n\n            </div>\n            <!-- / CONTENT -->\n\n        </div>\n        <!-- / CONTENT CARD -->\n\n    </div>\n    <!-- / CENTER -->\n</div>\n"
+module.exports = "<div id=\"entidad\" class=\"page-layout carded fullwidth inner-scroll\">\n\n    <!-- TOP BACKGROUND -->\n    <div class=\"top-bg mat-accent-bg\"></div>\n    <!-- / TOP BACKGROUND -->\n\n    <!-- CENTER -->\n    <div class=\"center\">\n\n        <!-- HEADER -->\n        <div class=\"header mat-accent-bg\" fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\n\n            <!-- APP TITLE -->\n            <div fxLayout=\"row\" fxLayoutAlign=\"start center\">\n\n                <button mat-icon-button class=\"mr-0 mr-sm-16\" [routerLink]=\"entidadConst.urlEntidades\">\n                    <mat-icon>arrow_back</mat-icon>\n                </button>\n\n                <div class=\"entidad-image mr-8 mr-sm-16\" [@animate]=\"{value:'*',params:{delay:'50ms',scale:'0.2'}}\">\n                    <!--<img *ngIf=\"entidad.images[0]\" [src]=\"entidad.images[0].url\">\n                    <img *ngIf=\"!entidad.images[0]\" [src]=\"'assets/images/ecommerce/entidad-image-placeholder.png'\">-->\n                </div>\n\n                <div fxLayout=\"column\" fxLayoutAlign=\"start start\"\n                     [@animate]=\"{value:'*',params:{delay:'100ms',x:'-25px'}}\">\n                    <div class=\"h2\" *ngIf=\"pageType ==='edit'\">\n                        {{entidad.nombre}}\n                    </div>\n                    <div class=\"h2\" *ngIf=\"pageType ==='new'\">\n                        Nuevo {{entidadConst.name}}\n                    </div>\n                    <div class=\"subtitle secondary-text\">\n                        <span>Detalle {{entidadConst.name}}</span>\n                    </div>\n                </div>\n            </div>\n            <!-- / APP TITLE -->\n            <div fxLayout=\"row\" fxLayoutAlign=\"end\">\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        [disabled]=\"entidadForm.invalid\"\n                        *ngIf=\"pageType ==='new'\" (click)=\"addEntidad()\">\n                    <span>Agregar</span>\n                </button>\n\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        [disabled]=\"entidadForm.invalid || entidadForm.pristine\"\n                        *ngIf=\"pageType ==='edit'\" (click)=\"saveEntidad()\">\n                    <span>Guardar</span>\n                </button>\n\n                <button mat-raised-button\n                        class=\"save-entidad-button mat-white-bg\"\n                        *ngIf=\"pageType ==='edit'\" (click)=\"removeEntidad()\">\n                    <span>Borrar</span>\n                </button>\n            </div>\n        </div>\n        <!-- / HEADER -->\n\n        <!-- CONTENT CARD -->\n        <div class=\"content-card mat-white-bg\">\n\n            <!-- CONTENT -->\n            <div class=\"content\">\n\n                <form name=\"entidadForm\" [formGroup]=\"entidadForm\" class=\"entidad w-100-p\" fxLayout=\"column\" fxFlex>\n\n                    <mat-tab-group>\n\n                        <mat-tab label=\"Informacion {{entidadConst.name}}\">\n\n                            <div class=\"tab-content p-24\" fusePerfectScrollbar>\n\n                                <mat-form-field class=\"w-50-p\">\n                                    <input matInput\n                                           name=\"nombre\"\n                                           formControlName=\"nombre\"\n                                           placeholder=\"Nombre del Hotel\"\n                                           required>\n                                    <mat-error *ngIf=\"entidadForm.get('nombre').hasError('required')\">\n                                        Se requiere el nombre del Hotel\n                                    </mat-error>\n                                </mat-form-field>\n\n                                <mat-form-field class=\"w-50-p\">\n                                    <input matInput\n                                           name=\"segmento\"\n                                           formControlName=\"segmento\"\n                                           placeholder=\"Segmento del Hotel\"\n                                           required>\n                                    <mat-error *ngIf=\"entidadForm.get('segmento').hasError('required')\">\n                                        Se requiere el Segmento del Hotel\n                                    </mat-error>\n                                </mat-form-field>\n\n                                <mat-form-field class=\"w-50-p\">\n                                    <input matInput\n                                           name=\"region\"\n                                           formControlName=\"region\"\n                                           placeholder=\"Region del Hotel\"\n                                           >\n                                </mat-form-field>\n\n                                <mat-form-field class=\"w-100-p\">\n                                    <textarea matInput\n                                              name=\"descripcion\"\n                                              formControlName=\"descripcion\"\n                                              placeholder=\"Descripcion del Hotel\"\n                                              rows=\"5\">\n                                    </textarea>\n                                </mat-form-field>\n\n                                <!--<mat-form-field fxFlex=\"100\">\n                                    <mat-select placeholder=\"Moneda\" formControlName=\"moneda\">\n                                        <mat-option *ngFor=\"let moneda of monedas\" [value]=\"moneda.id\">\n                                            {{moneda.nombre}}\n                                        </mat-option>\n                                    </mat-select>\n                                </mat-form-field>-->\n                            </div>\n\n                        </mat-tab>\n\n                        <mat-tab label=\"Regimen Alimentacion\">\n                            <div class=\"tab-content p-24\" fusePerfectScrollbar>\n                                <div class=\"w-30-p\">\n                                    <button mat-button (click)=\"addRegimenAlimentacion()\">Agregar Regimen Alimentacion</button><br><br>\n                                </div>\n\n                                <div class=\"w-100-p\" formArrayName=\"regimenAlimentacion\"\n                                     *ngFor=\"let regAli of regimenAlimentacion.controls; let i = index;\">\n                                    <h3>Regimen {{i+1}}: </h3>\n                                    <div [formGroupName]=\"i\">\n                                        <mat-form-field class=\"w-80-p\">\n                                            <input matInput\n                                                   name=\"nombreRegimen\"\n                                                   formControlName=\"nombreRegimen\"\n                                                   placeholder=\"Nombre del Regimen\"\n                                            >\n                                        </mat-form-field>\n                                        <mat-form-field class=\"w-80-p\">\n                                            <textarea matInput\n                                                      name=\"descripcion\"\n                                                      formControlName=\"descripcion\"\n                                                      placeholder=\"Descripcion del Hotel\"\n                                                      rows=\"5\">\n                                            </textarea>\n                                        </mat-form-field>\n                                        <span class=\"w-20-p\">\n                                            <button mat-button (click)=\"removeRegimenAlimentacion(i)\">\n                                                Borrar Regimen\n                                            </button>\n                                        </span>\n                                    </div>\n                                </div>\n                            </div>\n                        </mat-tab>\n\n                        <mat-tab label=\"Tipo Plan\">\n                            <div class=\"tab-content p-24\" fusePerfectScrollbar>\n                                <div class=\"w-30-p\">\n                                    <button mat-button (click)=\"addTipoPlan()\">Agregar Tipo Plan</button><br><br>\n                                </div>\n\n                                <div class=\"w-100-p\" formArrayName=\"tipoPlan\"\n                                     *ngFor=\"let tipoP of tipoPlan.controls; let i = index;\">\n                                    <h3>Tipo Plan {{i+1}}: </h3>\n                                    <div [formGroupName]=\"i\">\n                                        <mat-form-field class=\"w-80-p\">\n                                            <input matInput\n                                                   name=\"nombrePlna\"\n                                                   formControlName=\"nombrePlna\"\n                                                   placeholder=\"Nombre del Plan\"\n                                            >\n                                        </mat-form-field>\n                                        <mat-form-field class=\"w-80-p\">\n                                            <textarea matInput\n                                                      name=\"descripcion\"\n                                                      formControlName=\"descripcion\"\n                                                      placeholder=\"Descripcion del Hotel\"\n                                                      rows=\"5\">\n                                            </textarea>\n                                        </mat-form-field>\n                                        <span class=\"w-20-p\">\n                                            <button mat-button (click)=\"removeTipoPlan(i)\">\n                                                Borrar Plan\n                                            </button>\n                                        </span>\n                                    </div>\n                                </div>\n                            </div>\n                        </mat-tab>\n\n                        <mat-tab label=\"Tipo Tarifa\">\n                            <div class=\"tab-content p-24\" fusePerfectScrollbar>\n                                <div class=\"w-30-p\">\n                                    <button mat-button (click)=\"addTipoTarifa()\">Agregar Tipo Tarifa</button><br><br>\n                                </div>\n\n                                <div class=\"w-100-p\" formArrayName=\"tipoTarifa\"\n                                     *ngFor=\"let tipoT of tipoTarifa.controls; let i = index;\">\n                                    <h3>Tipo Tarifa {{i+1}}: </h3>\n                                    <div [formGroupName]=\"i\">\n\n                                        <!-- tipoHabitacion -->\n\n                                        <mat-form-field class=\"w-40-p\">\n                                            <input matInput\n                                                   name=\"numPersonas\"\n                                                   type=\"number\"\n                                                   formControlName=\"numPersonas\"\n                                                   placeholder=\"Numero Personas\"\n                                            >\n                                        </mat-form-field>\n\n                                        <!-- tipo -->\n\n                                        <mat-form-field class=\"w-40-p\">\n                                            <input matInput\n                                                   name=\"monto\"\n                                                   type=\"number\"\n                                                   formControlName=\"monto\"\n                                                   placeholder=\"Monto\"\n                                            >\n                                        </mat-form-field>\n                                        <span class=\"w-20-p\">\n                                            <button mat-button (click)=\"removeTipoTarifa(i)\">\n                                                Borrar Tarifa\n                                            </button>\n                                        </span>\n                                    </div>\n                                </div>\n                            </div>\n                        </mat-tab>\n\n                    </mat-tab-group>\n                </form>\n\n            </div>\n            <!-- / CONTENT -->\n\n        </div>\n        <!-- / CONTENT CARD -->\n\n    </div>\n    <!-- / CENTER -->\n</div>\n"
 
 /***/ }),
 
@@ -11729,7 +11729,7 @@ var HotelComponent = /** @class */ (function () {
                 _this.pageType = 'new';
                 _this.entidad = new _hotel_model__WEBPACK_IMPORTED_MODULE_7__["HotelModel"]();
             }
-            _this.entidadForm = _this.createEntidadForm();
+            _this.createEntidadForm();
         });
     };
     /**
@@ -11749,7 +11749,7 @@ var HotelComponent = /** @class */ (function () {
      * @returns {FormGroup}
      */
     HotelComponent.prototype.createEntidadForm = function () {
-        return this._formBuilder.group({
+        this.entidadForm = this._formBuilder.group({
             _id: [this.entidad._id],
             nombre: [this.entidad.nombre, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
             segmento: [this.entidad.segmeto, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required],
@@ -11758,22 +11758,101 @@ var HotelComponent = /** @class */ (function () {
             serviciosNoIncluidos: [this.entidad.serviciosNoIncluidos],
             penalidades: [this.entidad.penalidades],
             region: [this.entidad.region],
-            regimenAlimentacion: [this.entidad.regimenAlimentacion],
-            tipoPlan: [this.entidad.tipoPlan],
-            tipoTarifa: [this.entidad.tipoTarifa],
+            regimenAlimentacion: this._formBuilder.array([]),
+            tipoPlan: this._formBuilder.array([]),
+            tipoTarifa: this._formBuilder.array([]),
             email: [this.entidad.email],
             telefonos: [this.entidad.telefonos],
             ejecutivoVentas: [this.entidad.ejecutivoVentas],
             cuentaBancaria: [this.entidad.cuentaBancaria],
             descripcion: [this.entidad.descripcion],
         });
+        this.regimenAlimentacion = this.entidadForm.get('regimenAlimentacion');
+        this.tipoPlan = this.entidadForm.get('tipoPlan');
+        this.tipoTarifa = this.entidadForm.get('tipoTarifa');
+        this.iniRegimenAlimentacion();
+        this.iniTipoPlan();
+        this.iniTipoTarifa();
     };
-    /*createhabitaciones(): FormGroup {
-        return this._formBuilder.group({
-            _id: null,
-            nombre: '',
+    HotelComponent.prototype.iniRegimenAlimentacion = function () {
+        var _this = this;
+        this.entidad.regimenAlimentacion.forEach(function (f) {
+            _this.regimenAlimentacion.push(_this.insertRegimenAlimentacion(f));
         });
-    }*/
+    };
+    HotelComponent.prototype.createRegimenAlimentacion = function () {
+        return this._formBuilder.group({
+            nombreRegimen: '',
+            descripcion: ''
+        });
+    };
+    HotelComponent.prototype.addRegimenAlimentacion = function () {
+        this.regimenAlimentacion.push(this.createRegimenAlimentacion());
+    };
+    HotelComponent.prototype.removeRegimenAlimentacion = function (index) {
+        this.regimenAlimentacion.removeAt(index);
+    };
+    HotelComponent.prototype.insertRegimenAlimentacion = function (_a) {
+        var nombreRegimen = _a.nombreRegimen, descripcion = _a.descripcion;
+        return this._formBuilder.group({
+            nombreRegimen: nombreRegimen || '',
+            descripcion: descripcion || '',
+        });
+    };
+    HotelComponent.prototype.iniTipoPlan = function () {
+        var _this = this;
+        this.entidad.tipoPlan.forEach(function (f) {
+            _this.tipoPlan.push(_this.insertTipoPlan(f));
+        });
+    };
+    HotelComponent.prototype.createTipoPlan = function () {
+        return this._formBuilder.group({
+            nombrePlna: '',
+            descripcion: ''
+        });
+    };
+    HotelComponent.prototype.addTipoPlan = function () {
+        this.tipoPlan.push(this.createTipoPlan());
+    };
+    HotelComponent.prototype.removeTipoPlan = function (index) {
+        this.tipoPlan.removeAt(index);
+    };
+    HotelComponent.prototype.insertTipoPlan = function (_a) {
+        var nombrePlna = _a.nombrePlna, descripcion = _a.descripcion;
+        return this._formBuilder.group({
+            nombrePlna: nombrePlna || '',
+            descripcion: descripcion || '',
+        });
+    };
+    HotelComponent.prototype.iniTipoTarifa = function () {
+        var _this = this;
+        this.entidad.tipoTarifa.forEach(function (f) {
+            _this.tipoTarifa.push(_this.insertTipoTarifa(f));
+        });
+    };
+    HotelComponent.prototype.createTipoTarifa = function () {
+        return this._formBuilder.group({
+            tipoHabitacion: [],
+            numPersonas: 0,
+            tipo: null,
+            monto: 0
+        });
+    };
+    HotelComponent.prototype.addTipoTarifa = function () {
+        this.tipoTarifa.push(this.createTipoTarifa());
+    };
+    HotelComponent.prototype.removeTipoTarifa = function (index) {
+        this.tipoTarifa.removeAt(index);
+    };
+    HotelComponent.prototype.insertTipoTarifa = function (_a) {
+        var tipoHabitacion = _a.tipoHabitacion, numPersonas = _a.numPersonas, tipo = _a.tipo, monto = _a.monto;
+        return this._formBuilder.group({
+            tipoHabitacion: tipoHabitacion || [],
+            numPersonas: numPersonas || 0,
+            tipo: tipo || null,
+            monto: monto || 0,
+        });
+    };
     /**
      * Save entidad
      */

@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
 import {MatSnackBar} from '@angular/material';
 import { Subject } from 'rxjs';
@@ -30,6 +30,10 @@ export class HotelComponent implements OnInit, OnDestroy
     regions: string[];
     // Private
     private _unsubscribeAll: Subject<any>;
+
+    regimenAlimentacion: FormArray;
+    tipoPlan: FormArray;
+    tipoTarifa: FormArray;
 
     /**
      * Constructor
@@ -84,7 +88,7 @@ export class HotelComponent implements OnInit, OnDestroy
                     this.entidad = new HotelModel();
                 }
 
-                this.entidadForm = this.createEntidadForm();
+                this.createEntidadForm();
             });
     }
 
@@ -107,9 +111,9 @@ export class HotelComponent implements OnInit, OnDestroy
      *
      * @returns {FormGroup}
      */
-    createEntidadForm(): FormGroup
+    createEntidadForm(): void
     {
-        return this._formBuilder.group({
+        this.entidadForm = this._formBuilder.group({
             _id             : [this.entidad._id],
             nombre          : [this.entidad.nombre, Validators.required],
             segmento        : [this.entidad.segmeto, Validators.required],
@@ -118,9 +122,9 @@ export class HotelComponent implements OnInit, OnDestroy
             serviciosNoIncluidos       : [this.entidad.serviciosNoIncluidos],
             penalidades       : [this.entidad.penalidades],
             region          : [this.entidad.region],
-            regimenAlimentacion  : [this.entidad.regimenAlimentacion],
-            tipoPlan        : [this.entidad.tipoPlan],
-            tipoTarifa      : [this.entidad.tipoTarifa],
+            regimenAlimentacion  : this._formBuilder.array([]),
+            tipoPlan        : this._formBuilder.array([]),
+            tipoTarifa      : this._formBuilder.array([]),
             email           : [this.entidad.email],
             telefonos           : [this.entidad.telefonos],
             ejecutivoVentas           : [this.entidad.ejecutivoVentas],
@@ -128,14 +132,101 @@ export class HotelComponent implements OnInit, OnDestroy
             descripcion     : [this.entidad.descripcion],
             /*sistema         : [this.entidad.sistema]*/
         });
+        this.regimenAlimentacion = this.entidadForm.get('regimenAlimentacion') as FormArray;
+        this.tipoPlan = this.entidadForm.get('tipoPlan') as FormArray;
+        this.tipoTarifa = this.entidadForm.get('tipoTarifa') as FormArray;
+        this.iniRegimenAlimentacion();
+        this.iniTipoPlan();
+        this.iniTipoTarifa();
     }
 
-    /*createhabitaciones(): FormGroup {
-        return this._formBuilder.group({
-            _id: null,
-            nombre: '',
+    private iniRegimenAlimentacion(): void {
+        this.entidad.regimenAlimentacion.forEach(f => {
+            this.regimenAlimentacion.push(this.insertRegimenAlimentacion(f));
         });
-    }*/
+    }
+
+    createRegimenAlimentacion(): FormGroup {
+        return this._formBuilder.group({
+            nombreRegimen: '',
+            descripcion: ''
+        });
+    }
+
+    addRegimenAlimentacion(): void {
+        this.regimenAlimentacion.push(this.createRegimenAlimentacion());
+    }
+
+    removeRegimenAlimentacion (index): void {
+        this.regimenAlimentacion.removeAt(index);
+    }
+
+    private insertRegimenAlimentacion({nombreRegimen, descripcion}): FormGroup {
+        return this._formBuilder.group({
+            nombreRegimen: nombreRegimen || '',
+            descripcion: descripcion || '',
+        });
+    }
+
+    private iniTipoPlan(): void {
+        this.entidad.tipoPlan.forEach(f => {
+            this.tipoPlan.push(this.insertTipoPlan(f));
+        });
+    }
+
+    createTipoPlan(): FormGroup {
+        return this._formBuilder.group({
+            nombrePlna: '',
+            descripcion: ''
+        });
+    }
+
+    addTipoPlan(): void {
+        this.tipoPlan.push(this.createTipoPlan());
+    }
+
+    removeTipoPlan (index): void {
+        this.tipoPlan.removeAt(index);
+    }
+
+    private insertTipoPlan({nombrePlna, descripcion}): FormGroup {
+        return this._formBuilder.group({
+            nombrePlna: nombrePlna || '',
+            descripcion: descripcion || '',
+        });
+    }
+
+    private iniTipoTarifa(): void {
+        this.entidad.tipoTarifa.forEach(f => {
+            this.tipoTarifa.push(this.insertTipoTarifa(f));
+        });
+    }
+
+    createTipoTarifa(): FormGroup {
+        return this._formBuilder.group({
+            tipoHabitacion: [],
+            numPersonas: 0,
+            tipo: null,
+            monto: 0
+        });
+    }
+
+    addTipoTarifa(): void {
+        this.tipoTarifa.push(this.createTipoTarifa());
+    }
+
+    removeTipoTarifa (index): void {
+        this.tipoTarifa.removeAt(index);
+    }
+
+    private insertTipoTarifa({tipoHabitacion, numPersonas, tipo, monto}): FormGroup {
+        return this._formBuilder.group({
+            tipoHabitacion: tipoHabitacion || [],
+            numPersonas: numPersonas || 0,
+            tipo: tipo || null,
+            monto: monto || 0,
+        });
+    }
 
     /**
      * Save entidad
