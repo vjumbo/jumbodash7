@@ -9,13 +9,16 @@ router.options('*', cors());
 
 router.get('/', cors(), (req, res, next) => {
   Hotel.find( (err, hoteles) => {
+      console.log('****** hoteles', hoteles);
       if (!hoteles) {
           res.json([]);
       } else {
           if (err) return next(err);
           res.json(hoteles);
       }
-  }).populate('habitaciones').populate('servicios')
+  }).populate('sistema.usuarioCreador', 'username')
+      .populate('sistema.usuarioAsignado', 'username')
+      .populate('habitaciones').populate('servicios')
       .populate('serviciosNoIncluidos').populate('penalidades');
 });
 
@@ -23,10 +26,11 @@ router.get('/hoteltypes', cors(), (req, res, next) => {
   res.json(hotelTypes);
 });
 
-router.get('/hotel/:id', cors(), (req, res, next) => {
-  Hotel.findById(req.params.id,  (err, post) => {
+router.get('/:id', cors(), (req, res, next) => {
+  Hotel.findById(req.params.id,  (err, hotel) => {
+      console.log('****** hotel', hotel);
     if (err) return next(err);
-    res.json(post);
+    res.json(hotel);
   }).populate('habitaciones').populate('servicios')
       .populate('serviciosNoIncluidos').populate('penalidades');
 });

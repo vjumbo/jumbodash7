@@ -54,7 +54,7 @@ const HotelSchema = new Schema({
   sistema: SistemaSchema
 });
 
-HotelSchema.pre('findOne', () =>{
+/*HotelSchema.pre('findOne', () =>{
   this.populate('habitaciones');
   this.populate('servicios');
   this.populate('serviciosNoIncluidos');
@@ -62,9 +62,9 @@ HotelSchema.pre('findOne', () =>{
   this.populate('region');
   // this.populate('cuentaBancaria');
   // this.populate('sistema');
-});
+});*/
 
-HotelSchema.pre('find', () =>{
+/*HotelSchema.pre('find', () =>{
   this.populate('habitaciones');
   this.populate('servicios');
   this.populate('serviciosNoIncluidos');
@@ -72,6 +72,6 @@ HotelSchema.pre('find', () =>{
   this.populate('region');
   // this.populate('cuentaBancaria');
   // this.populate('sistema');
-});
+});*/
 
 module.exports = mongoose.model('Hotel', HotelSchema);
