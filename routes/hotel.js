@@ -9,7 +9,6 @@ router.options('*', cors());
 
 router.get('/', cors(), (req, res, next) => {
   Hotel.find( (err, hoteles) => {
-      console.log('****** hoteles', hoteles);
       if (!hoteles) {
           res.json([]);
       } else {
@@ -28,7 +27,6 @@ router.get('/hoteltypes', cors(), (req, res, next) => {
 
 router.get('/:id', cors(), (req, res, next) => {
   Hotel.findById(req.params.id,  (err, hotel) => {
-      console.log('****** hotel', hotel);
     if (err) return next(err);
     res.json(hotel);
   }).populate('habitaciones').populate('servicios')
