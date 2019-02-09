@@ -7,6 +7,7 @@ const hotelTypes = require("../def/hotelTypes");
 
 router.options('*', cors());
 
+
 router.get('/', cors(), (req, res, next) => {
   Hotel.find( (err, hoteles) => {
       if (!hoteles) {
