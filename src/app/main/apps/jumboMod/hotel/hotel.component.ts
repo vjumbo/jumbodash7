@@ -11,6 +11,7 @@ import {HotelService} from './hotel.service';
 import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
+import {Habitacion, Servicio} from '@configs/interfaces';
 
 
 @Component({
@@ -25,9 +26,15 @@ export class HotelComponent implements OnInit, OnDestroy
     entidad: HotelModel;
     pageType: string;
     entidadForm: FormGroup;
+    habitacionesForm: FormGroup;
+    serviciosForm: FormGroup;
+    noServiciosForm: FormGroup;
     entidadConst: any;
     countries: any[];
     regions: string[];
+    hotelTypes: any[];
+    habitaciones: Habitacion[];
+    servicios: Servicio[];
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -74,6 +81,9 @@ export class HotelComponent implements OnInit, OnDestroy
         this.countries = this._countries.countries;
         this.regions = this._countries.regions;*/
         // Subscribe to update entidad on changes
+        this.hotelTypes = this.entidadService.hotelTypes;
+        this.habitaciones = this.entidadService.habitaciones;
+        this.servicios = this.entidadService.servicios;
         this.entidadService.onEntidadChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(entidad => {
@@ -90,6 +100,95 @@ export class HotelComponent implements OnInit, OnDestroy
 
                 this.createEntidadForm();
             });
+    }
+
+    getHabitaciones(): Habitacion[] {
+        const habs = this.entidadForm.get('habitaciones').value;
+        return this.habitaciones.filter( h =>
+            !Utilities.arrays.findPropObjectInArray(habs, '_id', h._id)
+        );
+    }
+
+    getServicios(): Servicio[] {
+        const servs = [...this.entidadForm.get('servicios').value, ...this.entidadForm.get('serviciosNoIncluidos').value];
+        return this.servicios.filter( h =>
+            !Utilities.arrays.findPropObjectInArray(servs, '_id', h._id)
+        );
+    }
+
+    getSelectedHabitaciones(): Habitacion[] {
+        return this.entidadForm.get('habitaciones').value;
+    }
+
+    getSelectedServicios(): Servicio[] {
+        return this.entidadForm.get('servicios').value;
+    }
+
+    getSelectedNoServicios(): Servicio[] {
+        return this.entidadForm.get('serviciosNoIncluidos').value;
+    }
+
+    updateHabitaciones(): void {
+        const habId = this.habitacionesForm.get('habitacion').value;
+        if ( !habId )
+        {
+            return;
+        }
+        const habs = [...this.entidadForm.get('habitaciones').value, this.habitaciones.find(h => h._id === habId)];
+        if (!Utilities.objects.areEquals(this.entidad.habitaciones, habs)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // todo
+        }
+        this.entidadForm.controls['habitaciones'].setValue(habs);
+        this.habitacionesForm.reset();
+    }
+
+    updateServicios(): void {
+        const servId = this.serviciosForm.get('servicio').value;
+        if ( !servId )
+        {
+            return;
+        }
+        const servs = [...this.entidadForm.get('servicios').value, this.servicios.find(s => s._id === servId)];
+        if (!Utilities.objects.areEquals(this.entidad.servicios, servs)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // todo
+        }
+        this.entidadForm.controls['servicios'].setValue(servs);
+        this.serviciosForm.reset();
+    }
+
+    updateNoServicios(): void {
+        const servId = this.noServiciosForm.get('servicio').value;
+        if ( !servId )
+        {
+            return;
+        }
+        const servs = [...this.entidadForm.get('serviciosNoIncluidos').value, this.servicios.find(s => s._id === servId)];
+        if (!Utilities.objects.areEquals(this.entidad.serviciosNoIncluidos, servs)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // todo
+        }
+        this.entidadForm.controls['serviciosNoIncluidos'].setValue(servs);
+        this.serviciosForm.reset();
+    }
+
+    eliminarHab(id): void {
+        const habs = [...this.entidadForm.get('habitaciones').value].filter(h => h._id !== id);
+        this.entidadForm.controls['habitaciones'].setValue(habs);
+    }
+
+    eliminarServ(id): void {
+        const servs = [...this.entidadForm.get('servicios').value].filter(s => s._id !== id);
+        this.entidadForm.controls['servicios'].setValue(servs);
+    }
+
+    eliminarNoServ(id): void {
+        const servs = [...this.entidadForm.get('serviciosNoIncluidos').value].filter(s => s._id !== id);
+        this.entidadForm.controls['serviciosNoIncluidos'].setValue(servs);
     }
 
     /**
@@ -113,24 +212,54 @@ export class HotelComponent implements OnInit, OnDestroy
      */
     createEntidadForm(): void
     {
+        this.habitacionesForm = this._formBuilder.group({
+            habitacion: ['']
+        });
+
+        this.serviciosForm = this._formBuilder.group({
+            servicio: ['']
+        });
+
+        this.noServiciosForm = this._formBuilder.group({
+            servicio: ['']
+        });
+
+        const email = this._formBuilder.group({
+            pagos: [this.entidad.email.pagos, [Validators.email]],
+            reservas: [this.entidad.email.reservas, [Validators.email]],
+            jefeReservas: [this.entidad.email.jefeReservas, [Validators.email]],
+        });
+
+        const telefonos = this._formBuilder.group({
+            pagos: [this.entidad.telefonos.pagos],
+            reservas: [this.entidad.telefonos.reservas],
+            jefeReservas: [this.entidad.telefonos.jefeReservas],
+        });
+
+        const ejecutivoVentas = this._formBuilder.group({
+            nombre: [this.entidad.ejecutivoVentas.nombre],
+            telefono: [this.entidad.ejecutivoVentas.telefono],
+            email: [this.entidad.ejecutivoVentas.email, [Validators.email]]
+        });
+
         this.entidadForm = this._formBuilder.group({
-            _id             : [this.entidad._id],
-            nombre          : [this.entidad.nombre, Validators.required],
-            segmento        : [this.entidad.segmeto, Validators.required],
-            habitaciones    : [this.entidad.habitaciones],
-            servicios       : [this.entidad.servicios],
-            serviciosNoIncluidos       : [this.entidad.serviciosNoIncluidos],
-            penalidades       : [this.entidad.penalidades],
-            region          : [this.entidad.region],
-            regimenAlimentacion  : this._formBuilder.array([]),
-            tipoPlan        : this._formBuilder.array([]),
-            tipoTarifa      : this._formBuilder.array([]),
-            email           : [this.entidad.email],
-            telefonos           : [this.entidad.telefonos],
-            ejecutivoVentas           : [this.entidad.ejecutivoVentas],
-            cuentaBancaria           : [this.entidad.cuentaBancaria],
-            descripcion     : [this.entidad.descripcion],
-            /*sistema         : [this.entidad.sistema]*/
+            _id                 : [this.entidad._id],
+            nombre              : [this.entidad.nombre, Validators.required],
+            segmetohotel        : [this.entidad.segmetohotel, Validators.required],
+            habitaciones        : [this.entidad.habitaciones],
+            servicios           : [this.entidad.servicios],
+            serviciosNoIncluidos: [this.entidad.serviciosNoIncluidos],
+            penalidades         : [this.entidad.penalidades],
+            region              : [this.entidad.region],
+            regimenAlimentacion : this._formBuilder.array([]),
+            tipoPlan            : this._formBuilder.array([]),
+            tipoTarifa          : this._formBuilder.array([]),
+            email               : email,
+            telefonos           : telefonos,
+            ejecutivoVentas     : ejecutivoVentas,
+            cuentaBancaria      : [this.entidad.cuentaBancaria],
+            descripcion         : [this.entidad.descripcion],
+            /*sistema           : [this.entidad.sistema]*/
         });
         this.regimenAlimentacion = this.entidadForm.get('regimenAlimentacion') as FormArray;
         this.tipoPlan = this.entidadForm.get('tipoPlan') as FormArray;

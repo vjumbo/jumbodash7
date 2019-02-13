@@ -4,7 +4,7 @@ export class HotelModel
 {
     _id: string;
     nombre: string;
-    segmeto: HotelType;
+    segmetohotel: HotelType;
     habitaciones?: Habitacion[];
     servicios?: Servicio[];
     serviciosNoIncluidos?: Servicio[];
@@ -55,7 +55,7 @@ export class HotelModel
         entidad = entidad || {};
         this._id = entidad._id || null;
         this.nombre = entidad.nombre || '';
-        this.segmeto = entidad.segmeto || null;
+        this.segmetohotel = entidad.segmetohotel || null;
         this.habitaciones = entidad.habitaciones || [];
         this.servicios = entidad.servicios || [];
         this.serviciosNoIncluidos = entidad.serviciosNoIncluidos || [];
@@ -64,12 +64,60 @@ export class HotelModel
         this.regimenAlimentacion = entidad.regimenAlimentacion || [];
         this.tipoPlan = entidad.tipoPlan || [];
         this.tipoTarifa = entidad.tipoTarifa || [];
-        this.email = entidad.email || null;
-        this.telefonos = entidad.telefonos || null;
-        this.ejecutivoVentas = entidad.ejecutivoVentas || null;
+        this.setEmail(entidad);
+        this.setTelefonos(entidad);
+        this.setEjecutivoVentas(entidad);
         this.cuentaBancaria = entidad.cuentaBancaria || null;
         this.descripcion = entidad.descripcion || '';
         this.sistema = entidad.sistema || {};
+    }
+
+    private setEmail(entidad): void {
+        if (entidad.email) {
+            this.email = {
+                pagos: entidad.email.pagos || '',
+                reservas: entidad.email.reservas || '',
+                jefeReservas: entidad.email.jefeReservas || ''
+            };
+        } else {
+            this.email = {
+                pagos: '',
+                reservas: '',
+                jefeReservas: ''
+            };
+        }
+    }
+
+    private setTelefonos(entidad): void {
+        if (entidad.telefonos) {
+            this.telefonos = {
+                pagos: entidad.telefonos.pagos || '',
+                reservas: entidad.telefonos.reservas || '',
+                jefeReservas: entidad.telefonos.jefeReservas || ''
+            };
+        } else {
+            this.telefonos = {
+                pagos: '',
+                reservas: '',
+                jefeReservas: ''
+            };
+        }
+    }
+
+    private setEjecutivoVentas(entidad): void {
+        if (entidad.ejecutivoVentas) {
+            this.ejecutivoVentas = {
+                nombre: entidad.ejecutivoVentas.nombre || '',
+                telefono: entidad.ejecutivoVentas.telefono || '',
+                email: entidad.ejecutivoVentas.email || ''
+            };
+        } else {
+            this.ejecutivoVentas = {
+                nombre: '',
+                telefono: '',
+                email: ''
+            };
+        }
     }
 }
 

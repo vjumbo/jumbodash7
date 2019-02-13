@@ -12,7 +12,7 @@ const SistemaSchema = require('./sistema');
 
 const HotelSchema = new Schema({
   nombre: { type: String, required: true, index: { unique: true }},
-  segmeto: {type: String}, // , enum: hotelTypes, default: hotelTypes[1]},
+  segmetohotel: { type: String, enum: hotelTypes, required: true},
   habitaciones: [{type: Schema.Types.ObjectId, ref: 'Habitacion'}],
   servicios: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],
   serviciosNoIncluidos: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],

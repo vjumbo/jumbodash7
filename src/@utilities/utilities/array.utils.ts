@@ -10,8 +10,12 @@ export abstract class ArrayUtils {
     }
 
     static objectInArray (arr: any[], obj: any): boolean {
-        let esta: any = null;
-        esta = arr.find(oo => ObjectUtils.areEquals(oo, obj));
+        const esta = arr.find(oo => ObjectUtils.areEquals(oo, obj));
+        return !!esta;
+    }
+
+    static findPropObjectInArray(arr: any[], prop: any, value: any): boolean {
+        const esta = arr.find(oo => oo.hasOwnProperty(prop) && oo[prop] === value);
         return !!esta;
     }
 

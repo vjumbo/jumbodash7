@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Hotel} from '@configs/interfaces';
+import {Habitacion, Hotel, Servicio} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
 
 @Injectable()
@@ -10,8 +10,12 @@ export class HotelService implements Resolve<any>
 {
     routeParams: any;
     entidad: Hotel;
+    hotelTypes: any[];
+    habitaciones: Habitacion[];
+    servicios: Servicio[];
     onEntidadChanged: BehaviorSubject<any>;
     url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.hoteles}`;
+
 
     /**
      * Constructor
@@ -55,8 +59,11 @@ export class HotelService implements Resolve<any>
      *
      * @returns {Promise<any>}
      */
-    getEntidad(): Promise<any>
+    async getEntidad(): Promise<any>
     {
+        this.hotelTypes = await <any>this._httpClient.get(`${this.url}/hoteltypes`).toPromise();
+        this.habitaciones = await <any>this._httpClient.get(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.habitaciones}`).toPromise();
+        this.servicios = await <any>this._httpClient.get(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.servicios}`).toPromise();
         return new Promise((resolve, reject) => {
             if ( !this.routeParams.id ) // === 'new'
             {

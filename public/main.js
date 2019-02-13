@@ -346,6 +346,7 @@ var CrmConst = {
     homeDir: ''
 };
 var BackEndConst = {
+    backEndUrlxx: 'http://127.0.0.1:3000',
     backEndUrl: 'http://157.230.134.208:3000',
     endPoints: {
         usuarios: '/jumboApi/usuarios',
@@ -8957,8 +8958,11 @@ var ArrayUtils = /** @class */ (function () {
         return !this.inArray(array, find);
     };
     ArrayUtils.objectInArray = function (arr, obj) {
-        var esta = null;
-        esta = arr.find(function (oo) { return _object_utils__WEBPACK_IMPORTED_MODULE_0__["ObjectUtils"].areEquals(oo, obj); });
+        var esta = arr.find(function (oo) { return _object_utils__WEBPACK_IMPORTED_MODULE_0__["ObjectUtils"].areEquals(oo, obj); });
+        return !!esta;
+    };
+    ArrayUtils.findPropObjectInArray = function (arr, prop, value) {
+        var esta = arr.find(function (oo) { return oo.hasOwnProperty(prop) && oo[prop] === value; });
         return !!esta;
     };
     ArrayUtils.objectNotInArray = function (arr, obj) {
@@ -12700,7 +12704,7 @@ var HotelModel = /** @class */ (function () {
         entidad = entidad || {};
         this._id = entidad._id || null;
         this.nombre = entidad.nombre || '';
-        this.segmeto = entidad.segmeto || null;
+        this.segmetohotel = entidad.segmetohotel || null;
         this.habitaciones = entidad.habitaciones || [];
         this.servicios = entidad.servicios || [];
         this.serviciosNoIncluidos = entidad.serviciosNoIncluidos || [];
@@ -12709,13 +12713,61 @@ var HotelModel = /** @class */ (function () {
         this.regimenAlimentacion = entidad.regimenAlimentacion || [];
         this.tipoPlan = entidad.tipoPlan || [];
         this.tipoTarifa = entidad.tipoTarifa || [];
-        this.email = entidad.email || null;
-        this.telefonos = entidad.telefonos || null;
-        this.ejecutivoVentas = entidad.ejecutivoVentas || null;
+        this.setEmail(entidad);
+        this.setTelefonos(entidad);
+        this.setEjecutivoVentas(entidad);
         this.cuentaBancaria = entidad.cuentaBancaria || null;
         this.descripcion = entidad.descripcion || '';
         this.sistema = entidad.sistema || {};
     }
+    HotelModel.prototype.setEmail = function (entidad) {
+        if (entidad.email) {
+            this.email = {
+                pagos: entidad.email.pagos || '',
+                reservas: entidad.email.reservas || '',
+                jefeReservas: entidad.email.jefeReservas || ''
+            };
+        }
+        else {
+            this.email = {
+                pagos: '',
+                reservas: '',
+                jefeReservas: ''
+            };
+        }
+    };
+    HotelModel.prototype.setTelefonos = function (entidad) {
+        if (entidad.telefonos) {
+            this.telefonos = {
+                pagos: entidad.telefonos.pagos || '',
+                reservas: entidad.telefonos.reservas || '',
+                jefeReservas: entidad.telefonos.jefeReservas || ''
+            };
+        }
+        else {
+            this.telefonos = {
+                pagos: '',
+                reservas: '',
+                jefeReservas: ''
+            };
+        }
+    };
+    HotelModel.prototype.setEjecutivoVentas = function (entidad) {
+        if (entidad.ejecutivoVentas) {
+            this.ejecutivoVentas = {
+                nombre: entidad.ejecutivoVentas.nombre || '',
+                telefono: entidad.ejecutivoVentas.telefono || '',
+                email: entidad.ejecutivoVentas.email || ''
+            };
+        }
+        else {
+            this.ejecutivoVentas = {
+                nombre: '',
+                telefono: '',
+                email: ''
+            };
+        }
+    };
     return HotelModel;
 }());
 
