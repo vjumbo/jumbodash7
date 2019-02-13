@@ -533,7 +533,58 @@
                             </div>
                         </mat-tab>
 
-                        <mat-tab label="Penalidad"></mat-tab>
+                        <mat-tab label="Penalidades">
+                            <div class="section pb-48 w-100-p">
+                                <form class="update-status p-24"
+                                      (ngSubmit)="updatePenalidades()"
+                                      [formGroup]="penalidadesForm"
+                                      fxLayout="row" fxLayoutAlign="start center">
+
+                                    <mat-form-field appearance="outline" class="mr-16 w-70-p" fxFlex>
+                                        <mat-label>Seleccionar Penalidades</mat-label>
+                                        <mat-select formControlName="penalidad" required>
+                                            <mat-option *ngFor="let pen of getPenalidades()"
+                                                        [value]="pen._id">
+                                                {{pen.nombre}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <button mat-raised-button class="mat-accent w-30-p"
+                                            [disabled]="penalidadesForm.invalid">
+                                        Agregar Penalidad
+                                    </button>
+                                </form>
+
+                                <table class="simple w-100-p">
+                                    <thead>
+                                    <tr>
+                                        <th>Penalidad</th>
+                                        <th>descripcion</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr *ngFor="let pen of getSelectedPenalidades()">
+                                        <td>
+                                                <span class="status h6 p-4">
+                                                    {{pen.nombre}}
+                                                </span>
+                                        </td>
+                                        <td>
+                                                <span>
+                                                    {{pen.descripcion}}
+                                                </span>
+                                        </td>
+                                        <td>
+                                            <button mat-button (click)="eliminarPen(hab._id)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </mat-tab>
 
                     </mat-tab-group>
                 </form>

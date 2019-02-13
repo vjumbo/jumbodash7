@@ -11,7 +11,7 @@ import {HotelService} from './hotel.service';
 import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
-import {Habitacion, Servicio} from '@configs/interfaces';
+import {Habitacion, Penalidad, Servicio} from '@configs/interfaces';
 
 
 @Component({
@@ -29,12 +29,14 @@ export class HotelComponent implements OnInit, OnDestroy
     habitacionesForm: FormGroup;
     serviciosForm: FormGroup;
     noServiciosForm: FormGroup;
+    penalidadesForm: FormGroup;
     entidadConst: any;
     countries: any[];
     regions: string[];
     hotelTypes: any[];
     habitaciones: Habitacion[];
     servicios: Servicio[];
+    penalidades: Penalidad[];
     // Private
     private _unsubscribeAll: Subject<any>;
 
@@ -84,6 +86,7 @@ export class HotelComponent implements OnInit, OnDestroy
         this.hotelTypes = this.entidadService.hotelTypes;
         this.habitaciones = this.entidadService.habitaciones;
         this.servicios = this.entidadService.servicios;
+        this.penalidades = this.entidadService.penalidades;
         this.entidadService.onEntidadChanged
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe(entidad => {
@@ -111,8 +114,15 @@ export class HotelComponent implements OnInit, OnDestroy
 
     getServicios(): Servicio[] {
         const servs = [...this.entidadForm.get('servicios').value, ...this.entidadForm.get('serviciosNoIncluidos').value];
-        return this.servicios.filter( h =>
-            !Utilities.arrays.findPropObjectInArray(servs, '_id', h._id)
+        return this.servicios.filter( s =>
+            !Utilities.arrays.findPropObjectInArray(servs, '_id', s._id)
+        );
+    }
+
+    getPenalidades(): Penalidad[] {
+        const pens = this.entidadForm.get('penalidades').value;
+        return this.penalidades.filter( p =>
+            !Utilities.arrays.findPropObjectInArray(pens, '_id', p._id)
         );
     }
 
@@ -126,6 +136,10 @@ export class HotelComponent implements OnInit, OnDestroy
 
     getSelectedNoServicios(): Servicio[] {
         return this.entidadForm.get('serviciosNoIncluidos').value;
+    }
+
+    getSelectedPenalidades(): Penalidad[] {
+        return this.entidadForm.get('penalidades').value;
     }
 
     updateHabitaciones(): void {
@@ -173,7 +187,23 @@ export class HotelComponent implements OnInit, OnDestroy
             // todo
         }
         this.entidadForm.controls['serviciosNoIncluidos'].setValue(servs);
-        this.serviciosForm.reset();
+        this.noServiciosForm.reset();
+    }
+
+    updatePenalidades(): void {
+        const penID = this.penalidadesForm.get('penalidad').value;
+        if ( !penID )
+        {
+            return;
+        }
+        const pens = [...this.entidadForm.get('penalidades').value, this.penalidades.find(p => p._id === penID)];
+        if (!Utilities.objects.areEquals(this.entidad.penalidades, pens)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // todo
+        }
+        this.entidadForm.controls['penalidades'].setValue(pens);
+        this.penalidadesForm.reset();
     }
 
     eliminarHab(id): void {
@@ -189,6 +219,11 @@ export class HotelComponent implements OnInit, OnDestroy
     eliminarNoServ(id): void {
         const servs = [...this.entidadForm.get('serviciosNoIncluidos').value].filter(s => s._id !== id);
         this.entidadForm.controls['serviciosNoIncluidos'].setValue(servs);
+    }
+
+    eliminarPen(id): void {
+        const pens = [...this.entidadForm.get('penalidades').value].filter(p => p._id !== id);
+        this.entidadForm.controls['penalidades'].setValue(pens);
     }
 
     /**
@@ -223,6 +258,10 @@ export class HotelComponent implements OnInit, OnDestroy
         this.noServiciosForm = this._formBuilder.group({
             servicio: ['']
         });
+        this.penalidadesForm = this._formBuilder.group({
+            penalidad: ['']
+        });
+
 
         const email = this._formBuilder.group({
             pagos: [this.entidad.email.pagos, [Validators.email]],
