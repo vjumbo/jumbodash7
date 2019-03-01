@@ -80,22 +80,27 @@ export interface Habitacion {
   sistema?: Sistema;
 }
 
+export interface TarjetaCredito {
+    disponible: boolean;
+    porcentaje: number;
+}
+
+export interface Transferencia {
+    disponible: boolean;
+    costoTransferencia: number;
+}
+
+export interface Efectivo {
+    disponible: boolean;
+}
+
 export interface FormaPago {
-    tarjetaCredito: {
-        disponible: boolean;
-        porcentaje: number;
-    };
-    transferencia: {
-        disponible: boolean;
-        costoTransferencia: number;
-    };
-    efectivo: {
-        disponible: boolean;
-    };
+    tarjetaCredito: TarjetaCredito;
+    transferencia: Transferencia;
+    efectivo: Efectivo;
 }
 
 export interface CuentaBancariaSchema {
-    _id?: string;
     razonSocial: string;
     pais: string;
     nombreBeneficiario: string;
@@ -108,7 +113,6 @@ export interface CuentaBancariaSchema {
     cuentaIntermediaria: string;
     formaPago: FormaPago;
     descripcion: string;
-    sistema?: Sistema;
 }
 
 export type HotelType = 'Adulto' | 'Familias' | 'LGTB';
@@ -156,5 +160,25 @@ export interface Hotel {
     };
     cuentaBancaria?: CuentaBancariaSchema;
     descripcion: string;
+    sistema: Sistema;
+}
+
+export interface FileSys {
+    name: string;
+    type: string;
+    data: Blob;
+}
+
+export interface  Proveedor {
+    _id?: string;
+    crmid: string;
+    nombre: string;
+    hoteles: Hotel[];
+    email: string;
+    telefono: string;
+    cuentaBancaria?: CuentaBancariaSchema;
+    contrato: FileSys;
+    cargoPromociones: FileSys;
+    descripcion: String;
     sistema: Sistema;
 }

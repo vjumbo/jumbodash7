@@ -3,6 +3,7 @@ import {ServicioConst} from '../main/apps/jumboMod/servicio/servicio.model';
 import {HabitacionConst} from '../main/apps/jumboMod/habitacion/habitacion.model';
 import {PenalidadConst} from '../main/apps/jumboMod/penalidad/penalidad.model';
 import {HotelConst} from '../main/apps/jumboMod/hotel/hotel.model';
+import {ProveedorConst} from '../main/apps/jumboMod/proveedor/proveedor.model';
 
 export const navigation: FuseNavigation[] = [
     {
@@ -46,13 +47,21 @@ export const navigation: FuseNavigation[] = [
             }
         ]
     },
-    /*{
+    {
         id       : 'applications',
         title    : 'Applications',
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [
             {
+                id       : 'proveedores',
+                title    : ProveedorConst.names,
+                translate: 'NAV.POTENTIALS.TITLE',
+                type     : 'item',
+                icon     : ProveedorConst.icon,
+                url      : ProveedorConst.urlEntidades,
+            },
+            /*{
                 id       : 'oportunidades',
                 title    : 'Oportunidades',
                 translate: 'NAV.POTENTIALS.TITLE',
@@ -67,7 +76,7 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : 'email',
                 url      : '/apps/Oportunidades',
-            }/!*,
+            },
             {
                 id       : 'p2',
                 title    : 'Page2',
@@ -95,7 +104,7 @@ export const navigation: FuseNavigation[] = [
                     bg       : '#6cf442',
                     fg       : '#ff5246'
                 }
-            }*!/
+            }*/
         ]
-    }*/
+    }
 ];

@@ -12849,14 +12849,14 @@ var PenalidadConst = {
 
 /***/ "./src/app/main/apps/jumboMod/servicio/servicio.model.ts":
 /*!***************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicio/servicio.model.ts ***!
+  !*** ./src/app/main/apps/jumboMod/servicio/proveedor.model.ts ***!
   \***************************************************************/
-/*! exports provided: ServicioModel, ServicioConst */
+/*! exports provided: ProveedorModel, ServicioConst */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServicioModel", function() { return ServicioModel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProveedorModel", function() { return ServicioModel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServicioConst", function() { return ServicioConst; });
 var ServicioModel = /** @class */ (function () {
     /**
@@ -12983,7 +12983,7 @@ var locale = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "navigation", function() { return navigation; });
-/* harmony import */ var _main_apps_jumboMod_servicio_servicio_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/apps/jumboMod/servicio/servicio.model */ "./src/app/main/apps/jumboMod/servicio/servicio.model.ts");
+/* harmony import */ var _main_apps_jumboMod_servicio_servicio_model__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../main/apps/jumboMod/servicio/servicio.model */ "./src/app/main/apps/jumboMod/servicio/proveedor.model.ts");
 /* harmony import */ var _main_apps_jumboMod_habitacion_habitacion_model__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../main/apps/jumboMod/habitacion/habitacion.model */ "./src/app/main/apps/jumboMod/habitacion/habitacion.model.ts");
 /* harmony import */ var _main_apps_jumboMod_penalidad_penalidad_model__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../main/apps/jumboMod/penalidad/penalidad.model */ "./src/app/main/apps/jumboMod/penalidad/penalidad.model.ts");
 /* harmony import */ var _main_apps_jumboMod_hotel_hotel_model__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../main/apps/jumboMod/hotel/hotel.model */ "./src/app/main/apps/jumboMod/hotel/hotel.model.ts");

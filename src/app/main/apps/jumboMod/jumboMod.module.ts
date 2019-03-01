@@ -19,6 +19,10 @@ import {HotelService} from './hotel/hotel.service';
 import {HotelesComponent} from './hoteles/hoteles.component';
 import {HotelesService} from './hoteles/hoteles.service';
 import {CountriesService} from '@service/countries.service';
+import {ProveedorComponent} from './proveedor/proveedor.component';
+import {ProveedorService} from './proveedor/proveedor.service';
+import {ProveedoresComponent} from './proveedores/proveedores.component';
+import {ProveedoresService} from './proveedores/proveedores.service';
 
 
 const routes: Routes = [
@@ -109,6 +113,20 @@ const routes: Routes = [
             data: HotelService
         }
     },
+    {
+        path     : 'proveedores',
+        component: ProveedoresComponent,
+        resolve  : {
+            data: ProveedoresService
+        }
+    },
+    {
+        path     : 'proveedor/:id',
+        component: ProveedorComponent,
+        resolve  : {
+            data: ProveedorService
+        }
+    },
 ];
 
 @NgModule({
@@ -121,6 +139,8 @@ const routes: Routes = [
         PenalidadesComponent,
         HotelComponent,
         HotelesComponent,
+        ProveedorComponent,
+        ProveedoresComponent,
     ],
     imports     : [
         RouterModule.forChild(routes),
@@ -135,7 +155,9 @@ const routes: Routes = [
         PenalidadesService,
         HotelService,
         HotelesService,
-        CountriesService
+        CountriesService,
+        ProveedorService,
+        ProveedoresService,
     ]
 })
 export class JumboModModule

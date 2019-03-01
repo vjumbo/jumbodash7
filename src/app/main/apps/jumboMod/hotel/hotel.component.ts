@@ -281,6 +281,41 @@ export class HotelComponent implements OnInit, OnDestroy
             email: [this.entidad.ejecutivoVentas.email, [Validators.email]]
         });
 
+        const tarjetaCredito = this._formBuilder.group({
+            disponible: [this.entidad.cuentaBancaria.formaPago.tarjetaCredito.disponible],
+            porcentaje: [this.entidad.cuentaBancaria.formaPago.tarjetaCredito.porcentaje],
+        });
+
+        const transferencia = this._formBuilder.group({
+            disponible: [this.entidad.cuentaBancaria.formaPago.transferencia.disponible],
+            costoTransferencia: [this.entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia],
+        });
+
+        const efectivo = this._formBuilder.group({
+            efectivo: [this.entidad.cuentaBancaria.formaPago.efectivo.disponible],
+        });
+
+        const formaPago = this._formBuilder.group({
+            tarjetaCredito: tarjetaCredito,
+            transferencia: transferencia,
+            efectivo: efectivo
+        });
+
+        const cuentaBancaria = this._formBuilder.group({
+            razonSocial: [this.entidad.cuentaBancaria.razonSocial],
+            pais: [this.entidad.cuentaBancaria.pais],
+            nombreBeneficiario: [this.entidad.cuentaBancaria.nombreBeneficiario],
+            nombreBancoBeneficiario: [this.entidad.cuentaBancaria.nombreBancoBeneficiario],
+            numeroCuenta: [this.entidad.cuentaBancaria.numeroCuenta],
+            tipoCuenta: [this.entidad.cuentaBancaria.tipoCuenta],
+            aba: [this.entidad.cuentaBancaria.aba],
+            swift: [this.entidad.cuentaBancaria.swift],
+            bancoIntermediario: [this.entidad.cuentaBancaria.bancoIntermediario],
+            cuentaIntermediaria: [this.entidad.cuentaBancaria.cuentaIntermediaria],
+            formaPago: formaPago,
+            descripcion: [this.entidad.cuentaBancaria.descripcion],
+        });
+
         this.entidadForm = this._formBuilder.group({
             _id                 : [this.entidad._id],
             nombre              : [this.entidad.nombre, Validators.required],
@@ -296,7 +331,7 @@ export class HotelComponent implements OnInit, OnDestroy
             email               : email,
             telefonos           : telefonos,
             ejecutivoVentas     : ejecutivoVentas,
-            cuentaBancaria      : [this.entidad.cuentaBancaria],
+            cuentaBancaria      : cuentaBancaria,
             descripcion         : [this.entidad.descripcion],
             /*sistema           : [this.entidad.sistema]*/
         });

@@ -1,0 +1,25 @@
+@import "src/@fuse/scss/fuse";
+
+jum-proveedores {
+
+    .entidades-table {
+
+        .mat-column-vendor_no {
+            flex: 0 1 5%;
+        }
+
+        .mat-column-vendorname, .mat-column-phone, .mat-column-email{
+            flex: 0 1 20%;
+        }
+
+        .mat-column-image {
+            flex: 0 1 84px;
+
+            .entidad-image {
+                width: 52px;
+                height: 52px;
+                border: 1px solid rgba(0, 0, 0, .12);
+            }
+        }
+    }
+}

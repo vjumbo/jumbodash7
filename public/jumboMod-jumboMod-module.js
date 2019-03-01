@@ -12621,10 +12621,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "JumboModModule", function() { return JumboModModule; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
-/* harmony import */ var _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./servicio/servicio.component */ "./src/app/main/apps/jumboMod/servicio/servicio.component.ts");
-/* harmony import */ var _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./servicio/servicio.service */ "./src/app/main/apps/jumboMod/servicio/servicio.service.ts");
-/* harmony import */ var _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./servicios/servicios.component */ "./src/app/main/apps/jumboMod/servicios/servicios.component.ts");
-/* harmony import */ var _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./servicios/servicios.service */ "./src/app/main/apps/jumboMod/servicios/servicios.service.ts");
+/* harmony import */ var _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./servicio/servicio.component */ "./src/app/main/apps/jumboMod/servicio/proveedor.component.ts");
+/* harmony import */ var _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./servicio/servicio.service */ "./src/app/main/apps/jumboMod/servicio/proveedor.service.ts");
+/* harmony import */ var _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./servicios/servicios.component */ "./src/app/main/apps/jumboMod/servicios/proveedores.component.ts");
+/* harmony import */ var _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./servicios/servicios.service */ "./src/app/main/apps/jumboMod/servicios/proveedores.service.ts");
 /* harmony import */ var _penalidad_penalidad_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./penalidad/penalidad.component */ "./src/app/main/apps/jumboMod/penalidad/penalidad.component.ts");
 /* harmony import */ var _penalidad_penalidad_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./penalidad/penalidad.service */ "./src/app/main/apps/jumboMod/penalidad/penalidad.service.ts");
 /* harmony import */ var _core_core_module__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @core/core.module */ "./src/@core/core.module.ts");
@@ -12668,23 +12668,23 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var routes = [
     {
         path: 'servicios',
-        component: _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__["ServiciosComponent"],
+        component: _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__["ProveedoresComponent"],
         resolve: {
-            data: _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__["ServiciosService"]
+            data: _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__["ProveedoresService"]
         }
     },
     {
         path: 'servicio',
-        component: _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ServicioComponent"],
+        component: _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ProveedorComponent"],
         resolve: {
-            data: _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ServicioService"]
+            data: _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ProveedorService"]
         }
     },
     {
         path: 'servicio/:id',
-        component: _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ServicioComponent"],
+        component: _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ProveedorComponent"],
         resolve: {
-            data: _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ServicioService"]
+            data: _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ProveedorService"]
         }
     },
     {
@@ -12757,8 +12757,8 @@ var JumboModModule = /** @class */ (function () {
     JumboModModule = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["NgModule"])({
             declarations: [
-                _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ServicioComponent"],
-                _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__["ServiciosComponent"],
+                _servicio_servicio_component__WEBPACK_IMPORTED_MODULE_2__["ProveedorComponent"],
+                _servicios_servicios_component__WEBPACK_IMPORTED_MODULE_4__["ProveedoresComponent"],
                 _habitacion_habitacion_component__WEBPACK_IMPORTED_MODULE_12__["HabitacionComponent"],
                 _habitaciones_habitaciones_component__WEBPACK_IMPORTED_MODULE_10__["HabitacionesComponent"],
                 _penalidad_penalidad_component__WEBPACK_IMPORTED_MODULE_6__["PenalidadComponent"],
@@ -12771,8 +12771,8 @@ var JumboModModule = /** @class */ (function () {
                 _core_core_module__WEBPACK_IMPORTED_MODULE_8__["CoreModule"],
             ],
             providers: [
-                _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ServicioService"],
-                _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__["ServiciosService"],
+                _servicio_servicio_service__WEBPACK_IMPORTED_MODULE_3__["ProveedorService"],
+                _servicios_servicios_service__WEBPACK_IMPORTED_MODULE_5__["ProveedoresService"],
                 _habitacion_habitacion_service__WEBPACK_IMPORTED_MODULE_13__["HabitacionService"],
                 _habitaciones_habitaciones_service__WEBPACK_IMPORTED_MODULE_11__["HabitacionesService"],
                 _penalidad_penalidad_service__WEBPACK_IMPORTED_MODULE_7__["PenalidadService"],
@@ -13523,7 +13523,7 @@ var PenalidadesService = /** @class */ (function () {
 
 /***/ "./src/app/main/apps/jumboMod/servicio/servicio.component.html":
 /*!*********************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicio/servicio.component.html ***!
+  !*** ./src/app/main/apps/jumboMod/servicio/proveedor.component.html ***!
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -13534,7 +13534,7 @@ module.exports = "<div id=\"entidad\" class=\"page-layout carded fullwidth inner
 
 /***/ "./src/app/main/apps/jumboMod/servicio/servicio.component.scss":
 /*!*********************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicio/servicio.component.scss ***!
+  !*** ./src/app/main/apps/jumboMod/servicio/proveedor.component.scss ***!
   \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -13545,14 +13545,14 @@ module.exports = "#entidad .header .entidad-image {\n  overflow: hidden;\n  widt
 
 /***/ "./src/app/main/apps/jumboMod/servicio/servicio.component.ts":
 /*!*******************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicio/servicio.component.ts ***!
+  !*** ./src/app/main/apps/jumboMod/servicio/proveedor.component.ts ***!
   \*******************************************************************/
-/*! exports provided: ServicioComponent */
+/*! exports provided: ProveedorComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServicioComponent", function() { return ServicioComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProveedorComponent", function() { return ServicioComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
@@ -13560,8 +13560,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _fuse_animations__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fuse/animations */ "./src/@fuse/animations/index.ts");
-/* harmony import */ var _servicio_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./servicio.model */ "./src/app/main/apps/jumboMod/servicio/servicio.model.ts");
-/* harmony import */ var _servicio_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./servicio.service */ "./src/app/main/apps/jumboMod/servicio/servicio.service.ts");
+/* harmony import */ var _servicio_model__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./servicio.model */ "./src/app/main/apps/jumboMod/servicio/proveedor.model.ts");
+/* harmony import */ var _servicio_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./servicio.service */ "./src/app/main/apps/jumboMod/servicio/proveedor.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _utilities_utilities__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @utilities/utilities */ "./src/@utilities/utilities.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
@@ -13602,7 +13602,7 @@ var ServicioComponent = /** @class */ (function () {
         this.router = router;
         this.entidadConst = _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ServicioConst"];
         // Set the default
-        this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ServicioModel"]();
+        this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ProveedorModel"]();
         // Set the private defaults
         this._unsubscribeAll = new rxjs__WEBPACK_IMPORTED_MODULE_4__["Subject"]();
         this.monedas = [];
@@ -13620,12 +13620,12 @@ var ServicioComponent = /** @class */ (function () {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["takeUntil"])(this._unsubscribeAll))
             .subscribe(function (entidad) {
             if (entidad) {
-                _this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ServicioModel"](entidad);
+                _this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ProveedorModel"](entidad);
                 _this.pageType = 'edit';
             }
             else {
                 _this.pageType = 'new';
-                _this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ServicioModel"]();
+                _this.entidad = new _servicio_model__WEBPACK_IMPORTED_MODULE_7__["ProveedorModel"]();
             }
             _this.entidadForm = _this.createEntidadForm();
         });
@@ -13707,12 +13707,12 @@ var ServicioComponent = /** @class */ (function () {
     ServicioComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'jum-servicio',
-            template: __webpack_require__(/*! ./servicio.component.html */ "./src/app/main/apps/jumboMod/servicio/servicio.component.html"),
+            template: __webpack_require__(/*! ./proveedor.component.html */ "./src/app/main/apps/jumboMod/servicio/proveedor.component.html"),
             encapsulation: _angular_core__WEBPACK_IMPORTED_MODULE_0__["ViewEncapsulation"].None,
             animations: _fuse_animations__WEBPACK_IMPORTED_MODULE_6__["fuseAnimations"],
-            styles: [__webpack_require__(/*! ./servicio.component.scss */ "./src/app/main/apps/jumboMod/servicio/servicio.component.scss")]
+            styles: [__webpack_require__(/*! ./proveedor.component.scss */ "./src/app/main/apps/jumboMod/servicio/proveedor.component.scss")]
         }),
-        __metadata("design:paramtypes", [_servicio_service__WEBPACK_IMPORTED_MODULE_8__["ServicioService"],
+        __metadata("design:paramtypes", [_servicio_service__WEBPACK_IMPORTED_MODULE_8__["ProveedorService"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormBuilder"],
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["Location"],
             _angular_material__WEBPACK_IMPORTED_MODULE_3__["MatSnackBar"],
@@ -13727,14 +13727,14 @@ var ServicioComponent = /** @class */ (function () {
 
 /***/ "./src/app/main/apps/jumboMod/servicio/servicio.service.ts":
 /*!*****************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicio/servicio.service.ts ***!
+  !*** ./src/app/main/apps/jumboMod/servicio/proveedor.service.ts ***!
   \*****************************************************************/
-/*! exports provided: ServicioService */
+/*! exports provided: ProveedorService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServicioService", function() { return ServicioService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProveedorService", function() { return ServicioService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
@@ -13867,7 +13867,7 @@ var ServicioService = /** @class */ (function () {
 
 /***/ "./src/app/main/apps/jumboMod/servicios/servicios.component.html":
 /*!***********************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicios/servicios.component.html ***!
+  !*** ./src/app/main/apps/jumboMod/servicios/proveedores.component.html ***!
   \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -13878,7 +13878,7 @@ module.exports = "<div id=\"entidades\" class=\"page-layout carded fullwidth inn
 
 /***/ "./src/app/main/apps/jumboMod/servicios/servicios.component.scss":
 /*!***********************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicios/servicios.component.scss ***!
+  !*** ./src/app/main/apps/jumboMod/servicios/proveedores.component.scss ***!
   \***********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
@@ -13889,14 +13889,14 @@ module.exports = "/**\n * Applies styles for users in high contrast mode. Note t
 
 /***/ "./src/app/main/apps/jumboMod/servicios/servicios.component.ts":
 /*!*********************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicios/servicios.component.ts ***!
+  !*** ./src/app/main/apps/jumboMod/servicios/proveedores.component.ts ***!
   \*********************************************************************/
-/*! exports provided: ServiciosComponent, FilesDataSource */
+/*! exports provided: ProveedoresComponent, FilesDataSource */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServiciosComponent", function() { return ServiciosComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProveedoresComponent", function() { return ServiciosComponent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FilesDataSource", function() { return FilesDataSource; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
@@ -13907,8 +13907,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _fuse_utils__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @fuse/utils */ "./src/@fuse/utils/index.ts");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/internal/operators */ "./node_modules/rxjs/internal/operators/index.js");
 /* harmony import */ var rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(rxjs_internal_operators__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./servicios.service */ "./src/app/main/apps/jumboMod/servicios/servicios.service.ts");
-/* harmony import */ var _servicio_servicio_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../servicio/servicio.model */ "./src/app/main/apps/jumboMod/servicio/servicio.model.ts");
+/* harmony import */ var _servicios_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./servicios.service */ "./src/app/main/apps/jumboMod/servicios/proveedores.service.ts");
+/* harmony import */ var _servicio_servicio_model__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../servicio/servicio.model */ "./src/app/main/apps/jumboMod/servicio/proveedor.model.ts");
 var __extends = (undefined && undefined.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13986,11 +13986,11 @@ var ServiciosComponent = /** @class */ (function () {
     ServiciosComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'jum-servicios',
-            template: __webpack_require__(/*! ./servicios.component.html */ "./src/app/main/apps/jumboMod/servicios/servicios.component.html"),
+            template: __webpack_require__(/*! ./proveedores.component.html */ "./src/app/main/apps/jumboMod/servicios/proveedores.component.html"),
             animations: _fuse_animations__WEBPACK_IMPORTED_MODULE_5__["fuseAnimations"],
-            styles: [__webpack_require__(/*! ./servicios.component.scss */ "./src/app/main/apps/jumboMod/servicios/servicios.component.scss")]
+            styles: [__webpack_require__(/*! ./proveedores.component.scss */ "./src/app/main/apps/jumboMod/servicios/proveedores.component.scss")]
         }),
-        __metadata("design:paramtypes", [_servicios_service__WEBPACK_IMPORTED_MODULE_8__["ServiciosService"],
+        __metadata("design:paramtypes", [_servicios_service__WEBPACK_IMPORTED_MODULE_8__["ProveedoresService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_1__["MatSnackBar"]])
     ], ServiciosComponent);
     return ServiciosComponent;
@@ -14001,7 +14001,7 @@ var FilesDataSource = /** @class */ (function (_super) {
     /**
      * Constructor
      *
-     * @param {ServiciosService} _EntidadesService
+     * @param {ProveedoresService} _EntidadesService
      * @param {MatPaginator} _matPaginator
      * @param {MatSort} _matSort
      */
@@ -14129,14 +14129,14 @@ var FilesDataSource = /** @class */ (function (_super) {
 
 /***/ "./src/app/main/apps/jumboMod/servicios/servicios.service.ts":
 /*!*******************************************************************!*\
-  !*** ./src/app/main/apps/jumboMod/servicios/servicios.service.ts ***!
+  !*** ./src/app/main/apps/jumboMod/servicios/proveedores.service.ts ***!
   \*******************************************************************/
-/*! exports provided: ServiciosService */
+/*! exports provided: ProveedoresService */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ServiciosService", function() { return ServiciosService; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ProveedoresService", function() { return ServiciosService; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");

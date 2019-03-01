@@ -67,7 +67,7 @@ export class HotelModel
         this.setEmail(entidad);
         this.setTelefonos(entidad);
         this.setEjecutivoVentas(entidad);
-        this.cuentaBancaria = entidad.cuentaBancaria || null;
+        this.setCuentaBancaria(entidad);
         this.descripcion = entidad.descripcion || '';
         this.sistema = entidad.sistema || {};
     }
@@ -116,6 +116,64 @@ export class HotelModel
                 nombre: '',
                 telefono: '',
                 email: ''
+            };
+        }
+    }
+
+    private setCuentaBancaria(entidad): void {
+        if (entidad.cuentaBancaria) {
+            this.cuentaBancaria = {
+                razonSocial: entidad.cuentaBancaria.razonSocial,
+                pais: entidad.cuentaBancaria.pais,
+                nombreBeneficiario: entidad.cuentaBancaria.nombreBeneficiario,
+                nombreBancoBeneficiario: entidad.cuentaBancaria.nombreBancoBeneficiario,
+                numeroCuenta: entidad.cuentaBancaria.numeroCuenta,
+                tipoCuenta: entidad.cuentaBancaria.tipoCuenta,
+                aba: entidad.cuentaBancaria.aba,
+                swift: entidad.cuentaBancaria.swift,
+                bancoIntermediario: entidad.cuentaBancaria.bancoIntermediario,
+                cuentaIntermediaria: entidad.cuentaBancaria.cuentaIntermediaria,
+                formaPago: {
+                    tarjetaCredito: {
+                        disponible: entidad.cuentaBancaria.formaPago.tarjetaCredito.disponible,
+                        porcentaje: entidad.cuentaBancaria.formaPago.tarjetaCredito.porcentaje,
+                    },
+                    transferencia: {
+                        disponible: entidad.cuentaBancaria.formaPago.transferencia.disponible,
+                        costoTransferencia: entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia,
+                    },
+                    efectivo: {
+                        disponible: entidad.cuentaBancaria.formaPago.efectivo.disponible
+                    }
+                },
+                descripcion: entidad.cuentaBancaria.descripcion,
+            };
+        } else {
+            this.cuentaBancaria = {
+                razonSocial: '',
+                pais: '',
+                nombreBeneficiario: '',
+                nombreBancoBeneficiario: '',
+                numeroCuenta: '',
+                tipoCuenta: '',
+                aba: '',
+                swift: '',
+                bancoIntermediario: '',
+                cuentaIntermediaria: '',
+                formaPago: {
+                    tarjetaCredito: {
+                        disponible: false,
+                        porcentaje: 0,
+                    },
+                    transferencia: {
+                        disponible: false,
+                        costoTransferencia: 0,
+                    },
+                    efectivo: {
+                        disponible: false
+                    }
+                },
+                descripcion: '',
             };
         }
     }

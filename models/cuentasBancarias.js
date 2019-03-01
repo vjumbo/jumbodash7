@@ -21,7 +21,6 @@ const FormaPagoSchema = new Schema(
 );
 
 const CuentaBancariaSchema = new Schema({
-  id: Schema.Types.ObjectId,
   razonSocial: String,
   pais: { type: Schema.Types.ObjectId, ref: 'Pais' },
   nombreBeneficiario: String,
