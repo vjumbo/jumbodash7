@@ -277,6 +277,7 @@ export class VtigerServiceService {
      * Check and perform login if requried.
      */
     private __checkLogin (): boolean {
+        this.getVtigerLoginData();
         return this._isLoggin;
     }
 
@@ -635,8 +636,8 @@ export class VtigerServiceService {
         if (Utilities.logins.isLoggedin()) {
             const data = Utilities.session.getSession('vtigerLoginData');
             if (data !== null) {
-                this._sessionid = data.ssessId;
-                this._userid = data.userId;
+                this._sessionid = data.sessId;
+                this._userid = data.userID;
                 this._isLoggin = true;
             }
         }

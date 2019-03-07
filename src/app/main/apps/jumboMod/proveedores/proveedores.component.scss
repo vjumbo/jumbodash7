@@ -93,6 +93,15 @@ jum-proveedores {
         .active-icon {
             border-radius: 50%;
         }
+
+        .mat-column-vendor {
+            flex: 1 1 10px;
+            background-color: #2E7D32;
+        }
+
+        .mat-column-vendorname, .mat-column-phone, .mat-column-email{
+            flex: 1 1 30%;
+        }
     }
 }
 

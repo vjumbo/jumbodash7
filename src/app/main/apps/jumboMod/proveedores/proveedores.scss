@@ -1,25 +1,17 @@
-@import "src/@fuse/scss/fuse";
+[class*="mat-column-"] {
+    padding-right: 4px;
+}
 
-jum-proveedores {
+.mat-column-vendor {
+    flex: 1 1 5%;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
 
-    .entidades-table {
+.mat-column-vendorname{
+    flex: 1 1 55%;
+}
 
-        .mat-column-vendor_no {
-            flex: 0 1 5%;
-        }
-
-        .mat-column-vendorname, .mat-column-phone, .mat-column-email{
-            flex: 0 1 20%;
-        }
-
-        .mat-column-image {
-            flex: 0 1 84px;
-
-            .entidad-image {
-                width: 52px;
-                height: 52px;
-                border: 1px solid rgba(0, 0, 0, .12);
-            }
-        }
-    }
+.mat-column-phone, .mat-column-email {
+    flex: 1 1 20%;
 }

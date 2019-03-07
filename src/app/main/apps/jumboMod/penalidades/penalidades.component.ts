@@ -21,7 +21,7 @@ import {Penalidad} from '@configs/interfaces';
 export class PenalidadesComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['id', 'nombre', 'fechasini', 'fechaFin', 'cancelacionesDias', 'cargo', 'descripcion', 'usuario'];
+    displayedColumns = ['id', 'nombre', 'cancelacionesDias', 'cargo', 'descripcion', 'usuario']; // 'fechasini', 'fechaFin',
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -209,12 +209,12 @@ export class FilesDataSource extends DataSource<any>
                 case 'nombre':
                     [propertyA, propertyB] = [a.nombre, b.nombre];
                     break;
-                case 'fechasini':
+                /*case 'fechasini':
                     [propertyA, propertyB] = [a.fechasini, b.fechasini];
                     break;
                 case 'fechaFin':
                     [propertyA, propertyB] = [a.fechaFin, b.fechaFin];
-                    break;
+                    break;*/
                 case 'cancelacionesDias':
                     [propertyA, propertyB] = [a.cancelacionesDias, b.cancelacionesDias];
                     break;

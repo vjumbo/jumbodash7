@@ -9,7 +9,6 @@ import { FuseUtils } from '@fuse/utils';
 
 import { takeUntil } from 'rxjs/internal/operators';
 import {HotelesService} from './hoteles.service';
-import {ServicioConst} from '../servicio/servicio.model';
 import {HotelConst} from '../hotel/hotel.model';
 
 @Component({

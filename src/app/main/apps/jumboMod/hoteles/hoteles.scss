@@ -1,34 +1,34 @@
-@import "src/@fuse/scss/fuse";
+[class*="mat-column-"] {
+    padding-right: 4px;
+}
 
-jum-servicios {
+.mat-column-id {
+    flex: 0 1 5%;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
 
-    .entidades-table {
-
-        .mat-column-id {
-            flex: 0 1 10%;
-        }
-
-        .mat-column-nombre, .mat-column-segmetohotel, .mat-column-region {
-            flex: 0 1 20%;
-        }
+.mat-column-nombre, .mat-column-region {
+    flex: 0 1 20%;
+}
 
 
-        .mat-column-descripcion {
-            flex: 0 1 50%;
-        }
+.mat-column-descripcion {
+    flex: 0 1 40%;
+}
 
-        .mat-column-usuario {
-            flex: 0 1 20%;
-        }
+.mat-column-usuario, .mat-column-segmetohotel {
+    flex: 0 1 10%;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
 
-        .mat-column-image {
-            flex: 0 1 84px;
+.mat-column-image {
+    flex: 0 1 84px;
 
-            .entidad-image {
-                width: 52px;
-                height: 52px;
-                border: 1px solid rgba(0, 0, 0, .12);
-            }
-        }
+    .entidad-image {
+        width: 52px;
+        height: 52px;
+        border: 1px solid rgba(0, 0, 0, .12);
     }
 }

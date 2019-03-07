@@ -86,6 +86,8 @@ $typography: mat-typography-config(
 @import "src/app/main/apps/jumboMod/habitaciones/habitaciones.theme";
 @import "src/app/main/apps/jumboMod/penalidades/penalidades.theme";
 @import "src/app/main/apps/jumboMod/servicios/servicios.theme";
+@import "src/app/main/apps/jumboMod/hoteles/hoteles.theme";
+@import "src/app/main/apps/jumboMod/proveedores/proveedores.theme";
 
 // Define a mixin for easier access
 @mixin components-theme($theme) {
@@ -99,6 +101,8 @@ $typography: mat-typography-config(
     @include jum-habitaciones-theme($theme);
     @include jum-penalidades-theme($theme);
     @include jum-servicios-theme($theme);
+    @include jum-hoteles-theme($theme);
+    @include jum-proveedores-theme($theme);
 }
 
 // -----------------------------------------------------------------------------------------------------
