@@ -12,7 +12,7 @@ export class ProveedorService implements Resolve<any>
     entidad: Proveedor;
     onEntidadChanged: BehaviorSubject<any>;
     hoteles: Hotel[];
-    url = `${BackEndConst.backEndUrl}`; // ${BackEndConst.endPoints.proveedores}
+    url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.proveedores}`; // ${BackEndConst.endPoints.proveedores}
 
     /**
      * Constructor

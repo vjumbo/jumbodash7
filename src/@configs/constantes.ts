@@ -17,6 +17,7 @@ export const BackEndConst = {
         penalidades: '/jumboApi/penalidades',
         habitaciones: '/jumboApi/habitaciones',
         hoteles: '/jumboApi/hoteles',
+        proveedores: '/jumboApi/proveedores',
         docs: '/jumboApi/docs'
     }
 };

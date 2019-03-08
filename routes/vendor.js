@@ -7,10 +7,14 @@ const Vendor = require('../models/vendor');
 router.options('*', cors());
 
 router.get('/:crmid', cors(), function(req, res, next) {
-  const vendor = req.params.crmid;
-  Vendor.findOne(vendor, function (err, vendor) {
-    if (err) return next(err);
-    res.json(vendor);
+  Vendor.findOne({ crmid: req.params.crmid }, function (err, vendor) {
+      if (!vendor) {
+          // res.sendStatus(404);
+          res.json(false);
+      } else {
+          if (err) return next(err);
+          return res.json(vendor);
+      }
   });
 });
 

@@ -20,7 +20,7 @@ import {ProveedorConst} from '../proveedor/proveedor.model';
 export class ProveedoresComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['vendor', 'vendorname', 'phone', 'email'];
+    displayedColumns = ['vendor_no', 'vendorname', 'phone', 'email'];
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -197,8 +197,8 @@ export class FilesDataSource extends DataSource<any>
 
             switch ( this._matSort.active )
             {
-                case 'vendor':
-                    [propertyA, propertyB] = [a.vendor, b.vendor];
+                case 'vendor_no':
+                    [propertyA, propertyB] = [a.vendor_no, b.vendor_no];
                     break;
                 case 'vendorname':
                     [propertyA, propertyB] = [a.vendorname, b.vendorname];
