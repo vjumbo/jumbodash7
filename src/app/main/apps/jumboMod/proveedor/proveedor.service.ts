@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Hotel, Proveedor} from '@configs/interfaces';
+import {Hotel, Proveedor, ProveedorCrmInfo} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
+import {VtigerServiceService} from '@service/vtiger.Service';
 
 @Injectable()
 export class ProveedorService implements Resolve<any>
 {
     routeParams: any;
-    entidad: Proveedor;
+    entidad: ProveedorCrmInfo;
     onEntidadChanged: BehaviorSubject<any>;
     hoteles: Hotel[];
     url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.proveedores}`; // ${BackEndConst.endPoints.proveedores}
@@ -18,9 +19,11 @@ export class ProveedorService implements Resolve<any>
      * Constructor
      *
      * @param {HttpClient} _httpClient
+     * @param _vtgierService
      */
     constructor(
-        private _httpClient: HttpClient
+        private _httpClient: HttpClient,
+        private _vtgierService: VtigerServiceService,
     )
     {
         // Set the defaults
@@ -67,12 +70,19 @@ export class ProveedorService implements Resolve<any>
             }
             else
             {
-                this._httpClient.get(`${this.url}/${this.routeParams.id}`)
-                    .subscribe((response: any) => {
-                        this.entidad = response;
-                        this.onEntidadChanged.next(this.entidad);
-                        resolve(response);
-                    }, reject);
+                this._vtgierService.doRetrieve(this.routeParams.id)
+                    .then(prov => {
+                        this._httpClient.get(`${this.url}/${this.routeParams.id}`)
+                            .subscribe((response: any) => {
+                                this.entidad = {
+                                    id: this.routeParams.id,
+                                    crmInfo: prov,
+                                    proveedor: !response ? {} : response
+                                };
+                                this.onEntidadChanged.next(this.entidad);
+                                resolve(this.entidad);
+                            }, reject);
+                    });
             }
         });
     }

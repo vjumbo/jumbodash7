@@ -54,11 +54,19 @@
                        [@animateStagger]="{value:'50'}"
                        fusePerfectScrollbar>
 
-                <!-- vendor Columna -->
-                <ng-container matColumnDef="vendor_no">
+                <!-- id Columna -->
+                <ng-container matColumnDef="id">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
                     <mat-cell *matCellDef="let entidad">
-                        <p class="text-truncate">{{getIDPos(entidad.vendor_no)}}</p>
+                        <p class="text-truncate">{{getIDPos(entidad.id)}}</p>
+                    </mat-cell>
+                </ng-container>
+
+                <!-- vendor Columna -->
+                <ng-container matColumnDef="vendor_no">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Prov.</mat-header-cell>
+                    <mat-cell *matCellDef="let entidad">
+                        <p class="text-truncate">{{entidad.vendor_no}}</p>
                     </mat-cell>
                 </ng-container>
 
@@ -93,7 +101,7 @@
                 <mat-row *matRowDef="let entidad; columns: displayedColumns;"
                          class="entidad"
                          matRipple
-                         [routerLink]="entidadesConst.urlEntidad+'/'+entidad.vendor_no">
+                         [routerLink]="entidadesConst.urlEntidad+'/'+entidad.id">
                 </mat-row>
 
             </mat-table>

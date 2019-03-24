@@ -64,7 +64,7 @@ export class ProveedoresService implements Resolve<any>
                 }, reject);
 
         });*/
-        this.entidades = await this._vtgierService.doQuery('select * from Vendors');
+        this.entidades = await this._vtgierService.doQuery('select vendor_no, vendorname, phone, email from Vendors');
         this.onEntidadesChanged.next(this.entidades);
         return this.entidades;
     }

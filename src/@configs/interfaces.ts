@@ -169,9 +169,16 @@ export interface FileSys {
     data: Blob;
 }
 
+export interface ProveedorCrmInfo {
+    id: string;
+    crmInfo: any;
+    proveedor: Proveedor;
+}
+
 export interface  Proveedor {
     _id?: string;
     crmid: string;
+    crmInfo: any;
     nombre: string;
     hoteles: Hotel[];
     email: string;

@@ -9,6 +9,7 @@ const FileSchema = require('./file');
 const VendorSchema = new Schema({
   id: Schema.Types.ObjectId,
   crmid: { type: String, required: true, index: { unique: true }},
+    crmInfo: {},
   nombre: String, // nombre crm
   hoteles: [{ type: Schema.Types.ObjectId, ref: 'Hotel'}],
   email: SchemaTypes.Email, // email crm
@@ -20,10 +21,10 @@ const VendorSchema = new Schema({
   sistema: SistemaSchema
 });
 
-VendorSchema.pre('findOne', () => {
+/*VendorSchema.pre('findOne', () => {
   this.populate('hoteles');
   // this.populate('cuentaBancaria');
   // this.populate('sistema');
-});
+});*/
 
 module.exports = mongoose.model('Vendor', VendorSchema);

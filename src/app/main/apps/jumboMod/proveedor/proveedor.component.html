@@ -71,20 +71,41 @@
                     <mat-tab-group>
 
                         <mat-tab label="Informacion {{entidadConst.name}}">
-
                             <div class="tab-content p-24" fusePerfectScrollbar>
-
-                                <mat-form-field class="w-100-p">
-                                    <input matInput
-                                           name="nombre"
-                                           formControlName="nombre"
-                                           placeholder="Nombre del Servicio"
-                                           required>
-                                    <mat-error *ngIf="entidadForm.get('nombre').hasError('required')">
-                                        Se requiere el nombre del Servicio
-                                    </mat-error>
-                                </mat-form-field>
-
+                                <div class="section pb-48">
+                                    <div class="pb-16" fxLayout="row" fxLayoutAlign="start center">
+                                        <mat-icon class="m-0 mr-16 secondary-text">account_circle</mat-icon>
+                                        <div class="h2 secondary-text">Proveedor CRM</div>
+                                    </div>
+                                    <div class="customer mb-32">
+                                        <table class="simple">
+                                            <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Proveedor</th>
+                                                <th>Email</th>
+                                                <th>Telefono</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span class="company text-truncate">{{info.vendor_no}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="company text-truncate">{{info.vendorname}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="email text-truncate">{{info.email}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="phone text-truncate">{{info.phone}}</span>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                                 <mat-form-field class="w-100-p">
                                     <textarea matInput
                                               name="descripcion"
@@ -94,13 +115,6 @@
                                     </textarea>
                                 </mat-form-field>
 
-                                <mat-form-field class="w-100-p">
-                                    <input matInput
-                                           name="costo"
-                                           formControlName="costo"
-                                           placeholder="Costo del Servicio" type="number">
-                                    <span matPrefix>$&nbsp;</span>
-                                </mat-form-field>
 
                                 <!--<mat-form-field fxFlex="100">
                                     <mat-select placeholder="Moneda" formControlName="moneda">
@@ -112,7 +126,58 @@
                             </div>
 
                         </mat-tab>
+                        <mat-tab label="Hoteles">
+                            <div class="section pb-48 w-100-p">
+                                <form class="update-status p-24"
+                                      (ngSubmit)="updateHoteles()"
+                                      [formGroup]="hotelesForm"
+                                      fxLayout="row" fxLayoutAlign="start center">
 
+                                    <mat-form-field appearance="outline" class="mr-16 w-70-p" fxFlex>
+                                        <mat-label>Seleccionar Hotel</mat-label>
+                                        <mat-select formControlName="hotel" required>
+                                            <mat-option *ngFor="let hab of getHoteles()"
+                                                        [value]="hab._id">
+                                                {{hab.nombre}} - Segmento: {{hab.segmetohotel}}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+
+                                    <button mat-raised-button class="mat-accent w-30-p"
+                                            [disabled]="hotelesForm.invalid">
+                                        Agregar Hotel
+                                    </button>
+                                </form>
+
+                                <table class="simple w-100-p">
+                                    <thead>
+                                    <tr>
+                                        <th>Hotel</th>
+                                        <th>Segmento</th>
+                                        <th></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    <tr *ngFor="let hab of getSelectedHoteles()">
+                                        <td>
+                                                <span class="status h6 p-4">
+                                                    {{hab.nombre}}
+                                                </span>
+                                        </td>
+                                        <td>
+                                                <span>
+                                                    {{hab.segmetohotel}}
+                                                </span>
+                                        </td>
+                                        <td>
+                                            <button mat-button (click)="eliminarHot(hab._id)">Eliminar</button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </mat-tab>
                     </mat-tab-group>
                 </form>
 

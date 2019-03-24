@@ -9,7 +9,7 @@ import { fuseAnimations } from '@fuse/animations';
 import {ProveedorModel, ProveedorConst} from './proveedor.model';
 import {ProveedorService} from './proveedor.service';
 import {Router} from '@angular/router';
-import {Hotel, Moneda} from '@configs/interfaces';
+import {Habitacion, Hotel, Moneda} from '@configs/interfaces';
 import {Utilities} from '@utilities/utilities';
 
 
@@ -22,12 +22,14 @@ import {Utilities} from '@utilities/utilities';
 })
 export class ProveedorComponent implements OnInit, OnDestroy
 {
+    id: string;
+    info: any;
     entidad: ProveedorModel;
     pageType: string;
     entidadForm: FormGroup;
     entidadConst: any;
     hoteles: Hotel[];
-    hotelesForm: FormArray;
+    hotelesForm: FormGroup;
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -51,7 +53,7 @@ export class ProveedorComponent implements OnInit, OnDestroy
     {
         this.entidadConst = ProveedorConst;
         // Set the default
-        this.entidad = new ProveedorModel();
+        // this.entidad = new ProveedorModel();
 
         // Set the private defaults
         this._unsubscribeAll = new Subject();
@@ -73,7 +75,9 @@ export class ProveedorComponent implements OnInit, OnDestroy
             .subscribe(entidad => {
                 if ( entidad )
                 {
-                    this.entidad = new ProveedorModel(entidad);
+                    this.id = entidad.id;
+                    this.info = entidad.crmInfo;
+                    this.entidad = new ProveedorModel(entidad.proveedor, this.info);
                     this.pageType = 'edit';
                 }
                 else
@@ -107,6 +111,10 @@ export class ProveedorComponent implements OnInit, OnDestroy
      */
     createEntidadForm(): void
     {
+        this.hotelesForm = this._formBuilder.group({
+            hotel: ['']
+        });
+
         const tarjetaCredito = this._formBuilder.group({
             disponible: [this.entidad.cuentaBancaria.formaPago.tarjetaCredito.disponible],
             porcentaje: [this.entidad.cuentaBancaria.formaPago.tarjetaCredito.porcentaje],
@@ -174,7 +182,12 @@ export class ProveedorComponent implements OnInit, OnDestroy
     saveEntidad(): void
     {
         const data = this.entidadForm.getRawValue();
-
+        if (data._id === null) {
+            this.addEntidad();
+            return;
+        }
+        data['crmid'] = this.entidad.crmid;
+        data['crmInfo'] = this.entidad.crmInfo;
         this.entidadService.saveEntidad(Utilities.systems.setEntitySistema(data))
             .then(() => {
 
@@ -195,7 +208,8 @@ export class ProveedorComponent implements OnInit, OnDestroy
     addEntidad(): void
     {
         const data = this.entidadForm.getRawValue();
-
+        data['crmid'] = this.entidad.crmid;
+        data['crmInfo'] = this.entidad.crmInfo;
         this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
             .then((entidad) => {
 
@@ -229,5 +243,37 @@ export class ProveedorComponent implements OnInit, OnDestroy
                 // this._location.go(`${this.entidadConst.urlEntidades}`);
                 this.router.navigate([`${this.entidadConst.urlEntidades}`]);
             });
+    }
+
+    getHoteles(): Hotel[] {
+        const hots = this.entidadForm.get('hoteles').value;
+        return this.hoteles.filter( h =>
+            !Utilities.arrays.findPropObjectInArray(hots, '_id', h._id)
+        );
+    }
+
+    getSelectedHoteles(): Hotel[] {
+        return this.entidadForm.get('hoteles').value;
+    }
+
+    updateHoteles(): void {
+        const hotId = this.hotelesForm.get('hotel').value;
+        if ( !hotId )
+        {
+            return;
+        }
+        const hots = [...this.entidadForm.get('hoteles').value, this.hoteles.find(h => h._id === hotId)];
+        if (!Utilities.objects.areEquals(this.entidad.hoteles, hots)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // todo
+        }
+        this.entidadForm.controls['hoteles'].setValue(hots);
+        this.hotelesForm.reset();
+    }
+
+    eliminarHot(id): void {
+        const hots = [...this.entidadForm.get('hoteles').value].filter(h => h._id !== id);
+        this.entidadForm.controls['hoteles'].setValue(hots);
     }
 }

@@ -4,6 +4,7 @@ export class ProveedorModel
 {
     _id: number;
     crmid: string;
+    crmInfo: any;
     nombre: string;
     hoteles: Hotel[];
     email: string;
@@ -18,15 +19,18 @@ export class ProveedorModel
      * Constructor
      *
      * @param entidad
+     * @param crmInfo
      */
-    constructor(entidad?)
+    constructor(entidad?, crmInfo?: any)
     {
         entidad = entidad || {};
         this._id = entidad._id || null;
-        this.crmid = entidad.crmid || '';
-        this.nombre = entidad.nombre || '';
+        this.crmInfo = crmInfo || {};
+        this.crmid = crmInfo.id || null;
+        this.nombre = crmInfo.vendorname || '';
         this.hoteles = entidad.hoteles || [];
-        this.email = entidad.email || '';
+        this.telefono = crmInfo.phone || '';
+        this.email = crmInfo.email || '';
         this.setCuentaBancaria(entidad);
         this.setContrato(entidad);
         this.setCargoPromociones(entidad);

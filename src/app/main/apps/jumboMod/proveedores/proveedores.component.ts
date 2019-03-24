@@ -20,7 +20,7 @@ import {ProveedorConst} from '../proveedor/proveedor.model';
 export class ProveedoresComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['vendor_no', 'vendorname', 'phone', 'email'];
+    displayedColumns = ['id', 'vendor_no', 'vendorname', 'phone', 'email'];
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -74,7 +74,7 @@ export class ProveedoresComponent implements OnInit
     }
 
     getIDPos(id): number {
-        return (this._EntidadesService.entidades.findIndex(e => e.vendor_no === id)) + 1;
+        return (this._EntidadesService.entidades.findIndex(e => e.id === id)) + 1;
     }
 }
 

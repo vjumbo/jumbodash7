@@ -15,7 +15,7 @@ router.get('/:crmid', cors(), function(req, res, next) {
           if (err) return next(err);
           return res.json(vendor);
       }
-  });
+  }).populate('hoteles');
 });
 
 router.post('/', cors(),function(req, res, next) {
