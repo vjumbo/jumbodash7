@@ -20,7 +20,7 @@ const invoiceRouter = require('./routes/invoice');
 
 const app = express();
 
-const dir = 'dist'; // 'public';
+const dir = 'public'; // 'public';
 const appRoute = express.static(path.join(__dirname, dir), { redirect: false });
 const mongoAtlas = `mongodb+srv://backend:KRYmQ2qx82quFmX2@vjumbomongo-ldmss.mongodb.net/test?retryWrites=true`;
 
