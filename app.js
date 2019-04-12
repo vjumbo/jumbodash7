@@ -20,12 +20,9 @@ const invoiceRouter = require('./routes/invoice');
 
 const app = express();
 
-const dir = 'public';
+const dir = 'dist'; // 'public';
 const appRoute = express.static(path.join(__dirname, dir), { redirect: false });
-const dataBase = "jumboDash";
-const mongoAtlas = `mongodb+srv://backend:JLQice13864@jumbocluster0-1mrzq.mongodb.net/test?retryWrites=true`;
-const mongoLocal = `mongodb://localhost:27017/${dataBase}?retryWrites=true/`;
-
+const mongoAtlas = `mongodb+srv://backend:KRYmQ2qx82quFmX2@vjumbomongo-ldmss.mongodb.net/test?retryWrites=true`;
 
 const mongoose = require('mongoose');
 mongoose.connect(mongoAtlas,

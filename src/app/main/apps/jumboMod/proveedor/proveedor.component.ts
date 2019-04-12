@@ -79,6 +79,15 @@ export class ProveedorComponent implements OnInit, OnDestroy
                     this.info = entidad.crmInfo;
                     this.entidad = new ProveedorModel(entidad.proveedor, this.info);
                     this.pageType = 'edit';
+                    this.entidad.hoteles = this.entidad.hoteles.map(h => {
+                        if (Utilities.strings.isString(h)) {
+                            return this.hoteles.find((x: any) => {
+                                return (x._id === h);
+                            });
+                        } else {
+                            return h;
+                        }
+                    });
                 }
                 else
                 {
@@ -212,9 +221,13 @@ export class ProveedorComponent implements OnInit, OnDestroy
         data['crmInfo'] = this.entidad.crmInfo;
         this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
             .then((entidad) => {
-
+                const newEntidad = {
+                    id: this.id,
+                    crmInfo: this.info,
+                    proveedor: entidad
+                };
                 // Trigger the subscription with new data
-                this.entidadService.onEntidadChanged.next(entidad);
+                this.entidadService.onEntidadChanged.next(newEntidad);
 
                 // Show the success message
                 this._matSnackBar.open(`${this.entidadConst.name} Agregado`, 'OK', {
@@ -223,7 +236,7 @@ export class ProveedorComponent implements OnInit, OnDestroy
                 });
 
                 // Change the location with new one
-                this._location.go(`${this.entidadConst.urlEntidad}/${ this.entidad._id}`);
+                this._location.go(`${this.entidadConst.urlEntidad}/${ this.id}`);
             });
     }
 

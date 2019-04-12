@@ -12,7 +12,7 @@ const VendorSchema = new Schema({
     crmInfo: {},
   nombre: String, // nombre crm
   hoteles: [{ type: Schema.Types.ObjectId, ref: 'Hotel'}],
-  email: SchemaTypes.Email, // email crm
+  email: String, // email crm
   telefono: String, // email crm
   cuentaBancaria: CuentaBancariaSchema,
   contrato: FileSchema,
