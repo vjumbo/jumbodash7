@@ -9,8 +9,8 @@ export const CrmConst = {
 };
 
 export const BackEndConst = {
-    backEndUrl: 'http://127.0.0.1:3000',
-    backEndUrlyy: 'http://vjumbodash.ddns.net', // 'http://157.230.134.208:3000', http://127.0.0.1:3000
+    backEndUrlxx: 'http://127.0.0.1:3000',
+    backEndUrl: 'http://68.183.108.143', // 'http://157.230.134.208:3000', http://127.0.0.1:3000
     endPoints: {
         usuarios: '/jumboApi/usuarios',
         servicios: '/jumboApi/servicios',
