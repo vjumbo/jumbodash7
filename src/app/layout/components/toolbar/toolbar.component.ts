@@ -28,6 +28,10 @@ export class ToolbarComponent implements OnInit, OnDestroy
     navigation: any;
     selectedLanguage: any;
     userStatusOptions: any[];
+    user: any;
+    name = '';
+    profile = '';
+    email = '';
 
     // Private
     private _unsubscribeAll: Subject<any>;
@@ -104,6 +108,7 @@ export class ToolbarComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        this.setUserData()
         // Subscribe to the config changes
         this._fuseConfigService.config
             .pipe(takeUntil(this._unsubscribeAll))
@@ -115,6 +120,15 @@ export class ToolbarComponent implements OnInit, OnDestroy
 
         // Set the selected language from default languages
         this.selectedLanguage = _.find(this.languages, {'id': this._translateService.currentLang});
+    }
+
+    setUserData(): void {
+        this.user = Utilities.currentUser.getCurrentUser();
+        if (this.user) {
+            this.name = `${this.user.firt_name || ''} ${this.user.last_name || ''}`;
+            this.profile = this.user.user_name || '';
+            this.email = this.user.email1 || '';
+        }
     }
 
     /**

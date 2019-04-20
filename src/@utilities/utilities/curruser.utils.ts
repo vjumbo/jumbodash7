@@ -10,7 +10,9 @@ export abstract class CurruserUtils {
     }
 
     static getToken(): any {
-        const {user_name, DashUser} = this.getCurrentUser();
-        return {username: user_name, token: DashUser.token};
+        const curr = this.getCurrentUser();
+        if (!curr) { return {username: null, token: null};}
+        const {user_name = null, DashUser = null} = curr;
+        return {username: user_name, token: DashUser && DashUser.token ? DashUser.token : null};
     }
 }

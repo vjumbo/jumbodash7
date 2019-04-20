@@ -29,6 +29,10 @@ export class VtLoginComponent implements OnInit
      *
      * @param {FuseConfigService} _fuseConfigService
      * @param {FormBuilder} _formBuilder
+     * @param vtService
+     * @param _fuseProgressBarService
+     * @param route
+     * @param backEndService
      */
     constructor(
         private _fuseConfigService: FuseConfigService,
@@ -130,6 +134,7 @@ export class VtLoginComponent implements OnInit
         Utilities.currentUser.setCurrentUser(crUser);
         const crUser2 = Utilities.currentUser.getCurrentUser();
         if (usuario.token === crUser2.DashUser.token) {
+            Utilities.logins.setLoggedin();
             this._fuseProgressBarService.hide();
             this.route.navigate(['/']);
         } else {

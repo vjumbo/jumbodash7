@@ -1,4 +1,3 @@
-// import {DocumentosUtils} from './utilities/documentos.utils';
 import {DateUtils} from './utilities/date.utils';
 import {ObjectUtils} from './utilities/object.utils';
 import {ArrayUtils} from './utilities/array.utils';
@@ -13,7 +12,8 @@ import {CurruserUtils} from './utilities/curruser.utils';
 import {RouterUtils} from './utilities/router.utils';
 import {AllowedpageUtils} from './utilities/Allowedpage.utils';
 import {ErrorHandlerUtils} from './utilities/error-handler.utils';
-import {SystemUtils} from '@utilities/utilities/system.utils';
+import {SystemUtils} from './utilities/system.utils';
+import {EncryptUtils} from './utilities/encrypt.utils';
 
 export abstract class Utilities {
     static allowedPages = AllowedpageUtils;
@@ -32,4 +32,5 @@ export abstract class Utilities {
     static strings = StringUtils;
     static systems = SystemUtils;
     static urls = UrlUtils;
+    static encrypt = EncryptUtils;
 }

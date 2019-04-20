@@ -4,8 +4,10 @@ export const CrmConst = {
     sysName: 'Cotizaciones Jumbo',
     vtigerUrl: 'http://jumbo.ltncrm.com', // 'http://jumbo.ltncrm.com' 'http://colombiacrm.ltnxmart.com/' 'http://192.168.182.130'
     logoDir: 'assets/images/jumbo/logo/LOGO_JUMBO.jpg',
+    logoLaliDir: 'assets/images/jumbo/logo/LOGO_LALIX.png',
     loginDir: '/pages/auth/jumbologin',
-    homeDir: ''
+    homeDir: '',
+    encrypted: '1234567890'
 };
 
 export const BackEndConst = {

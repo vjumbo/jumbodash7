@@ -14,6 +14,8 @@ import { FuseTranslationLoaderService } from '@fuse/services/translation-loader.
 import { navigation } from 'app/navigation/navigation';
 import { locale as navigationEnglish } from 'app/navigation/i18n/en';
 import { locale as navigationSpanish } from 'app/navigation/i18n/es';
+import {Utilities} from '@utilities/utilities';
+import {CrmConst} from '@configs/constantes';
 
 @Component({
     selector   : 'app',
@@ -51,6 +53,7 @@ export class AppComponent implements OnInit, OnDestroy
         private _platform: Platform
     )
     {
+        Utilities.encrypt.setKey(CrmConst.encrypted);
         // Get default navigation
         this.navigation = navigation;
 
