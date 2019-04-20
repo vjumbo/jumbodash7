@@ -143,7 +143,8 @@ export class HotelModel
                         costoTransferencia: entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia,
                     },
                     efectivo: {
-                        disponible: entidad.cuentaBancaria.formaPago.efectivo.disponible
+                        disponible: entidad.cuentaBancaria.formaPago.efectivo.disponible,
+                        total: entidad.cuentaBancaria.formaPago.efectivo.total,
                     }
                 },
                 descripcion: entidad.cuentaBancaria.descripcion,
@@ -170,7 +171,8 @@ export class HotelModel
                         costoTransferencia: 0,
                     },
                     efectivo: {
-                        disponible: false
+                        disponible: false,
+                        total: 0,
                     }
                 },
                 descripcion: '',

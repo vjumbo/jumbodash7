@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import {Servicio} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
+import {RequestServices} from '@service/servicios.service';
 
 @Injectable()
 export class ServiciosService implements Resolve<any>
@@ -15,10 +15,10 @@ export class ServiciosService implements Resolve<any>
     /**
      * Constructor
      *
-     * @param {HttpClient} _httpClient
+     * @param requestServices
      */
     constructor(
-        private _httpClient: HttpClient
+        private requestServices: RequestServices
     )
     {
         // Set the defaults
@@ -54,7 +54,7 @@ export class ServiciosService implements Resolve<any>
      */
     getEntidades(): Promise<any> {
         return new Promise((resolve, reject) => {
-            this._httpClient.get(this.url)
+            this.requestServices.reqGet(this.url) // {token: this.token}
                 .subscribe((response: any[]) => {
                     this.entidades = response;
                     this.onEntidadesChanged.next(this.entidades);

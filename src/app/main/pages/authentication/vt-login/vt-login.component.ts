@@ -75,54 +75,48 @@ export class VtLoginComponent implements OnInit
         });
     }
 
-    setLogin (): void {
+    async setLogin (): Promise<void> {
         this._fuseProgressBarService.show();
         const user = this.loginForm.value;
         // user.password = LogicaService.Md5(user.password);
         console.log(user);
-        this.vtService.doDashLogin(user.user, user.password)
-            .then(res => {
-                console.log(res);
-                if (res !== null) {
-                    this.backEndService.getUserByUsername(user.user)
-                        .then(beUser => {
-                            if (<any>beUser === false) {
-                                const newUser: Usuario = <Usuario>{
-                                    username: res.userName,
-                                    apikey: res.apiKey,
-                                    crmid: res.userId,
-                                    userInfo: Utilities.currentUser.getCurrentUser(),
-                                    sistema: {
-                                        fechaCreacion: new Date(),
-                                        fechaModificacion: new Date()
-                                    }
-                                };
-                                this.backEndService.saveNewUser(newUser)
-                                    .then(usuario => {
-                                        this.setDashUser(usuario);
-                                    })
-                                    .catch(error => {
-                                        Utilities.logins.logOff();
-                                        this.onCatch(error);
-                                    });
-                            } else {
-                                this.setDashUser(beUser);
+        try {
+            const res = await this.vtService.doDashLogin(user.user, user.password);
+            console.log(res);
+            if (res !== null) {
+                try {
+                    const beUser = await this.backEndService.getUserByUsername(user.user);
+                    if (<any>beUser === false) {
+                        const newUser: Usuario = <Usuario>{
+                            username: res.userName,
+                            apikey: res.apiKey,
+                            crmid: res.userId,
+                            userInfo: Utilities.currentUser.getCurrentUser(),
+                            sistema: {
+                                fechaCreacion: new Date(),
+                                fechaModificacion: new Date()
                             }
-                        })
-                        .catch(error => {
+                        };
+                        try {
+                            const usuario = await this.backEndService.saveNewUser(newUser);
+                            this.setDashUser(usuario);
+                        } catch (e) {
                             Utilities.logins.logOff();
-                            this.onCatch(error);
-                        });
-
-                } else {
+                        }
+                    } else {
+                        this.setDashUser(beUser);
+                    }
+                } catch (e) {
                     Utilities.logins.logOff();
-                    this.onCatch('Error al Iniciar Sesion');
+                    throw Error(e);
                 }
-
-            })
-            .catch(error => {
-                this.onCatch(error);
-            });
+            } else {
+                Utilities.logins.logOff();
+                throw Error('Error al Iniciar Sesion');
+            }
+        } catch (e) {
+            this.onCatch(e);
+        }
     }
 
     onCatch(error): void {
@@ -134,7 +128,14 @@ export class VtLoginComponent implements OnInit
         const crUser = Utilities.currentUser.getCurrentUser();
         crUser['DashUser'] = usuario;
         Utilities.currentUser.setCurrentUser(crUser);
-        this._fuseProgressBarService.hide();
-        this.route.navigate(['/']);
+        const crUser2 = Utilities.currentUser.getCurrentUser();
+        if (usuario.token === crUser2.DashUser.token) {
+            this._fuseProgressBarService.hide();
+            this.route.navigate(['/']);
+        } else {
+            alert('not equal');
+            Utilities.logins.logOff();
+            this.onCatch('no equal token');
+        }
     }
 }

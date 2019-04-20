@@ -3,10 +3,13 @@ const router = express.Router([]);
 const mongoose = require('mongoose');
 const Quote = require('../models/quote');
 const cors = require('cors');
+const {validToken} = require('../jwt');
 
 router.options('*', cors());
 
-router.get('/', cors(), (req, res, next) => {
+router.get('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Quote.find({}, (err, quotes) => {
     if (!quotes) {
       res.json([]);
@@ -17,28 +20,36 @@ router.get('/', cors(), (req, res, next) => {
   });
 });
 
-router.get('/:id', cors(), (req, res, next) =>{
+router.get('/:id', cors(), async (req, res, next) =>{
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Quote.findById(req.params.id,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.post('/', cors(), (req, res, next) => {
+router.post('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Quote.create(req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.put('/:id', cors(),(req, res, next) => {
+router.put('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Quote.findByIdAndUpdate(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.delete('/:id', cors(), (req, res, next) => {
+router.delete('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Quote.findByIdAndRemove(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);

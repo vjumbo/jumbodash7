@@ -14,7 +14,7 @@ export abstract class SystemUtils {
 
     static setEntitySistema (data): any {
         const {DashUser} = CurruserUtils.getCurrentUser();
-        const userId = DashUser && DashUser._id && !GeneralUtils.isEmptyData(DashUser._id) ? DashUser._id : null;
+        const userId = DashUser && DashUser.$__ && DashUser.$__._id && !GeneralUtils.isEmptyData(DashUser.$__._id) ? DashUser.$__._id : null;
         let sistema: Sistema;
         sistema = {
             usuarioCreador: userId,

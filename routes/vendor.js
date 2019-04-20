@@ -3,11 +3,14 @@ const router = express.Router([]);
 const mongoose = require('mongoose');
 const cors = require('cors');
 const Vendor = require('../models/vendor');
+const {validToken} = require('../jwt');
 
 router.options('*', cors());
 
-router.get('/:crmid', cors(), function(req, res, next) {
-  Vendor.findOne({ crmid: req.params.crmid }, function (err, vendor) {
+router.get('/:crmid', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
+  Vendor.findOne({ crmid: req.params.crmid }, (err, vendor) => {
       if (!vendor) {
           // res.sendStatus(404);
           res.json(false);
@@ -18,15 +21,19 @@ router.get('/:crmid', cors(), function(req, res, next) {
   }).populate('hoteles');
 });
 
-router.post('/', cors(),function(req, res, next) {
-  Vendor.create(req.body, function (err, post) {
+router.post('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
+  Vendor.create(req.body, (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.put('/:id', cors(),function(req, res, next) {
-  Vendor.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+router.put('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
+  Vendor.findByIdAndUpdate(req.params.id, req.body, (err, post) => {
     if (err) return next(err);
     res.json(post);
   });

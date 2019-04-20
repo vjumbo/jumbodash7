@@ -8,4 +8,9 @@ export abstract class CurruserUtils {
     static getCurrentUser(): any {
         return SessionUtils.getSession('currentUser');
     }
+
+    static getToken(): any {
+        const {user_name, DashUser} = this.getCurrentUser();
+        return {username: user_name, token: DashUser.token};
+    }
 }

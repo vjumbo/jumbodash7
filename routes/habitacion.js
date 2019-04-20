@@ -3,10 +3,13 @@ const router = express.Router([]);
 const mongoose = require('mongoose');
 const Habitacion = require('../models/habitacion');
 const cors = require('cors');
+const {validToken} = require('../jwt');
 
 router.options('*', cors());
 
-router.get('/', cors(), (req, res, next) => {
+router.get('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Habitacion.find( (err, products) => {
     if (err) return next(err);
     res.json(products);
@@ -14,7 +17,9 @@ router.get('/', cors(), (req, res, next) => {
       .populate('sistema.usuarioAsignado', 'username');
 });
 
-router.get('/:id', cors(), (req, res, next) =>{
+router.get('/:id', cors(), async (req, res, next) =>{
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Habitacion.findById(req.params.id,  (err, post) => {
     if (err) return next(err);
     res.json(post);
@@ -22,21 +27,27 @@ router.get('/:id', cors(), (req, res, next) =>{
       .populate('sistema.usuarioAsignado', 'username');
 });
 
-router.post('/', cors(), (req, res, next) => {
+router.post('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Habitacion.create(req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.put('/:id', cors(),(req, res, next) => {
+router.put('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Habitacion.findByIdAndUpdate(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.delete('/:id', cors(), (req, res, next) => {
+router.delete('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Habitacion.findByIdAndRemove(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);

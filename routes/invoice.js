@@ -3,10 +3,13 @@ const router = express.Router([]);
 const mongoose = require('mongoose');
 const Invoice = require('../models/invoice');
 const cors = require('cors');
+const {validToken} = require('../jwt');
 
 router.options('*', cors());
 
-router.get('/', cors(), (req, res, next) => {
+router.get('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Invoice.find({}, (err, invoice) => {
     if (!invoice) {
       res.json([]);
@@ -17,28 +20,36 @@ router.get('/', cors(), (req, res, next) => {
   });
 });
 
-router.get('/:id', cors(), (req, res, next) =>{
+router.get('/:id', cors(), async (req, res, next) =>{
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Invoice.findById(req.params.id,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.post('/', cors(), (req, res, next) => {
+router.post('/', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Invoice.create(req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.put('/:id', cors(),(req, res, next) => {
+router.put('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Invoice.findByIdAndUpdate(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);
   });
 });
 
-router.delete('/:id', cors(), (req, res, next) => {
+router.delete('/:id', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
   Invoice.findByIdAndRemove(req.params.id, req.body,  (err, post) => {
     if (err) return next(err);
     res.json(post);

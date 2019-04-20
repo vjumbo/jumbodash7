@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import {Hotel, Proveedor, ProveedorCrmInfo} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
 import {VtigerServiceService} from '@service/vtiger.Service';
+import {RequestServices} from '@service/servicios.service';
 
 @Injectable()
 export class ProveedorService implements Resolve<any>
@@ -18,11 +19,11 @@ export class ProveedorService implements Resolve<any>
     /**
      * Constructor
      *
-     * @param {HttpClient} _httpClient
+     * @param requestServices
      * @param _vtgierService
      */
     constructor(
-        private _httpClient: HttpClient,
+        private requestServices: RequestServices,
         private _vtgierService: VtigerServiceService,
     )
     {
@@ -61,7 +62,7 @@ export class ProveedorService implements Resolve<any>
      */
     async getEntidad(): Promise<any>
     {
-        this.hoteles = await <any>this._httpClient.get(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.hoteles}`).toPromise();
+        this.hoteles = await <any>this.requestServices.reqGet(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.hoteles}`).toPromise();
         return new Promise((resolve, reject) => {
             if ( !this.routeParams.id ) // === 'new'
             {
@@ -72,7 +73,7 @@ export class ProveedorService implements Resolve<any>
             {
                 this._vtgierService.doRetrieve(this.routeParams.id)
                     .then(prov => {
-                        this._httpClient.get(`${this.url}/${this.routeParams.id}`)
+                        this.requestServices.reqGet(`${this.url}/${this.routeParams.id}`)
                             .subscribe((response: any) => {
                                 this.entidad = {
                                     id: this.routeParams.id,
@@ -96,7 +97,7 @@ export class ProveedorService implements Resolve<any>
     saveEntidad(entidad: any): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.put(`${this.url}/${entidad._id}`, entidad)
+            this.requestServices.reqPut(`${this.url}/${entidad._id}`, entidad)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -115,7 +116,7 @@ export class ProveedorService implements Resolve<any>
             delete entidad._id;
         }
         return new Promise((resolve, reject) => {
-            this._httpClient.post(`${this.url}`, entidad)
+            this.requestServices.reqPost(`${this.url}`, entidad)
                 .subscribe((response: any) => {
                     resolve(response);
                 }, reject);
@@ -130,7 +131,7 @@ export class ProveedorService implements Resolve<any>
     removeEntidad(entidad: any): Promise<any>
     {
         return new Promise((resolve, reject) => {
-            this._httpClient.delete(`${this.url}/${entidad._id}`)
+            this.requestServices.reqDel(`${this.url}/${entidad._id}`)
                 .subscribe((response: any) => {
                     this.entidad = response;
                     this.onEntidadChanged.next(this.entidad);

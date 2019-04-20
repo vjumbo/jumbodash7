@@ -5,6 +5,10 @@ const SistemaSchema = require('./sistema');
 
 const FormaPagoSchema = new Schema(
   {
+      efectivo: {
+          disponible: Boolean,
+          total: Number,
+      },
     tarjetaCredito: {
       disponible: Boolean,
       porcentaje: Number
@@ -12,9 +16,6 @@ const FormaPagoSchema = new Schema(
     transferencia: {
       disponible: Boolean,
       costoTransferencia: Number
-    },
-    efectivo: {
-      disponible: Boolean
     }
   }
 );

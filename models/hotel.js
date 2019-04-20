@@ -35,9 +35,9 @@ const HotelSchema = new Schema({
     monto: Number
   }],
   email: {
-    pagos: SchemaTypes.Email,
-    reservas: SchemaTypes.Email,
-    jefeReservas: SchemaTypes.Email,
+    pagos: String,
+    reservas: String,
+    jefeReservas: String,
   },
   telefonos: {
     pagos: String,
@@ -47,31 +47,11 @@ const HotelSchema = new Schema({
   ejecutivoVentas: {
     nombre: String,
     telefono: String,
-    email: SchemaTypes.Email
+    email: String
   },
   cuentaBancaria: CuentaBancariaSchema,
   descripcion: String,
   sistema: SistemaSchema
 });
-
-/*HotelSchema.pre('findOne', () =>{
-  this.populate('habitaciones');
-  this.populate('servicios');
-  this.populate('serviciosNoIncluidos');
-  this.populate('penalidades');
-  this.populate('region');
-  // this.populate('cuentaBancaria');
-  // this.populate('sistema');
-});*/
-
-/*HotelSchema.pre('find', () =>{
-  this.populate('habitaciones');
-  this.populate('servicios');
-  this.populate('serviciosNoIncluidos');
-  this.populate('penalidades');
-  this.populate('region');
-  // this.populate('cuentaBancaria');
-  // this.populate('sistema');
-});*/
 
 module.exports = mongoose.model('Hotel', HotelSchema);

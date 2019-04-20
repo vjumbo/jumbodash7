@@ -292,7 +292,8 @@ export class HotelComponent implements OnInit, OnDestroy
         });
 
         const efectivo = this._formBuilder.group({
-            efectivo: [this.entidad.cuentaBancaria.formaPago.efectivo.disponible],
+            disponible: [this.entidad.cuentaBancaria.formaPago.efectivo.disponible],
+            total: [this.entidad.cuentaBancaria.formaPago.efectivo.total],
         });
 
         const formaPago = this._formBuilder.group({

@@ -17,6 +17,7 @@ import {CoreModule} from '@core/core.module';
 import {VtigerServiceService} from '@service/vtiger.Service';
 import {JumboBackEndService} from '@service/jumbo-back-end.service';
 import {CountriesService} from '@service/countries.service';
+import {RequestServices} from '@service/servicios.service';
 
 
 
@@ -44,7 +45,7 @@ import {CountriesService} from '@service/countries.service';
         LayoutModule,
     ],
     providers: [
-        VtigerServiceService, JumboBackEndService, CountriesService,
+        VtigerServiceService, JumboBackEndService, CountriesService, RequestServices,
     ],
     bootstrap   : [
         AppComponent

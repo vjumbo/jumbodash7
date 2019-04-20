@@ -92,6 +92,7 @@ export interface Transferencia {
 
 export interface Efectivo {
     disponible: boolean;
+    total: number;
 }
 
 export interface FormaPago {
