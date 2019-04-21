@@ -1,4 +1,4 @@
-import {CuentaBancariaSchema, Habitacion, HotelType, Penalidad, Servicio, Sistema, TipoTarifaType} from '@configs/interfaces';
+import {CuentaBancariaSchema, Habitacion, HotelType, Moneda, Penalidad, Servicio, Sistema, TipoTarifaType} from '@configs/interfaces';
 
 export class HotelModel
 {
@@ -142,10 +142,10 @@ export class HotelModel
                     transferencia: {
                         disponible: entidad.cuentaBancaria.formaPago.transferencia.disponible,
                         costoTransferencia: entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia,
+                        moneda: entidad.cuentaBancaria.formaPago.transferencia.moneda || null,
                     },
                     efectivo: {
                         disponible: entidad.cuentaBancaria.formaPago.efectivo.disponible,
-                        total: entidad.cuentaBancaria.formaPago.efectivo.total,
                     }
                 },
                 descripcion: entidad.cuentaBancaria.descripcion,
@@ -170,10 +170,10 @@ export class HotelModel
                     transferencia: {
                         disponible: false,
                         costoTransferencia: 0,
+                        moneda: null,
                     },
                     efectivo: {
                         disponible: false,
-                        total: 0,
                     }
                 },
                 descripcion: '',

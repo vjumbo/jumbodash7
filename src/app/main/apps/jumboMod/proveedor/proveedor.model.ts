@@ -59,10 +59,10 @@ export class ProveedorModel
                     transferencia: {
                         disponible: entidad.cuentaBancaria.formaPago.transferencia.disponible,
                         costoTransferencia: entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia,
+                        moneda: entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia,
                     },
                     efectivo: {
                         disponible: entidad.cuentaBancaria.formaPago.efectivo.disponible,
-                        total: entidad.cuentaBancaria.formaPago.efectivo.total,
                     }
                 },
                 descripcion: entidad.cuentaBancaria.descripcion,
@@ -87,10 +87,10 @@ export class ProveedorModel
                     transferencia: {
                         disponible: false,
                         costoTransferencia: 0,
+                        moneda: null,
                     },
                     efectivo: {
                         disponible: false,
-                        total: 0,
                     }
                 },
                 descripcion: '',

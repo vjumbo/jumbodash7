@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import {
+    MatAutocompleteModule,
     MatButtonModule, MatCardModule,
     MatChipsModule, MatDatepickerModule, MatFormFieldModule,
     MatIconModule,
@@ -17,7 +18,7 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
   exports: [
       // Material moment date module
       MatMomentDateModule,
-
+      MatAutocompleteModule,
       // Material
       MatButtonModule,
       MatIconModule,

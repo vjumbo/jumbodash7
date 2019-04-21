@@ -11,6 +11,7 @@ import {ServicioService} from './servicio.service';
 import {Router} from '@angular/router';
 import {Moneda, Sistema} from '@configs/interfaces';
 import {Utilities} from '@utilities/utilities';
+import {CountriesService} from '@service/countries.service';
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ServicioComponent implements OnInit, OnDestroy
     /**
      * Constructor
      *
-     * @param {EcommerceProductService} entidadService
+     * @param entidadService
      * @param {FormBuilder} _formBuilder
      * @param {Location} _location
      * @param {MatSnackBar} _matSnackBar
@@ -45,7 +46,7 @@ export class ServicioComponent implements OnInit, OnDestroy
         private _formBuilder: FormBuilder,
         private _location: Location,
         private _matSnackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
     )
     {
         this.entidadConst = ServicioConst;
@@ -64,8 +65,7 @@ export class ServicioComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
+    async ngOnInit(): Promise<void> {
         this.monedas = this.entidadService.monedas;
         console.log('monedas crm', this.monedas);
         // Subscribe to update entidad on changes

@@ -88,11 +88,11 @@ export interface TarjetaCredito {
 export interface Transferencia {
     disponible: boolean;
     costoTransferencia: number;
+    moneda: Moneda;
 }
 
 export interface Efectivo {
     disponible: boolean;
-    total: number;
 }
 
 export interface FormaPago {

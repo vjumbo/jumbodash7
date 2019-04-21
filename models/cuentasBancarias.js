@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const { Schema} = mongoose;
 const SistemaSchema = require('./sistema');
+const Moneda = require('./moneda');
 
 const FormaPagoSchema = new Schema(
   {
       efectivo: {
           disponible: Boolean,
-          total: Number,
       },
     tarjetaCredito: {
       disponible: Boolean,
@@ -14,7 +14,8 @@ const FormaPagoSchema = new Schema(
     },
     transferencia: {
       disponible: Boolean,
-      costoTransferencia: Number
+      costoTransferencia: Number,
+        moneda: Moneda,
     }
   }
 );

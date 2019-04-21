@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
 import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Location } from '@angular/common';
 import {MatSnackBar} from '@angular/material';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {map, startWith, takeUntil} from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
 import {HotelConst, HotelModel} from './hotel.model';
@@ -13,6 +13,16 @@ import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
 import {Habitacion, Moneda, Penalidad, Servicio} from '@configs/interfaces';
 
+export interface RegionGroup {
+    type: string;
+    options: string[];
+}
+
+export const _filter = (opt: string[], value: string): string[] => {
+    const filterValue = value.toLowerCase();
+
+    return opt.filter(item => item.toLowerCase().indexOf(filterValue) === 0);
+};
 
 @Component({
     selector     : 'jum-hotel',
@@ -45,6 +55,10 @@ export class HotelComponent implements OnInit, OnDestroy
     tipoPlan: FormArray;
     tipoTarifa: FormArray;
     monedas: Moneda[];
+    regionGroups: RegionGroup[];
+    regionGroupOptions: Observable<RegionGroup[]>;
+    paisfilteredOptions: Observable<string[]>;
+
 
     /**
      * Constructor
@@ -80,11 +94,7 @@ export class HotelComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void {
-        /*await this._countries.iniSet();
-        this.countries = this._countries.countries;
-        this.regions = this._countries.regions;*/
-        // Subscribe to update entidad on changes
+    async ngOnInit(): Promise<void> {
         this.monedas = this.entidadService.monedas;
         this.hotelTypes = this.entidadService.hotelTypes;
         this.tipoTarifaTypes = this.entidadService.tipoTarifaTypes;
@@ -107,6 +117,15 @@ export class HotelComponent implements OnInit, OnDestroy
 
                 this.createEntidadForm();
             });
+        await this._countries.iniSet();
+        /*console.log('countries', this._countries.countries);
+        console.log('regions', this._countries.regions);
+        console.log('subRegions', this._countries.subRegions);*/
+        this.regionGroups = [
+            {type: 'Regiones', options: this._countries.regions},
+            {type: 'Sub-Regiones', options: <string[]>(Object.values(this._countries.subRegions)).reduce((pre: string[], actu: string[]) => [...pre, ...actu] , [])},
+            {type: 'Paises', options: this._countries.countries.map( c => c.name)}
+        ];
     }
 
     getHabitaciones(): Habitacion[] {
@@ -293,11 +312,12 @@ export class HotelComponent implements OnInit, OnDestroy
         const transferencia = this._formBuilder.group({
             disponible: [this.entidad.cuentaBancaria.formaPago.transferencia.disponible],
             costoTransferencia: [this.entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia],
+            moneda: [this.entidad.cuentaBancaria.formaPago.transferencia.moneda === null ? this.monedas.find(m => m.defaultid < 0).id
+                : this.entidad.cuentaBancaria.formaPago.transferencia.moneda.id]
         });
 
         const efectivo = this._formBuilder.group({
             disponible: [this.entidad.cuentaBancaria.formaPago.efectivo.disponible],
-            total: [this.entidad.cuentaBancaria.formaPago.efectivo.total],
         });
 
         const formaPago = this._formBuilder.group({
@@ -320,6 +340,11 @@ export class HotelComponent implements OnInit, OnDestroy
             formaPago: formaPago,
             descripcion: [this.entidad.cuentaBancaria.descripcion],
         });
+        this.paisfilteredOptions = cuentaBancaria.get('pais')!.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value))
+            );
 
         this.entidadForm = this._formBuilder.group({
             _id                 : [this.entidad._id],
@@ -346,6 +371,11 @@ export class HotelComponent implements OnInit, OnDestroy
         this.iniRegimenAlimentacion();
         this.iniTipoPlan();
         this.iniTipoTarifa();
+        this.regionGroupOptions = this.entidadForm.get('region')!.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filterGroup(value))
+            );
     }
 
     private iniRegimenAlimentacion(): void {
@@ -440,8 +470,17 @@ export class HotelComponent implements OnInit, OnDestroy
 
     monedaSimbolo(i): string {
         const {moneda} = this.tipoTarifa.value[i];
+        return this.getMonedaSimbolo(moneda);
+    }
+
+    getMonedaSimbolo(moneda): string {
         return moneda && moneda.length > 0 ? this.monedas.find(m => m.id === moneda).currency_symbol
             : this.monedas.find(m => m.defaultid < 0).currency_symbol;
+    }
+
+    getTransferenciaModeloSimbolo(): string {
+        const data = {...this.entidadForm.getRawValue()};
+        return this.getMonedaSimbolo(data.cuentaBancaria.formaPago.transferencia.moneda);
     }
 
     /**
@@ -454,12 +493,13 @@ export class HotelComponent implements OnInit, OnDestroy
             tt.moneda = this.monedas.find(m => m.id === tt.moneda);
             return tt;
         });
+        data.cuentaBancaria.formaPago.transferencia.moneda = this.monedas.find(m => m.id === data.cuentaBancaria.formaPago.transferencia.moneda);
         return data;
     }
 
     saveEntidad(): void
     {
-        const data = this.setNewData()
+        const data = this.setNewData();
         this.entidadService.saveEntidad(Utilities.systems.setEntitySistema(data))
             .then(() => {
 
@@ -479,7 +519,7 @@ export class HotelComponent implements OnInit, OnDestroy
      */
     addEntidad(): void
     {
-        const data = this.setNewData()
+        const data = this.setNewData();
 
         this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
             .then(() => {
@@ -514,5 +554,21 @@ export class HotelComponent implements OnInit, OnDestroy
                 // this._location.go(`${this.entidadConst.urlEntidades}`);
                 this.router.navigate([`${this.entidadConst.urlEntidades}`]);
             });
+    }
+
+    private _filterGroup(value: string): RegionGroup[] {
+        if (value) {
+            return this.regionGroups
+                .map(group => ({type: group.type, options: _filter(group.options, value)}))
+                .filter(group => group.options.length > 0);
+        }
+
+        return this.regionGroups;
+    }
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this._countries.countries.map(c => c.name).filter(p => p.toLowerCase().includes(filterValue));
     }
 }
