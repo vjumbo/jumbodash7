@@ -11,7 +11,7 @@ import {HotelService} from './hotel.service';
 import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
-import {Habitacion, Penalidad, Servicio} from '@configs/interfaces';
+import {Habitacion, Moneda, Penalidad, Servicio} from '@configs/interfaces';
 
 
 @Component({
@@ -33,7 +33,8 @@ export class HotelComponent implements OnInit, OnDestroy
     entidadConst: any;
     countries: any[];
     regions: string[];
-    hotelTypes: any[];
+    hotelTypes: string[];
+    tipoTarifaTypes: string[];
     habitaciones: Habitacion[];
     servicios: Servicio[];
     penalidades: Penalidad[];
@@ -43,6 +44,7 @@ export class HotelComponent implements OnInit, OnDestroy
     regimenAlimentacion: FormArray;
     tipoPlan: FormArray;
     tipoTarifa: FormArray;
+    monedas: Moneda[];
 
     /**
      * Constructor
@@ -83,7 +85,9 @@ export class HotelComponent implements OnInit, OnDestroy
         this.countries = this._countries.countries;
         this.regions = this._countries.regions;*/
         // Subscribe to update entidad on changes
+        this.monedas = this.entidadService.monedas;
         this.hotelTypes = this.entidadService.hotelTypes;
+        this.tipoTarifaTypes = this.entidadService.tipoTarifaTypes;
         this.habitaciones = this.entidadService.habitaciones;
         this.servicios = this.entidadService.servicios;
         this.penalidades = this.entidadService.penalidades;
@@ -410,8 +414,9 @@ export class HotelComponent implements OnInit, OnDestroy
         return this._formBuilder.group({
             tipoHabitacion: [],
             numPersonas: 0,
-            tipo: null,
-            monto: 0
+            tipo: this.tipoTarifaTypes[0],
+            monto: 0,
+            moneda: this.monedas.find(m => m.defaultid < 0).id,
         });
     }
 
@@ -423,22 +428,38 @@ export class HotelComponent implements OnInit, OnDestroy
         this.tipoTarifa.removeAt(index);
     }
 
-    private insertTipoTarifa({tipoHabitacion, numPersonas, tipo, monto}): FormGroup {
+    private insertTipoTarifa({tipoHabitacion, numPersonas, tipo, monto, moneda}): FormGroup {
         return this._formBuilder.group({
-            tipoHabitacion: tipoHabitacion || [],
+            tipoHabitacion: tipoHabitacion && tipoHabitacion._id ? tipoHabitacion._id : null,
             numPersonas: numPersonas || 0,
-            tipo: tipo || null,
+            tipo: tipo || this.tipoTarifaTypes[0],
             monto: monto || 0,
+            moneda: Utilities.objects.isEmpty(moneda) ? this.monedas.find(m => m.defaultid < 0).id : moneda.id,
         });
+    }
+
+    monedaSimbolo(i): string {
+        const {moneda} = this.tipoTarifa.value[i];
+        return moneda && moneda.length > 0 ? this.monedas.find(m => m.id === moneda).currency_symbol
+            : this.monedas.find(m => m.defaultid < 0).currency_symbol;
     }
 
     /**
      * Save entidad
      */
+
+    setNewData(): any {
+        const data = {...this.entidadForm.getRawValue()};
+        data.tipoTarifa = data.tipoTarifa.map(tt => {
+            tt.moneda = this.monedas.find(m => m.id === tt.moneda);
+            return tt;
+        });
+        return data;
+    }
+
     saveEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
-
+        const data = this.setNewData()
         this.entidadService.saveEntidad(Utilities.systems.setEntitySistema(data))
             .then(() => {
 
@@ -458,13 +479,13 @@ export class HotelComponent implements OnInit, OnDestroy
      */
     addEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
+        const data = this.setNewData()
 
         this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
-            .then((entidad) => {
+            .then(() => {
 
                 // Trigger the subscription with new data
-                this.entidadService.onEntidadChanged.next(entidad);
+                this.entidadService.onEntidadChanged.next(data);
 
                 // Show the success message
                 this._matSnackBar.open(`${this.entidadConst.name} Agregado`, 'OK', {

@@ -1,9 +1,10 @@
 const hotelTypes = require("../def/hotelTypes");
+const TipoTarifaTypes = require("../def/tipoTarifaTypes");
 
 const mongoose = require('mongoose');
 const { Schema, SchemaTypes} = mongoose;
-require('mongoose-type-email');
 const CuentaBancariaSchema = require('./cuentasBancarias');
+const Moneda = require('./moneda');
 const Region = require('./region');
 const Habitacion = require('./habitacion');
 const Servicio = require('./servicio');
@@ -31,8 +32,9 @@ const HotelSchema = new Schema({
   tipoTarifa: [{
     tipoHabitacion: {type: Schema.Types.ObjectId, ref: 'Habitacion'},
     numPersonas: Number,
-    tipo: {type: String, enum: ['Habitacion', 'Personas']},
-    monto: Number
+    tipo: {type: String, enum: TipoTarifaTypes},
+    monto: Number,
+      moneda: Moneda,
   }],
   email: {
     pagos: String,

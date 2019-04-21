@@ -30,14 +30,14 @@ export interface Usuario {
 }
 
 export interface Moneda {
+    _id?: string;
     id: number;
-    nombre: string;
-    code: string;
-    simbolo: string;
-    principal: boolean;
-    descripcion: string;
+    currency_name: string;
+    currency_code: string;
+    currency_symbol: string;
+    defaultid: number;
     relacionPrincipal: number;
-    sistema: Sistema;
+    conversion_rate: number;
 }
 
 export interface Servicio {

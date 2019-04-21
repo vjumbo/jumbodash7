@@ -94,12 +94,26 @@
                                     </textarea>
                                 </mat-form-field>
 
-                                <mat-form-field class="w-100-p">
+                                <mat-form-field class="w-10-p">
+                                    <mat-label>Moneda</mat-label>
+                                    <mat-select formControlName="moneda">
+                                        <mat-option *ngFor="let ht of monedas"
+                                                    [value]="ht.id" required>
+                                            {{ht.currency_code}}
+                                        </mat-option>
+                                    </mat-select>
+
+                                    <mat-error *ngIf="entidadForm.get('moneda').hasError('required')">
+                                        Se requiere tipo de moneda
+                                    </mat-error>
+                                </mat-form-field>
+
+                                <mat-form-field class="w-90-p">
                                     <input matInput
                                            name="costo"
                                            formControlName="costo"
                                            placeholder="Costo del Servicio" type="number">
-                                    <span matPrefix>$&nbsp;</span>
+                                    <span matPrefix>{{monedaSimbolo()}}</span>
                                 </mat-form-field>
 
                                 <!--<mat-form-field fxFlex="100">

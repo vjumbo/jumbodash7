@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Hotel = require('../models/hotel');
 const hotelTypes = require("../def/hotelTypes");
+const TipoTarifaTypes = require("../def/tipoTarifaTypes");
 const {validToken} = require('../jwt');
 
 router.options('*', cors());
@@ -31,6 +32,12 @@ router.get('/hoteltypes', cors(), async (req, res, next) => {
   res.json(hotelTypes);
 });
 
+router.get('/tipotarifatypes', cors(), async (req, res, next) => {
+    const valid = await validToken(req.headers);
+    if (!valid) return res.sendStatus(403);
+    res.json(TipoTarifaTypes);
+});
+
 router.get('/:id', cors(), async (req, res, next) => {
     const valid = await validToken(req.headers);
     if (!valid) return res.sendStatus(403);
@@ -38,7 +45,8 @@ router.get('/:id', cors(), async (req, res, next) => {
     if (err) return next(err);
     res.json(hotel);
   }).populate('habitaciones').populate('servicios')
-      .populate('serviciosNoIncluidos').populate('penalidades');
+      .populate('serviciosNoIncluidos').populate('penalidades').
+  populate('tipoTarifa.tipoHabitacion');
 });
 
 router.get('/hotelesby/:search/:field', cors(), async (req, res, next)=> {

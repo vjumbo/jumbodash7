@@ -2,19 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Habitacion, Hotel, Penalidad, Servicio} from '@configs/interfaces';
+import {Habitacion, Hotel, Moneda, Penalidad, Servicio} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
 import {RequestServices} from '@service/servicios.service';
+import {VtigerServiceService} from '@service/vtiger.Service';
 
 @Injectable()
 export class HotelService implements Resolve<any>
 {
     routeParams: any;
     entidad: Hotel;
-    hotelTypes: any[];
+    hotelTypes: string[];
+    tipoTarifaTypes: string[];
     habitaciones: Habitacion[];
     servicios: Servicio[];
     penalidades: Penalidad[];
+    monedas: Moneda[];
     onEntidadChanged: BehaviorSubject<any>;
     url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.hoteles}`;
 
@@ -23,9 +26,11 @@ export class HotelService implements Resolve<any>
      * Constructor
      *
      * @param requestServices
+     * @param _vtgierService
      */
     constructor(
         private requestServices: RequestServices,
+        private _vtgierService: VtigerServiceService,
     )
     {
         // Set the defaults
@@ -63,7 +68,9 @@ export class HotelService implements Resolve<any>
      */
     async getEntidad(): Promise<any>
     {
+        this.monedas = await this._vtgierService.doQuery('select * from Currency');
         this.hotelTypes = await <any>this.requestServices.reqGet(`${this.url}/hoteltypes`).toPromise();
+        this.tipoTarifaTypes = await <any>this.requestServices.reqGet(`${this.url}/tipotarifatypes`).toPromise();
         this.habitaciones = await <any>this.requestServices.reqGet(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.habitaciones}`).toPromise();
         this.servicios = await <any>this.requestServices.reqGet(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.servicios}`).toPromise();
         this.penalidades = await <any>this.requestServices.reqGet(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.penalidades}`).toPromise();

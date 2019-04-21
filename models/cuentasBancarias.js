@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const { Schema} = mongoose;
-require('mongoose-type-email');
 const SistemaSchema = require('./sistema');
 
 const FormaPagoSchema = new Schema(
@@ -35,15 +34,5 @@ const CuentaBancariaSchema = new Schema({
   descripcion: String,
   sistema: SistemaSchema
 });
-
-/*CuentaBancariaSchema.pre('findOne', () =>{
-  // this.populate('sistema');
-  this.populate('Pais');
-});
-
-CuentaBancariaSchema.pre('find', () =>{
-  // this.populate('sistema');
-  this.populate('Pais');
-});*/
 
 module.exports = CuentaBancariaSchema;

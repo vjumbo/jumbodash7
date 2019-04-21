@@ -220,7 +220,7 @@
 
                                         <!-- tipoHabitacion -->
 
-                                        <mat-form-field class="w-40-p">
+                                        <mat-form-field class="w-20-p">
                                             <input matInput
                                                    name="numPersonas"
                                                    type="number"
@@ -229,15 +229,45 @@
                                             >
                                         </mat-form-field>
 
-                                        <!-- tipo -->
+                                        <mat-form-field class="w-20-p">
+                                            <mat-label>Habitacion</mat-label>
+                                            <mat-select formControlName="tipoHabitacion">
+                                                <mat-option *ngFor="let hb of getSelectedHabitaciones()"
+                                                            [value]="hb._id" required>
+                                                    {{hb.nombre}} - capacidad: {{hb.capacidad}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
 
-                                        <mat-form-field class="w-40-p">
+                                        <mat-form-field class="w-10-p">
+                                            <mat-label>Tipo</mat-label>
+                                            <mat-select formControlName="tipo">
+                                                <mat-option *ngFor="let tp of tipoTarifaTypes"
+                                                            [value]="tp" required>
+                                                    {{tp}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                        <!-- tipo  -->
+                                        <mat-form-field class="w-10-p">
+                                            <mat-label>Moneda</mat-label>
+                                            <mat-select formControlName="moneda">
+                                                <mat-option *ngFor="let ht of monedas"
+                                                            [value]="ht.id" required>
+                                                    {{ht.currency_code}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                        <mat-form-field class="w-20-p">
                                             <input matInput
                                                    name="monto"
                                                    type="number"
                                                    formControlName="monto"
                                                    placeholder="Monto"
                                             >
+                                            <span matPrefix>{{monedaSimbolo(i)}}</span>
                                         </mat-form-field>
                                         <span class="w-20-p">
                                             <button mat-button (click)="removeTipoTarifa(i)">

@@ -83,7 +83,8 @@
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Costo</mat-header-cell>
                     <mat-cell *matCellDef="let entidad" fxHide fxShow.gt-xs>
                         <p class="price text-truncate">
-                            {{entidad.costo | currency:'USD':'symbol'}}
+                            <span>{{entidad.moneda.currency_code}} </span>
+                            {{entidad.costo | currency: entidad.moneda.currency_code:'symbol'}}
                         </p>
                     </mat-cell>
                 </ng-container>

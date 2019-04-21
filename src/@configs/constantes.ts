@@ -1,4 +1,5 @@
 import { FuseConfig } from '@fuse/types';
+import {environment} from '../environments/environment';
 
 export const CrmConst = {
     sysName: 'Cotizaciones Jumbo',
@@ -12,7 +13,7 @@ export const CrmConst = {
 
 export const BackEndConst = {
     backEndUrlxx: 'http://127.0.0.1:3000',
-    backEndUrl: 'http://68.183.108.143', // 'http://157.230.134.208:3000', http://127.0.0.1:3000
+    backEndUrl: environment.backEndUrl, // 'http://68.183.108.143',  'http://157.230.134.208:3000', http://127.0.0.1:3000
     endPoints: {
         usuarios: '/jumboApi/usuarios',
         servicios: '/jumboApi/servicios',

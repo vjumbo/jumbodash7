@@ -24,7 +24,8 @@ export class HotelModel
         tipoHabitacion: Habitacion;
         numPersonas: number;
         tipo: TipoTarifaType;
-        monto: number
+        monto: number,
+        moneda: any,
     }];
     email?: {
         pagos?: string;

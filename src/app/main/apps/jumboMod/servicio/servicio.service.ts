@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Servicio} from '@configs/interfaces';
+import {Moneda, Servicio} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
 import {RequestServices} from '@service/servicios.service';
+import {VtigerServiceService} from '@service/vtiger.Service';
 
 @Injectable()
 export class ServicioService implements Resolve<any>
@@ -13,14 +13,17 @@ export class ServicioService implements Resolve<any>
     entidad: Servicio;
     onEntidadChanged: BehaviorSubject<any>;
     url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.servicios}`;
+    monedas: Moneda[];
 
     /**
      * Constructor
      *
      * @param requestServices
+     * @param _vtgierService
      */
     constructor(
-        private requestServices: RequestServices
+        private requestServices: RequestServices,
+        private _vtgierService: VtigerServiceService,
     )
     {
         // Set the defaults
@@ -56,8 +59,9 @@ export class ServicioService implements Resolve<any>
      *
      * @returns {Promise<any>}
      */
-    getEntidad(): Promise<any>
+    async getEntidad(): Promise<any>
     {
+        this.monedas = await this._vtgierService.doQuery('select * from Currency');
         return new Promise((resolve, reject) => {
             if ( !this.routeParams.id ) // === 'new'
             {

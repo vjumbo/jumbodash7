@@ -66,6 +66,8 @@ export class ServicioComponent implements OnInit, OnDestroy
      */
     ngOnInit(): void
     {
+        this.monedas = this.entidadService.monedas;
+        console.log('monedas crm', this.monedas);
         // Subscribe to update entidad on changes
         this.entidadService.onEntidadChanged
             .pipe(takeUntil(this._unsubscribeAll))
@@ -110,10 +112,25 @@ export class ServicioComponent implements OnInit, OnDestroy
             _id              : [this.entidad._id],
             nombre          : [this.entidad.nombre, Validators.required],
             descripcion     : [this.entidad.descripcion],
-            costo           : [this.entidad.costo], /*
-            moneda          : [this.entidad.moneda],
-            sistema          : [this.entidad.sistema]*/
+            costo           : [this.entidad.costo],
+            moneda          : [
+                Utilities.objects.isEmpty(this.entidad.moneda) ? this.monedas.find(m => m.defaultid < 0).id : this.entidad.moneda.id,
+                Validators.required
+            ],
+            /*sistema          : [this.entidad.sistema]*/
         });
+    }
+
+
+    monedaSimbolo(): string {
+        const {moneda} = this.entidadForm.getRawValue();
+        return moneda && moneda.length > 0 ? this.monedas.find(m => m.id === moneda).currency_symbol : '#';
+    }
+
+    setNewData(): any {
+        const data = {...this.entidadForm.getRawValue()};
+        data.moneda = this.monedas.find(m => m.id === data.moneda);
+        return data;
     }
 
     /**
@@ -121,13 +138,11 @@ export class ServicioComponent implements OnInit, OnDestroy
      */
     saveEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
-
-        this.entidadService.saveEntidad(Utilities.systems.setEntitySistema(data))
+        this.entidadService.saveEntidad(Utilities.systems.setEntitySistema(this.setNewData()))
             .then(() => {
 
                 // Trigger the subscription with new data
-                this.entidadService.onEntidadChanged.next(data);
+                this.entidadService.onEntidadChanged.next(this.setNewData());
 
                 // Show the success message
                 this._matSnackBar.open(`${this.entidadConst.name} Guardado`, 'OK', {
@@ -142,13 +157,11 @@ export class ServicioComponent implements OnInit, OnDestroy
      */
     addEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
-
-        this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
-            .then((entidad) => {
+        this.entidadService.addEntidad(Utilities.systems.setEntitySistema(this.setNewData()))
+            .then(() => {
 
                 // Trigger the subscription with new data
-                this.entidadService.onEntidadChanged.next(entidad);
+                this.entidadService.onEntidadChanged.next(this.setNewData());
 
                 // Show the success message
                 this._matSnackBar.open(`${this.entidadConst.name} Agregado`, 'OK', {
@@ -163,9 +176,8 @@ export class ServicioComponent implements OnInit, OnDestroy
 
     removeEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
 
-        this.entidadService.removeEntidad(data)
+        this.entidadService.removeEntidad(this.setNewData())
             .then(() => {
 
                 // Show the success message
