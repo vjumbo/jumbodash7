@@ -1,16 +1,18 @@
 import { Component, OnDestroy, OnInit, ViewEncapsulation } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import { Location } from '@angular/common';
 import {MatSnackBar} from '@angular/material';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import {Observable, Subject} from 'rxjs';
+import {map, startWith, takeUntil} from 'rxjs/operators';
 
 import { fuseAnimations } from '@fuse/animations';
 import {ProveedorModel, ProveedorConst} from './proveedor.model';
 import {ProveedorService} from './proveedor.service';
 import {Router} from '@angular/router';
-import {Habitacion, Hotel, Moneda} from '@configs/interfaces';
+import {Hotel, Moneda} from '@configs/interfaces';
 import {Utilities} from '@utilities/utilities';
+import {CountriesService} from '@service/countries.service';
+import {FuseProgressBarService} from '@fuse/components/progress-bar/progress-bar.service';
 
 
 @Component({
@@ -30,9 +32,14 @@ export class ProveedorComponent implements OnInit, OnDestroy
     entidadConst: any;
     hoteles: Hotel[];
     hotelesForm: FormGroup;
+    monedas: Moneda[];
+    hasFileCp = false;
+    hasFileCon = false;
 
     // Private
     private _unsubscribeAll: Subject<any>;
+
+    paisfilteredOptions: Observable<string[]>;
 
     /**
      * Constructor
@@ -42,13 +49,17 @@ export class ProveedorComponent implements OnInit, OnDestroy
      * @param {Location} _location
      * @param {MatSnackBar} _matSnackBar
      * @param router
+     * @param _countries
+     * @param _fuseProgressBarService
      */
     constructor(
         private entidadService: ProveedorService,
         private _formBuilder: FormBuilder,
         private _location: Location,
         private _matSnackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
+        private _countries: CountriesService,
+        private _fuseProgressBarService: FuseProgressBarService
     )
     {
         this.entidadConst = ProveedorConst;
@@ -66,9 +77,8 @@ export class ProveedorComponent implements OnInit, OnDestroy
     /**
      * On init
      */
-    ngOnInit(): void
-    {
-        // Subscribe to update entidad on changes
+    async ngOnInit(): Promise<void> {
+        this.monedas = this.entidadService.monedas;
         this.hoteles = this.entidadService.hoteles;
         this.entidadService.onEntidadChanged
             .pipe(takeUntil(this._unsubscribeAll))
@@ -97,6 +107,7 @@ export class ProveedorComponent implements OnInit, OnDestroy
 
                 this.createEntidadForm();
             });
+        await this._countries.iniSet();
     }
 
     /**
@@ -132,6 +143,8 @@ export class ProveedorComponent implements OnInit, OnDestroy
         const transferencia = this._formBuilder.group({
             disponible: [this.entidad.cuentaBancaria.formaPago.transferencia.disponible],
             costoTransferencia: [this.entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia],
+            moneda: [this.entidad.cuentaBancaria.formaPago.transferencia.moneda === null ? this.monedas.find(m => m.defaultid < 0).id
+                : this.entidad.cuentaBancaria.formaPago.transferencia.moneda.id],
         });
 
         const efectivo = this._formBuilder.group({
@@ -158,6 +171,11 @@ export class ProveedorComponent implements OnInit, OnDestroy
             formaPago: formaPago,
             descripcion: [this.entidad.cuentaBancaria.descripcion],
         });
+        this.paisfilteredOptions = cuentaBancaria.get('pais')!.valueChanges
+            .pipe(
+                startWith(''),
+                map(value => this._filter(value))
+            );
 
         const cargoPromociones = this._formBuilder.group({
             name: [this.entidad.cargoPromociones.name],
@@ -183,14 +201,23 @@ export class ProveedorComponent implements OnInit, OnDestroy
             descripcion         : [this.entidad.descripcion],
            /*sistema             : [this.entidad.sistema]*/
         });
+        this.hasFileCp = this.entidad.cargoPromociones.name.length > 0;
+        this.hasFileCon = this.entidad.contrato.name.length > 0;
     }
 
     /**
      * Save entidad
      */
+    setNewData(): any {
+        const data = {...this.entidadForm.getRawValue()};
+        data.cuentaBancaria.formaPago.transferencia.moneda = this.monedas.find(m => m.id === data.cuentaBancaria.formaPago.transferencia.moneda);
+        return data;
+    }
+
+
     saveEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
+        const data = this.setNewData();
         if (data._id === null) {
             this.addEntidad();
             return;
@@ -216,15 +243,15 @@ export class ProveedorComponent implements OnInit, OnDestroy
      */
     addEntidad(): void
     {
-        const data = this.entidadForm.getRawValue();
+        const data = this.setNewData();
         data['crmid'] = this.entidad.crmid;
         data['crmInfo'] = this.entidad.crmInfo;
         this.entidadService.addEntidad(Utilities.systems.setEntitySistema(data))
-            .then((entidad) => {
+            .then(() => {
                 const newEntidad = {
                     id: this.id,
                     crmInfo: this.info,
-                    proveedor: entidad
+                    proveedor: data
                 };
                 // Trigger the subscription with new data
                 this.entidadService.onEntidadChanged.next(newEntidad);
@@ -277,7 +304,7 @@ export class ProveedorComponent implements OnInit, OnDestroy
         }
         const hots = [...this.entidadForm.get('hoteles').value, this.hoteles.find(h => h._id === hotId)];
         if (!Utilities.objects.areEquals(this.entidad.hoteles, hots)) {
-            this.entidadForm.markAsDirty();
+            this.entidadForm.get('hoteles').markAsDirty();
         } else {
             // todo
         }
@@ -288,5 +315,110 @@ export class ProveedorComponent implements OnInit, OnDestroy
     eliminarHot(id): void {
         const hots = [...this.entidadForm.get('hoteles').value].filter(h => h._id !== id);
         this.entidadForm.controls['hoteles'].setValue(hots);
+        if (hots.length === 0) {
+            this.entidadForm.get('hoteles').markAsPristine();
+        }
     }
-}
+
+    private _filter(value: string): string[] {
+        const filterValue = value.toLowerCase();
+
+        return this._countries.countries.map(c => c.name).filter(p => p.toLowerCase().includes(filterValue));
+    }
+
+    getMonedaSimbolo(moneda): string {
+        return moneda && moneda.length > 0 ? this.monedas.find(m => m.id === moneda).currency_symbol
+            : this.monedas.find(m => m.defaultid < 0).currency_symbol;
+    }
+
+    getTransferenciaModeloSimbolo(): string {
+        const data = {...this.entidadForm.getRawValue()};
+        return this.getMonedaSimbolo(data.cuentaBancaria.formaPago.transferencia.moneda);
+    }
+
+    onFileChangeCp(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                const cargoPromociones = this.entidadForm.get('cargoPromociones');
+                cargoPromociones.setValue(dataFile); // .get('data').setValue(dataFile);
+                this.hasFileCp = true;
+                this.entidadForm.get('cargoPromociones').markAsDirty();
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
+    onFileChangeCon(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                const contrato = this.entidadForm.get('contrato');
+                contrato.setValue(dataFile); // .get('data').setValue(dataFile);
+                this.hasFileCon = true;
+                this.entidadForm.get('contrato').markAsDirty();
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
+    deletefileCp(): void {
+        const cargoPromociones = this.entidadForm.get('cargoPromociones');
+        cargoPromociones.setValue({
+            name: '',
+            type: '',
+            data: null,
+        });
+        this.hasFileCp === true
+            ? this.entidadForm.get('cargoPromociones').markAsDirty()
+            : this.entidadForm.get('cargoPromociones').markAsPristine();
+        this.hasFileCp = false;
+    }
+
+    deletefileCon(): void {
+        const contrato = this.entidadForm.get('contrato');
+        contrato.setValue({
+            name: '',
+            type: '',
+            data: null,
+        });
+        this.hasFileCon === true
+            ? this.entidadForm.get('contrato').markAsDirty()
+            : this.entidadForm.get('contrato').markAsPristine();
+        this.hasFileCon = false;
+    }
+
+    downloadFileCp(): void {
+        const {cargoPromociones} = this.entidadForm.getRawValue();
+        const b64 = cargoPromociones.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(cargoPromociones.name,
+            `data:${cargoPromociones.type};base64,${b64}`);
+    }
+
+    downloadFileCon(): void {
+        const {contrato} = this.entidadForm.getRawValue();
+        const b64 = contrato.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(contrato.name,
+            `data:${contrato.type};base64,${b64}`);
+    }
+ }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
-import {Hotel, Proveedor, ProveedorCrmInfo} from '@configs/interfaces';
+import {Hotel, Moneda, Proveedor, ProveedorCrmInfo} from '@configs/interfaces';
 import {BackEndConst} from '@configs/constantes';
 import {VtigerServiceService} from '@service/vtiger.Service';
 import {RequestServices} from '@service/servicios.service';
@@ -14,6 +14,7 @@ export class ProveedorService implements Resolve<any>
     entidad: ProveedorCrmInfo;
     onEntidadChanged: BehaviorSubject<any>;
     hoteles: Hotel[];
+    monedas: Moneda[];
     url = `${BackEndConst.backEndUrl}${BackEndConst.endPoints.proveedores}`; // ${BackEndConst.endPoints.proveedores}
 
     /**
@@ -62,6 +63,7 @@ export class ProveedorService implements Resolve<any>
      */
     async getEntidad(): Promise<any>
     {
+        this.monedas = await this._vtgierService.doQuery('select * from Currency');
         this.hoteles = await <any>this.requestServices.reqGet(`${BackEndConst.backEndUrl}${BackEndConst.endPoints.hoteles}`).toPromise();
         return new Promise((resolve, reject) => {
             if ( !this.routeParams.id ) // === 'new'

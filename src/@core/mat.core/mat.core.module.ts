@@ -5,7 +5,7 @@ import {
     MatChipsModule, MatDatepickerModule, MatFormFieldModule,
     MatIconModule,
     MatInputModule, MatMenuModule,
-    MatPaginatorModule,
+    MatPaginatorModule, MatProgressBarModule,
     MatRippleModule,
     MatSelectModule, MatSidenavModule, MatSnackBarModule,
     MatSortModule, MatTableModule,
@@ -38,6 +38,8 @@ import {MatMomentDateModule} from '@angular/material-moment-adapter';
       MatToolbarModule,
       MatSidenavModule,
       MatDatepickerModule,
+      MatIconModule,
+      MatProgressBarModule,
   ]
 })
 export class MatCoreModule { }

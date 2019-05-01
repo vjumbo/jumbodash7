@@ -313,7 +313,7 @@ export class HotelComponent implements OnInit, OnDestroy
             disponible: [this.entidad.cuentaBancaria.formaPago.transferencia.disponible],
             costoTransferencia: [this.entidad.cuentaBancaria.formaPago.transferencia.costoTransferencia],
             moneda: [this.entidad.cuentaBancaria.formaPago.transferencia.moneda === null ? this.monedas.find(m => m.defaultid < 0).id
-                : this.entidad.cuentaBancaria.formaPago.transferencia.moneda.id]
+                : this.entidad.cuentaBancaria.formaPago.transferencia.moneda.id],
         });
 
         const efectivo = this._formBuilder.group({

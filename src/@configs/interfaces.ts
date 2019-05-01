@@ -167,7 +167,7 @@ export interface Hotel {
 export interface FileSys {
     name: string;
     type: string;
-    data: Blob;
+    data: Buffer;
 }
 
 export interface ProveedorCrmInfo {

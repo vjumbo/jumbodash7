@@ -6,6 +6,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { FuseDirectivesModule } from '@fuse/directives/directives';
 import { FusePipesModule } from '@fuse/pipes/pipes.module';
+import {FileUploadModule} from '@fuse/components/file-upload/file-upload.module';
 
 @NgModule({
     imports  : [
@@ -16,7 +17,8 @@ import { FusePipesModule } from '@fuse/pipes/pipes.module';
         FlexLayoutModule,
 
         FuseDirectivesModule,
-        FusePipesModule
+        FusePipesModule,
+        FileUploadModule,
     ],
     exports  : [
         CommonModule,
@@ -26,7 +28,8 @@ import { FusePipesModule } from '@fuse/pipes/pipes.module';
         FlexLayoutModule,
 
         FuseDirectivesModule,
-        FusePipesModule
+        FusePipesModule,
+        FileUploadModule
     ]
 })
 export class FuseSharedModule

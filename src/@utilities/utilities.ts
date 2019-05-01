@@ -14,6 +14,7 @@ import {AllowedpageUtils} from './utilities/Allowedpage.utils';
 import {ErrorHandlerUtils} from './utilities/error-handler.utils';
 import {SystemUtils} from './utilities/system.utils';
 import {EncryptUtils} from './utilities/encrypt.utils';
+import {FileUtils} from '@utilities/utilities/file.utils';
 
 export abstract class Utilities {
     static allowedPages = AllowedpageUtils;
@@ -33,4 +34,5 @@ export abstract class Utilities {
     static systems = SystemUtils;
     static urls = UrlUtils;
     static encrypt = EncryptUtils;
+    static file = FileUtils;
 }

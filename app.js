@@ -4,6 +4,7 @@ const path = require('path');
 
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const bodyParser = require('body-parser');
 
 const apiRouter = require('./routes/book');
 const userRouter = require('./routes/user');
@@ -31,8 +32,10 @@ mongoose.connect(mongoAtlas,
   .catch((err) => console.error(err));
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+/*app.use(express.json());
+app.use(express.urlencoded({ extended: true }));*/
+app.use(bodyParser.json({ limit: '20mb', extended: true }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '20mb' }));
 app.use(appRoute);
 app.use('/', appRoute);
 app.use('/api', apiRouter);

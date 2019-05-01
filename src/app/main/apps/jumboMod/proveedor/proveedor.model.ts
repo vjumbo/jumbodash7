@@ -99,7 +99,7 @@ export class ProveedorModel
     }
 
     private setCargoPromociones(entidad): void {
-        if (entidad.cargoPromociones) {
+        if (entidad.cargoPromociones) { //  && entidad.cargoPromociones.name.length > 0
             this.cargoPromociones = {
                 name: entidad.cargoPromociones.name,
                 type: entidad.cargoPromociones.type,
@@ -115,7 +115,7 @@ export class ProveedorModel
     }
 
     private setContrato(entidad): void {
-        if (entidad.contrato) {
+        if (entidad.contrato) { //  && entidad.contrato.name.length > 0
             this.contrato = {
                 name: entidad.contrato.name,
                 type: entidad.contrato.type,
