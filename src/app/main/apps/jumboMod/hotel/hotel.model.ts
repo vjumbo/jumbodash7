@@ -1,4 +1,4 @@
-import {CuentaBancariaSchema, Habitacion, HotelType, Moneda, Penalidad, Servicio, Sistema, TipoTarifaType} from '@configs/interfaces';
+import {CuentaBancariaSchema, FileSys, Habitacion, HotelType, Moneda, Penalidad, Servicio, Sistema, TipoTarifaType} from '@configs/interfaces';
 
 export class HotelModel
 {
@@ -43,6 +43,8 @@ export class HotelModel
         email: string;
     };
     cuentaBancaria?: CuentaBancariaSchema;
+    contrato: FileSys;
+    cargoPromociones: FileSys;
     descripcion: string;
     sistema: Sistema;
 
@@ -69,6 +71,8 @@ export class HotelModel
         this.setTelefonos(entidad);
         this.setEjecutivoVentas(entidad);
         this.setCuentaBancaria(entidad);
+        this.setContrato(entidad);
+        this.setCargoPromociones(entidad);
         this.descripcion = entidad.descripcion || '';
         this.sistema = entidad.sistema || {};
     }
@@ -177,6 +181,38 @@ export class HotelModel
                     }
                 },
                 descripcion: '',
+            };
+        }
+    }
+
+    private setCargoPromociones(entidad): void {
+        if (entidad.cargoPromociones) { //  && entidad.cargoPromociones.name.length > 0
+            this.cargoPromociones = {
+                name: entidad.cargoPromociones.name,
+                type: entidad.cargoPromociones.type,
+                data: entidad.cargoPromociones.data,
+            };
+        } else {
+            this.cargoPromociones = {
+                name: '',
+                type: '',
+                data: null,
+            };
+        }
+    }
+
+    private setContrato(entidad): void {
+        if (entidad.contrato) { //  && entidad.contrato.name.length > 0
+            this.contrato = {
+                name: entidad.contrato.name,
+                type: entidad.contrato.type,
+                data: entidad.contrato.data,
+            };
+        } else {
+            this.contrato = {
+                name: '',
+                type: '',
+                data: null,
             };
         }
     }

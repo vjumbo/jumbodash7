@@ -59,7 +59,7 @@ export class ProveedorComponent implements OnInit, OnDestroy
         private _matSnackBar: MatSnackBar,
         private router: Router,
         private _countries: CountriesService,
-        private _fuseProgressBarService: FuseProgressBarService
+        private _fuseProgressBarService: FuseProgressBarService,
     )
     {
         this.entidadConst = ProveedorConst;

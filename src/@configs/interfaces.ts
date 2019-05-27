@@ -160,6 +160,8 @@ export interface Hotel {
         email: string;
     };
     cuentaBancaria?: CuentaBancariaSchema;
+    contrato: FileSys;
+    cargoPromociones: FileSys;
     descripcion: string;
     sistema: Sistema;
 }

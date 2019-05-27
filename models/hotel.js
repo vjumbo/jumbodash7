@@ -10,6 +10,7 @@ const Habitacion = require('./habitacion');
 const Servicio = require('./servicio');
 const Penalidad = require('./panalidad');
 const SistemaSchema = require('./sistema');
+const FileSchema = require('./file');
 
 const HotelSchema = new Schema({
   nombre: { type: String, required: true, index: { unique: true }},
@@ -52,6 +53,8 @@ const HotelSchema = new Schema({
     email: String
   },
   cuentaBancaria: CuentaBancariaSchema,
+    contrato: FileSchema,
+    cargoPromociones: FileSchema,
   descripcion: String,
   sistema: SistemaSchema
 });

@@ -52,7 +52,7 @@ export class ProveedoresService implements Resolve<any>
      * @returns {Promise<any>}
      */
     async getEntidades(): Promise<any> {
-        this.entidades = await this._vtgierService.doQuery('select vendor_no, vendorname, phone, email from Vendors');
+        this.entidades = await this._vtgierService.doQuery('select vendor_no, vendorname, cf_1102, phone, email from Vendors where cf_783 = \'Aprobado\'');
         this.onEntidadesChanged.next(this.entidades);
         return this.entidades;
     }

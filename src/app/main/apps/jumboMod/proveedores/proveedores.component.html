@@ -78,6 +78,14 @@
                     </mat-cell>
                 </ng-container>
 
+                <!-- cf_1102 Columna -->
+                <ng-container matColumnDef="cf_1102">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Nombre Comercial</mat-header-cell>
+                    <mat-cell *matCellDef="let entidad">
+                        <p class="text-truncate">{{entidad.cf_1102}}</p>
+                    </mat-cell>
+                </ng-container>
+
                 <!-- phone Columna -->
                 <ng-container matColumnDef="phone">
                     <mat-header-cell *matHeaderCellDef mat-sort-header>Telefono</mat-header-cell>

@@ -12,6 +12,7 @@ import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
 import {Habitacion, Moneda, Penalidad, Servicio} from '@configs/interfaces';
+import {FuseProgressBarService} from '@fuse/components/progress-bar/progress-bar.service';
 
 export interface RegionGroup {
     type: string;
@@ -59,6 +60,9 @@ export class HotelComponent implements OnInit, OnDestroy
     regionGroupOptions: Observable<RegionGroup[]>;
     paisfilteredOptions: Observable<string[]>;
 
+    hasFileCp = false;
+    hasFileCon = false;
+
 
     /**
      * Constructor
@@ -77,6 +81,7 @@ export class HotelComponent implements OnInit, OnDestroy
         private _matSnackBar: MatSnackBar,
         private router: Router,
         private _countries: CountriesService,
+        private _fuseProgressBarService: FuseProgressBarService,
     )
     {
         this.entidadConst = HotelConst;
@@ -346,6 +351,18 @@ export class HotelComponent implements OnInit, OnDestroy
                 map(value => this._filter(value))
             );
 
+        const cargoPromociones = this._formBuilder.group({
+            name: [this.entidad.cargoPromociones.name],
+            type: [this.entidad.cargoPromociones.type],
+            data: [this.entidad.cargoPromociones.data],
+        });
+
+        const contrato = this._formBuilder.group({
+            name: [this.entidad.contrato.name],
+            type: [this.entidad.contrato.type],
+            data: [this.entidad.contrato.data],
+        });
+
         this.entidadForm = this._formBuilder.group({
             _id                 : [this.entidad._id],
             nombre              : [this.entidad.nombre, Validators.required],
@@ -362,9 +379,14 @@ export class HotelComponent implements OnInit, OnDestroy
             telefonos           : telefonos,
             ejecutivoVentas     : ejecutivoVentas,
             cuentaBancaria      : cuentaBancaria,
+            contrato            : contrato,
+            cargoPromociones    : cargoPromociones,
             descripcion         : [this.entidad.descripcion],
             /*sistema           : [this.entidad.sistema]*/
         });
+        this.hasFileCp = this.entidad.cargoPromociones.name.length > 0;
+        this.hasFileCon = this.entidad.contrato.name.length > 0;
+
         this.regimenAlimentacion = this.entidadForm.get('regimenAlimentacion') as FormArray;
         this.tipoPlan = this.entidadForm.get('tipoPlan') as FormArray;
         this.tipoTarifa = this.entidadForm.get('tipoTarifa') as FormArray;
@@ -570,5 +592,91 @@ export class HotelComponent implements OnInit, OnDestroy
         const filterValue = value.toLowerCase();
 
         return this._countries.countries.map(c => c.name).filter(p => p.toLowerCase().includes(filterValue));
+    }
+
+    onFileChangeCp(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                const cargoPromociones = this.entidadForm.get('cargoPromociones');
+                cargoPromociones.setValue(dataFile); // .get('data').setValue(dataFile);
+                this.hasFileCp = true;
+                this.entidadForm.get('cargoPromociones').markAsDirty();
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
+    onFileChangeCon(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                const contrato = this.entidadForm.get('contrato');
+                contrato.setValue(dataFile); // .get('data').setValue(dataFile);
+                this.hasFileCon = true;
+                this.entidadForm.get('contrato').markAsDirty();
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
+    deletefileCp(): void {
+        const cargoPromociones = this.entidadForm.get('cargoPromociones');
+        cargoPromociones.setValue({
+            name: '',
+            type: '',
+            data: null,
+        });
+        this.hasFileCp === true
+            ? this.entidadForm.get('cargoPromociones').markAsDirty()
+            : this.entidadForm.get('cargoPromociones').markAsPristine();
+        this.hasFileCp = false;
+    }
+
+    deletefileCon(): void {
+        const contrato = this.entidadForm.get('contrato');
+        contrato.setValue({
+            name: '',
+            type: '',
+            data: null,
+        });
+        this.hasFileCon === true
+            ? this.entidadForm.get('contrato').markAsDirty()
+            : this.entidadForm.get('contrato').markAsPristine();
+        this.hasFileCon = false;
+    }
+
+    downloadFileCp(): void {
+        const {cargoPromociones} = this.entidadForm.getRawValue();
+        const b64 = cargoPromociones.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(cargoPromociones.name,
+            `data:${cargoPromociones.type};base64,${b64}`);
+    }
+
+    downloadFileCon(): void {
+        const {contrato} = this.entidadForm.getRawValue();
+        const b64 = contrato.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(contrato.name,
+            `data:${contrato.type};base64,${b64}`);
     }
 }

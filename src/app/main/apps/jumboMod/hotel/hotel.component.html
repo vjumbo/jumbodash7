@@ -145,7 +145,7 @@
                                             <textarea matInput
                                                       name="descripcion"
                                                       formControlName="descripcion"
-                                                      placeholder="Descripcion del Hotel"
+                                                      placeholder="Descripcion Regimen Alimentacion"
                                                       rows="5">
                                             </textarea>
                                         </mat-form-field>
@@ -180,7 +180,7 @@
                                             <textarea matInput
                                                       name="descripcion"
                                                       formControlName="descripcion"
-                                                      placeholder="Descripcion del Hotel"
+                                                      placeholder="Descripcion Tipo Plan"
                                                       rows="5">
                                             </textarea>
                                         </mat-form-field>
@@ -595,7 +595,7 @@
                                                 </span>
                                         </td>
                                         <td>
-                                            <button mat-button (click)="eliminarPen(hab._id)">Eliminar</button>
+                                            <button mat-button (click)="eliminarPen(pen._id)">Eliminar</button>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -783,6 +783,65 @@
                                                       rows="5">
                                             </textarea>
                                         </mat-form-field>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-tab>
+
+                        <mat-tab label="Archivos">
+                            <div class="section pb-48 w-100-p">
+                                <div class="tab-content p-24 w-100-p" fusePerfectScrollbar>
+                                    <div formGroupName="cargoPromociones" fxLayout="row" fxLayoutAlign="start center">
+                                        <mat-form-field appearance="outline" class="mr-16 w-40-p" fxFlex>
+                                            <input matInput
+                                                   type="text"
+                                                   name="name1"
+                                                   formControlName="name"
+                                                   placeholder="Archivo Cargo de Promociones"
+                                                   readonly
+                                                   (click)="downloadFileCp()"
+                                            >
+                                        </mat-form-field>
+                                        <input
+                                            type="file"
+                                            name="data1"
+                                            hidden
+                                            placeholder=""
+                                            (change)="onFileChangeCp($event)"
+                                            #fileInput
+                                        >
+                                        <button mat-raised-button class="mat-accent w-40-p" (click)="fileInput.click()">
+                                            Agregar Cargo de Promociones
+                                        </button>
+                                        <button *ngIf="hasFileCp" class="ml-4" mat-mini-fab color="warn" (click)="deletefileCp()">
+                                            X
+                                        </button>
+                                    </div>
+                                    <div formGroupName="contrato" fxLayout="row" fxLayoutAlign="start center">
+                                        <mat-form-field appearance="outline" class="mr-16 w-40-p" fxFlex>
+                                            <input matInput
+                                                   type="text"
+                                                   name="name2"
+                                                   formControlName="name"
+                                                   placeholder="Archivo Contrato"
+                                                   readonly
+                                                   (click)="downloadFileCon()"
+                                            >
+                                        </mat-form-field>
+                                        <input
+                                            type="file"
+                                            name="data2"
+                                            hidden
+                                            placeholder=""
+                                            (change)="onFileChangeCon($event)"
+                                            #fileConInput
+                                        >
+                                        <button mat-raised-button class="mat-accent w-40-p" (click)="fileConInput.click()">
+                                            Agregar Contrato
+                                        </button>
+                                        <button *ngIf="hasFileCon" class="ml-4" mat-mini-fab color="warn" (click)="deletefileCon()">
+                                            X
+                                        </button>
                                     </div>
                                 </div>
                             </div>

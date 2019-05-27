@@ -83,6 +83,7 @@
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Proveedor</th>
+                                                <th>Nombre Comercial</th>
                                                 <th>Email</th>
                                                 <th>Telefono</th>
                                             </tr>
@@ -94,6 +95,9 @@
                                                 </td>
                                                 <td>
                                                     <span class="company text-truncate">{{info.vendorname}}</span>
+                                                </td>
+                                                <td>
+                                                    <span class="company text-truncate">{{info.cf_1102}}</span>
                                                 </td>
                                                 <td>
                                                     <span class="email text-truncate">{{info.email}}</span>
@@ -110,7 +114,7 @@
                                     <textarea matInput
                                               name="descripcion"
                                               formControlName="descripcion"
-                                              placeholder="Descripcion del Servicio"
+                                              placeholder="Descripcion del Proveedor"
                                               rows="5">
                                     </textarea>
                                 </mat-form-field>

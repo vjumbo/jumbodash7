@@ -99,20 +99,20 @@ export class ProveedorModel
     }
 
     private setCargoPromociones(entidad): void {
-        if (entidad.cargoPromociones) { //  && entidad.cargoPromociones.name.length > 0
-            this.cargoPromociones = {
-                name: entidad.cargoPromociones.name,
-                type: entidad.cargoPromociones.type,
-                data: entidad.cargoPromociones.data,
-            };
-        } else {
-            this.cargoPromociones = {
-                name: '',
-                type: '',
-                data: null,
-            };
-        }
+    if (entidad.cargoPromociones) { //  && entidad.cargoPromociones.name.length > 0
+        this.cargoPromociones = {
+            name: entidad.cargoPromociones.name,
+            type: entidad.cargoPromociones.type,
+            data: entidad.cargoPromociones.data,
+        };
+    } else {
+        this.cargoPromociones = {
+            name: '',
+            type: '',
+            data: null,
+        };
     }
+}
 
     private setContrato(entidad): void {
         if (entidad.contrato) { //  && entidad.contrato.name.length > 0

@@ -20,7 +20,7 @@ import {ProveedorConst} from '../proveedor/proveedor.model';
 export class ProveedoresComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['id', 'vendor_no', 'vendorname', 'phone', 'email'];
+    displayedColumns = ['id', 'vendor_no', 'vendorname', 'cf_1102', 'phone', 'email'];
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -202,6 +202,9 @@ export class FilesDataSource extends DataSource<any>
                     break;
                 case 'vendorname':
                     [propertyA, propertyB] = [a.vendorname, b.vendorname];
+                    break;
+                case 'cf_1102':
+                    [propertyA, propertyB] = [a.cf_1102, b.cf_1102];
                     break;
                 case 'phone':
                     [propertyA, propertyB] = [a.phone, b.phone];
