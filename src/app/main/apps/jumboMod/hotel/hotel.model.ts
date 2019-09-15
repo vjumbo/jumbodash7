@@ -5,6 +5,7 @@ export class HotelModel
     _id: string;
     nombre: string;
     segmetohotel: HotelType;
+    categoria: string;
     habitaciones?: Habitacion[];
     servicios?: Servicio[];
     serviciosNoIncluidos?: Servicio[];
@@ -44,6 +45,7 @@ export class HotelModel
     };
     cuentaBancaria?: CuentaBancariaSchema;
     contrato: FileSys;
+    imagenes: FileSys[];
     cargoPromociones: FileSys;
     descripcion: string;
     sistema: Sistema;
@@ -59,6 +61,7 @@ export class HotelModel
         this._id = entidad._id || null;
         this.nombre = entidad.nombre || '';
         this.segmetohotel = entidad.segmetohotel || null;
+        this.categoria = entidad.categoria || null;
         this.habitaciones = entidad.habitaciones || [];
         this.servicios = entidad.servicios || [];
         this.serviciosNoIncluidos = entidad.serviciosNoIncluidos || [];
@@ -73,6 +76,7 @@ export class HotelModel
         this.setCuentaBancaria(entidad);
         this.setContrato(entidad);
         this.setCargoPromociones(entidad);
+        this.imagenes = entidad.imagenes || [];
         this.descripcion = entidad.descripcion || '';
         this.sistema = entidad.sistema || {};
     }

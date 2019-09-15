@@ -10,6 +10,8 @@ import {HabitacionConst, HabitacionModel} from './habitacion.model';
 import {HabitacionService} from './habitacion.service';
 import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
+import {FileSys} from '@configs/interfaces';
+import {FuseProgressBarService} from '@fuse/components/progress-bar/progress-bar.service';
 
 
 @Component({
@@ -37,13 +39,15 @@ export class HabitacionComponent implements OnInit, OnDestroy
      * @param {Location} _location
      * @param {MatSnackBar} _matSnackBar
      * @param router
+     * @param _fuseProgressBarService
      */
     constructor(
         private entidadService: HabitacionService,
         private _formBuilder: FormBuilder,
         private _location: Location,
         private _matSnackBar: MatSnackBar,
-        private router: Router
+        private router: Router,
+        private _fuseProgressBarService: FuseProgressBarService,
     )
     {
         this.entidadConst = HabitacionConst;
@@ -112,6 +116,7 @@ export class HabitacionComponent implements OnInit, OnDestroy
             ninos           : [this.entidad.ninos],
             inf             : [this.entidad.inf],
             tipoCama        : [this.entidad.tipoCama],
+            imagenes            : [this.entidad.imagenes],
             sistema         : [this.entidad.sistema],
         });
     }
@@ -177,5 +182,57 @@ export class HabitacionComponent implements OnInit, OnDestroy
                 // this._location.go(`${this.entidadConst.urlEntidades}`);
                 this.router.navigate([`${this.entidadConst.urlEntidades}`]);
             });
+    }
+
+    getImagenes(): FileSys[] {
+        return this.entidadForm.get('imagenes').value;
+    }
+
+    updateImagenes(imagen): void {
+        const imagenes = [...this.entidadForm.get('imagenes').value, imagen];
+        if (!Utilities.objects.areEquals(this.entidad.imagenes, imagenes)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // this.entidadForm.get('imagenes').markAsPristine();
+        }
+        this.entidadForm.controls['imagenes'].setValue(imagenes);
+    }
+
+    onImage(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                /*const imagenes = this.entidadForm.get('imagenes');
+                const imagenesValue = this.getImagenes();
+                imagenesValue.push(<FileSys>dataFile);
+                imagenes.setValue(imagenesValue); // .get('data').setValue(dataFile);
+                this.hasFileCon = true;
+                this.entidadForm.get('imagenes').markAsDirty();*/
+                this.updateImagenes(dataFile);
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
+    eliminarImg(imagen): void {
+        const imgs = [...this.entidadForm.get('imagenes').value].filter(p => imagen.name !== p.name);
+        this.entidadForm.controls['imagenes'].setValue(imgs);
+        this.entidadForm.markAsDirty();
+    }
+
+    downloadImage(image): void {
+        const b64 = image.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(image.name,
+            `data:${image.type};base64,${b64}`);
     }
 }

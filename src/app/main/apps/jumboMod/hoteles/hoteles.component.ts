@@ -20,7 +20,7 @@ import {HotelConst} from '../hotel/hotel.model';
 export class HotelesComponent implements OnInit
 {
     dataSource: FilesDataSource | null;
-    displayedColumns = ['id', 'nombre', 'segmetohotel', 'region', 'descripcion', 'usuario'];
+    displayedColumns = ['id', 'nombre', 'segmetohotel', 'categoria', 'region', 'descripcion', 'usuario'];
 
     @ViewChild(MatPaginator)
     paginator: MatPaginator;
@@ -202,6 +202,9 @@ export class FilesDataSource extends DataSource<any>
                     break;
                 case 'segmetohotel':
                     [propertyA, propertyB] = [a.segmetohotel, b.segmetohotel];
+                    break;
+                case 'categoria':
+                    [propertyA, propertyB] = [a.categoria, b.categoria];
                     break;
                 case 'region':
                     [propertyA, propertyB] = [a.region, b.region];

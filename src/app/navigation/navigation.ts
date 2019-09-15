@@ -4,6 +4,7 @@ import {HabitacionConst} from '../main/apps/jumboMod/habitacion/habitacion.model
 import {PenalidadConst} from '../main/apps/jumboMod/penalidad/penalidad.model';
 import {HotelConst} from '../main/apps/jumboMod/hotel/hotel.model';
 import {ProveedorConst} from '../main/apps/jumboMod/proveedor/proveedor.model';
+import {OportunidadesConst} from '../main/apps/jumboMod/oportunidades/oportunidad.model';
 
 export const navigation: FuseNavigation[] = [
     {
@@ -60,6 +61,14 @@ export const navigation: FuseNavigation[] = [
                 type     : 'item',
                 icon     : ProveedorConst.icon,
                 url      : ProveedorConst.urlEntidades,
+            },
+            {
+                id       : 'oportunidades',
+                title    : OportunidadesConst.names,
+                translate: 'NAV.POTENTIALS.TITLE',
+                type     : 'item',
+                icon     : OportunidadesConst.icon,
+                url      : OportunidadesConst.urlEntidades,
             },
             /*{
                 id       : 'oportunidades',

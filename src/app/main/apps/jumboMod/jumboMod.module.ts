@@ -23,6 +23,7 @@ import {ProveedorComponent} from './proveedor/proveedor.component';
 import {ProveedorService} from './proveedor/proveedor.service';
 import {ProveedoresComponent} from './proveedores/proveedores.component';
 import {ProveedoresService} from './proveedores/proveedores.service';
+import {OportunidadesService} from './oportunidades/oportunidades.service';
 
 
 const routes: Routes = [
@@ -127,6 +128,10 @@ const routes: Routes = [
             data: ProveedorService
         }
     },
+    {
+        path     : 'oportunidades',
+        loadChildren: './oportunidades/oportunidades.module#OportunidadesModule',
+    },
 ];
 
 @NgModule({
@@ -158,6 +163,7 @@ const routes: Routes = [
         CountriesService,
         ProveedorService,
         ProveedoresService,
+        OportunidadesService,
     ]
 })
 export class JumboModModule

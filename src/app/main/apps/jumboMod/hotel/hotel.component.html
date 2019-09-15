@@ -112,6 +112,18 @@
                                     </mat-autocomplete>
                                 </mat-form-field>
 
+                                <mat-form-field class="w-50-p">
+                                    <input matInput
+                                           type="text"
+                                           name="categoria"
+                                           formControlName="categoria"
+                                           placeholder="Categoria del Hotel"
+                                           >
+                                    <!--<mat-error *ngIf="entidadForm.get('categoria').hasError('required')">
+                                        Se requiere el nombre del Hotel
+                                    </mat-error>-->
+                                </mat-form-field>
+
                                 <mat-form-field class="w-100-p">
                                     <textarea matInput
                                               name="descripcion"
@@ -845,6 +857,39 @@
                                     </div>
                                 </div>
                             </div>
+                        </mat-tab>
+
+                        <mat-tab label="Imagenes Hoteles">
+
+                            <div class="tab-content p-24" fusePerfectScrollbar>
+                                <div *ngIf="getImagenes().length < 3" class="update-status p-24"
+                                      fxLayout="row" fxLayoutAlign="start center">
+                                        <input
+                                            type="file"
+                                            name="imagen"
+                                            hidden
+                                            placeholder=""
+                                            (change)="onImage($event)"
+                                            #ImageInput
+                                        >
+                                        <button mat-raised-button class="mat-accent w-40-p" (click)="ImageInput.click()">
+                                            Agregar Imagen
+                                        </button>
+                                </div>
+                                <div fxLayout="row wrap" fxLayoutAlign="start start">
+
+                                    <div *ngFor="let image of getImagenes()">
+                                        <button class="ml-4" mat-mini-fab color="warn" (click)="eliminarImg(image)">
+                                            X
+                                        </button>
+                                        <div
+                                             class="product-image" fxlayout="row" fxLayoutAlign="center center">
+                                            <img class="media" [src]="'data:'+image.type+';base64,'+image.data" (click)="downloadImage(image)">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                         </mat-tab>
 
                     </mat-tab-group>

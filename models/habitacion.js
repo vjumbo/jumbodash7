@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema} = mongoose;
 require('mongoose-type-email');
 const SistemaSchema = require('./sistema');
+const FileSchema = require('./file');
 
 const HabitacionSchema = new Schema({
   nombre: { type: String, required: true},
@@ -11,6 +12,7 @@ const HabitacionSchema = new Schema({
   ninos: {type: Number, default: 0},
   inf:{type: Number, default: 0},
   tipoCama: String,
+    imagenes: [FileSchema],
   sistema: SistemaSchema
 });
 

@@ -1,4 +1,4 @@
-import {Sistema} from '@configs/interfaces';
+import {FileSys, Sistema} from '@configs/interfaces';
 
 export class HabitacionModel
 {
@@ -10,6 +10,7 @@ export class HabitacionModel
   ninos: number;
   inf: number;
   tipoCama: string;
+    imagenes: FileSys[];
   sistema: Sistema;
 
     /**
@@ -28,6 +29,7 @@ export class HabitacionModel
         this.ninos = entidad.ninos || 0;
         this.inf = entidad.inf || 0;
         this.tipoCama = entidad.tipoCama || '';
+        this.imagenes = entidad.imagenes || [];
         this.sistema = entidad.sistema || {};
     }
 }

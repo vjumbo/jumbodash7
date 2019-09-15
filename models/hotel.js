@@ -15,6 +15,7 @@ const FileSchema = require('./file');
 const HotelSchema = new Schema({
   nombre: { type: String, required: true, index: { unique: true }},
   segmetohotel: { type: String, enum: hotelTypes, required: true},
+    categoria: String,
   habitaciones: [{type: Schema.Types.ObjectId, ref: 'Habitacion'}],
   servicios: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],
   serviciosNoIncluidos: [{type: Schema.Types.ObjectId, ref: 'Servicio'}],
@@ -55,6 +56,7 @@ const HotelSchema = new Schema({
   cuentaBancaria: CuentaBancariaSchema,
     contrato: FileSchema,
     cargoPromociones: FileSchema,
+    imagenes: [FileSchema],
   descripcion: String,
   sistema: SistemaSchema
 });

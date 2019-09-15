@@ -11,7 +11,7 @@ import {HotelService} from './hotel.service';
 import {Router} from '@angular/router';
 import {Utilities} from '@utilities/utilities';
 import {CountriesService} from '@service/countries.service';
-import {Habitacion, Moneda, Penalidad, Servicio} from '@configs/interfaces';
+import {FileSys, Habitacion, Moneda, Penalidad, Servicio} from '@configs/interfaces';
 import {FuseProgressBarService} from '@fuse/components/progress-bar/progress-bar.service';
 
 export interface RegionGroup {
@@ -41,6 +41,7 @@ export class HotelComponent implements OnInit, OnDestroy
     serviciosForm: FormGroup;
     noServiciosForm: FormGroup;
     penalidadesForm: FormGroup;
+    imagesForm: FormGroup;
     entidadConst: any;
     countries: any[];
     regions: string[];
@@ -73,6 +74,7 @@ export class HotelComponent implements OnInit, OnDestroy
      * @param {MatSnackBar} _matSnackBar
      * @param router
      * @param _countries
+     * @param _fuseProgressBarService
      */
     constructor(
         private entidadService: HotelService,
@@ -170,6 +172,10 @@ export class HotelComponent implements OnInit, OnDestroy
         return this.entidadForm.get('penalidades').value;
     }
 
+    getImagenes(): FileSys[] {
+        return this.entidadForm.get('imagenes').value;
+    }
+
     updateHabitaciones(): void {
         const habId = this.habitacionesForm.get('habitacion').value;
         if ( !habId )
@@ -234,6 +240,16 @@ export class HotelComponent implements OnInit, OnDestroy
         this.penalidadesForm.reset();
     }
 
+    updateImagenes(imagen): void {
+        const imagenes = [...this.entidadForm.get('imagenes').value, imagen];
+        if (!Utilities.objects.areEquals(this.entidad.imagenes, imagenes)) {
+            this.entidadForm.markAsDirty();
+        } else {
+            // this.entidadForm.get('imagenes').markAsPristine();
+        }
+        this.entidadForm.controls['imagenes'].setValue(imagenes);
+    }
+
     eliminarHab(id): void {
         const habs = [...this.entidadForm.get('habitaciones').value].filter(h => h._id !== id);
         this.entidadForm.controls['habitaciones'].setValue(habs);
@@ -252,6 +268,12 @@ export class HotelComponent implements OnInit, OnDestroy
     eliminarPen(id): void {
         const pens = [...this.entidadForm.get('penalidades').value].filter(p => p._id !== id);
         this.entidadForm.controls['penalidades'].setValue(pens);
+    }
+
+    eliminarImg(imagen): void {
+        const imgs = [...this.entidadForm.get('imagenes').value].filter(p => imagen.name !== p.name);
+        this.entidadForm.controls['imagenes'].setValue(imgs);
+        this.entidadForm.markAsDirty();
     }
 
     /**
@@ -286,8 +308,13 @@ export class HotelComponent implements OnInit, OnDestroy
         this.noServiciosForm = this._formBuilder.group({
             servicio: ['']
         });
+
         this.penalidadesForm = this._formBuilder.group({
             penalidad: ['']
+        });
+
+        this.imagesForm = this._formBuilder.group({
+            imagen: ['']
         });
 
 
@@ -367,6 +394,7 @@ export class HotelComponent implements OnInit, OnDestroy
             _id                 : [this.entidad._id],
             nombre              : [this.entidad.nombre, Validators.required],
             segmetohotel        : [this.entidad.segmetohotel, Validators.required],
+            categoria           : [this.entidad.categoria],
             habitaciones        : [this.entidad.habitaciones],
             servicios           : [this.entidad.servicios],
             serviciosNoIncluidos: [this.entidad.serviciosNoIncluidos],
@@ -381,6 +409,7 @@ export class HotelComponent implements OnInit, OnDestroy
             cuentaBancaria      : cuentaBancaria,
             contrato            : contrato,
             cargoPromociones    : cargoPromociones,
+            imagenes            : [this.entidad.imagenes],
             descripcion         : [this.entidad.descripcion],
             /*sistema           : [this.entidad.sistema]*/
         });
@@ -640,6 +669,32 @@ export class HotelComponent implements OnInit, OnDestroy
         }
     }
 
+    onImage(event): void {
+        if (event.target.files.length > 0) {
+            const file = event.target.files[0];
+            const reader: FileReader = new FileReader();
+            this._fuseProgressBarService.show();
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+                const base: string = <string>reader.result;
+                const base64 = base.split(',');
+                const dataFile = {
+                    name: file.name,
+                    type: file.type,
+                    data: base64[1]
+                };
+                /*const imagenes = this.entidadForm.get('imagenes');
+                const imagenesValue = this.getImagenes();
+                imagenesValue.push(<FileSys>dataFile);
+                imagenes.setValue(imagenesValue); // .get('data').setValue(dataFile);
+                this.hasFileCon = true;
+                this.entidadForm.get('imagenes').markAsDirty();*/
+                this.updateImagenes(dataFile);
+                this._fuseProgressBarService.hide();
+            };
+        }
+    }
+
     deletefileCp(): void {
         const cargoPromociones = this.entidadForm.get('cargoPromociones');
         cargoPromociones.setValue({
@@ -678,5 +733,11 @@ export class HotelComponent implements OnInit, OnDestroy
         const b64 = contrato.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
         Utilities.file.downloadFromDataURL(contrato.name,
             `data:${contrato.type};base64,${b64}`);
+    }
+
+    downloadImage(image): void {
+        const b64 = image.data; // Utilities.file.bufferToB64(cargoPromociones.data); // Utilities.file.arrayBufferToBase64(cargoPromociones.data); //
+        Utilities.file.downloadFromDataURL(image.name,
+            `data:${image.type};base64,${b64}`);
     }
 }

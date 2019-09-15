@@ -123,6 +123,7 @@ export interface Hotel {
     _id?: string;
     nombre: string;
     segmeto: HotelType;
+    categoria: string;
     habitaciones?: Habitacion[];
     servicios?: Servicio[];
     serviciosNoIncluidos?: Servicio[];
@@ -162,6 +163,7 @@ export interface Hotel {
     cuentaBancaria?: CuentaBancariaSchema;
     contrato: FileSys;
     cargoPromociones: FileSys;
+    imagenes: FileSys[];
     descripcion: string;
     sistema: Sistema;
 }
@@ -169,7 +171,7 @@ export interface Hotel {
 export interface FileSys {
     name: string;
     type: string;
-    data: Buffer;
+    data: string;
 }
 
 export interface ProveedorCrmInfo {
