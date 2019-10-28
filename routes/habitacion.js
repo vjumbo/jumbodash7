@@ -10,11 +10,11 @@ router.options('*', cors());
 router.get('/', cors(), async (req, res, next) => {
     const valid = await validToken(req.headers);
     if (!valid) return res.sendStatus(403);
-  Habitacion.find( (err, products) => {
-    if (err) return next(err);
-    res.json(products);
-  }).populate('sistema.usuarioCreador', 'username')
-      .populate('sistema.usuarioAsignado', 'username');
+    Habitacion.find({}, '-imagenes', (err, products) => {
+        if (err) return next(err);
+        res.json(products);
+    }).populate('sistema.usuarioCreador', 'username')
+        .populate('sistema.usuarioAsignado', 'username');
 });
 
 router.get('/:id', cors(), async (req, res, next) =>{

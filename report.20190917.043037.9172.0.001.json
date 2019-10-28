@@ -1,0 +1,850 @@
+
+{
+  "header": {
+    "reportVersion": 1,
+    "event": "Allocation failed - JavaScript heap out of memory",
+    "trigger": "FatalError",
+    "filename": "report.20190917.043037.9172.0.001.json",
+    "dumpEventTime": "2019-09-17T04:30:37Z",
+    "dumpEventTimeStamp": "1568712637326",
+    "processId": 9172,
+    "cwd": "G:\\testjumbohub\\jumbo-dashboard-7",
+    "commandLine": [
+      "node",
+      "--inspect",
+      "./bin/www"
+    ],
+    "nodejsVersion": "v12.10.0",
+    "wordSize": 64,
+    "arch": "x64",
+    "platform": "win32",
+    "componentVersions": {
+      "node": "12.10.0",
+      "v8": "7.6.303.29-node.16",
+      "uv": "1.31.0",
+      "zlib": "1.2.11",
+      "brotli": "1.0.7",
+      "ares": "1.15.0",
+      "modules": "72",
+      "nghttp2": "1.39.2",
+      "napi": "4",
+      "llhttp": "1.1.4",
+      "http_parser": "2.8.0",
+      "openssl": "1.1.1c",
+      "cldr": "35.1",
+      "icu": "64.2",
+      "tz": "2019a",
+      "unicode": "12.1"
+    },
+    "release": {
+      "name": "node",
+      "headersUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0-headers.tar.gz",
+      "sourceUrl": "https://nodejs.org/download/release/v12.10.0/node-v12.10.0.tar.gz",
+      "libUrl": "https://nodejs.org/download/release/v12.10.0/win-x64/node.lib"
+    },
+    "osName": "Windows_NT",
+    "osRelease": "10.0.18362",
+    "osVersion": "Windows 10 Pro",
+    "osMachine": "x86_64",
+    "cpus": [
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 10864046,
+        "nice": 0,
+        "sys": 14778937,
+        "idle": 175211890,
+        "irq": 3711140
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 2409125,
+        "nice": 0,
+        "sys": 2278312,
+        "idle": 196167218,
+        "irq": 53843
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 9631015,
+        "nice": 0,
+        "sys": 7893515,
+        "idle": 183330125,
+        "irq": 156984
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 2705734,
+        "nice": 0,
+        "sys": 1968328,
+        "idle": 196180578,
+        "irq": 24906
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 11222187,
+        "nice": 0,
+        "sys": 6153296,
+        "idle": 183479171,
+        "irq": 131187
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 2507046,
+        "nice": 0,
+        "sys": 1974953,
+        "idle": 196372625,
+        "irq": 21156
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 6575234,
+        "nice": 0,
+        "sys": 4301187,
+        "idle": 189978218,
+        "irq": 77125
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 5515984,
+        "nice": 0,
+        "sys": 3417562,
+        "idle": 191921093,
+        "irq": 21500
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 29288687,
+        "nice": 0,
+        "sys": 11788000,
+        "idle": 159777953,
+        "irq": 261562
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 3270828,
+        "nice": 0,
+        "sys": 11171421,
+        "idle": 186412390,
+        "irq": 69437
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 16592578,
+        "nice": 0,
+        "sys": 17996062,
+        "idle": 166266000,
+        "irq": 241218
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 4998359,
+        "nice": 0,
+        "sys": 5495484,
+        "idle": 190360796,
+        "irq": 123421
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 15855203,
+        "nice": 0,
+        "sys": 18424937,
+        "idle": 166574500,
+        "irq": 222640
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 7460609,
+        "nice": 0,
+        "sys": 10163625,
+        "idle": 183230406,
+        "irq": 77218
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 10517437,
+        "nice": 0,
+        "sys": 15224000,
+        "idle": 175113203,
+        "irq": 212593
+      },
+      {
+        "model": "AMD Ryzen 7 1700 Eight-Core Processor          ",
+        "speed": 3000,
+        "user": 12670671,
+        "nice": 0,
+        "sys": 13159546,
+        "idle": 175024421,
+        "irq": 256609
+      }
+    ],
+    "networkInterfaces": [
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "6c:62:6d:37:78:7d",
+        "address": "fe80::111f:fcef:7cf9:9ebb",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 8
+      },
+      {
+        "name": "Ethernet",
+        "internal": false,
+        "mac": "6c:62:6d:37:78:7d",
+        "address": "190.147.220.222",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "VirtualBox Host-Only Network",
+        "internal": false,
+        "mac": "0a:00:27:00:00:02",
+        "address": "fe80::b95b:2b29:df17:53d7",
+        "netmask": "ffff:ffff:ffff:ffff::",
+        "family": "IPv6",
+        "scopeid": 2
+      },
+      {
+        "name": "VirtualBox Host-Only Network",
+        "internal": false,
+        "mac": "0a:00:27:00:00:02",
+        "address": "192.168.56.1",
+        "netmask": "255.255.255.0",
+        "family": "IPv4"
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "::1",
+        "netmask": "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff",
+        "family": "IPv6",
+        "scopeid": 0
+      },
+      {
+        "name": "Loopback Pseudo-Interface 1",
+        "internal": true,
+        "mac": "00:00:00:00:00:00",
+        "address": "127.0.0.1",
+        "netmask": "255.0.0.0",
+        "family": "IPv4"
+      }
+    ],
+    "host": "ICE-RYZEN"
+  },
+  "javascriptStack": {
+    "message": "No stack.",
+    "stack": [
+      "Unavailable."
+    ]
+  },
+  "nativeStack": [
+    {
+      "pc": "0x00007ff6ca286eb9",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca28b24c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca28a1f8",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca3763cb",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6cab6976e",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6cab51711",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa1f1cc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa26d81",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa1c7a3",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa1b044",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa3a855",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca7a94ed",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf8300d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf92575",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf00abc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf00abc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf00abc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caf00abc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caefe411",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caefdffc",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa76a8c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6caa75776",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6cab4837b",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca3ead0d",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca3eafd1",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca3e4753",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca2f1f80",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca2f277c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca290062",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca290488",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca2928f3",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca2ed985",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca4023cb",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca41720c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca417544",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca33e8f2",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca39a213",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6ca25c91c",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff6cb030fd8",
+      "symbol": ""
+    },
+    {
+      "pc": "0x00007ff820767bd4",
+      "symbol": "BaseThreadInitThunk+20"
+    },
+    {
+      "pc": "0x00007ff820d2cee1",
+      "symbol": ""
+    }
+  ],
+  "javascriptHeap": {
+    "totalMemory": 28450816,
+    "totalCommittedMemory": 28450816,
+    "usedMemory": 25739464,
+    "availableMemory": 2172828120,
+    "memoryLimit": 2197815296,
+    "heapSpaces": {
+      "read_only_space": {
+        "memorySize": 262144,
+        "committedMemory": 262144,
+        "capacity": 261832,
+        "used": 31432,
+        "available": 230400
+      },
+      "new_space": {
+        "memorySize": 1048576,
+        "committedMemory": 1048576,
+        "capacity": 1047328,
+        "used": 1018888,
+        "available": 28440
+      },
+      "old_space": {
+        "memorySize": 21868544,
+        "committedMemory": 21868544,
+        "capacity": 21728688,
+        "used": 20249112,
+        "available": 1479576
+      },
+      "code_space": {
+        "memorySize": 1212416,
+        "committedMemory": 1212416,
+        "capacity": 1147680,
+        "used": 814016,
+        "available": 333664
+      },
+      "map_space": {
+        "memorySize": 1052672,
+        "committedMemory": 1052672,
+        "capacity": 1051112,
+        "used": 706880,
+        "available": 344232
+      },
+      "large_object_space": {
+        "memorySize": 2957312,
+        "committedMemory": 2957312,
+        "capacity": 2915680,
+        "used": 2915680,
+        "available": 0
+      },
+      "code_large_object_space": {
+        "memorySize": 49152,
+        "committedMemory": 49152,
+        "capacity": 3456,
+        "used": 3456,
+        "available": 0
+      },
+      "new_large_object_space": {
+        "memorySize": 0,
+        "committedMemory": 0,
+        "capacity": 1047328,
+        "used": 0,
+        "available": 1047328
+      }
+    }
+  },
+  "resourceUsage": {
+    "userCpuSeconds": 44.031,
+    "kernelCpuSeconds": 6.546,
+    "cpuConsumptionPercent": 0.0364039,
+    "maxRss": 96505856,
+    "pageFaults": {
+      "IORequired": 2778924,
+      "IONotRequired": 0
+    },
+    "fsActivity": {
+      "reads": 895,
+      "writes": 269
+    }
+  },
+  "libuv": [
+  ],
+  "environmentVariables": {
+    "": "C:=C:\\",
+    "": "G:=G:\\testjumbohub\\jumbo-dashboard-7",
+    "ALLUSERSPROFILE": "C:\\ProgramData",
+    "ANDROID_HOME": "C:\\Android\\android-sdk",
+    "APPDATA": "C:\\Users\\josei\\AppData\\Roaming",
+    "ChocolateyInstall": "C:\\ProgramData\\chocolatey",
+    "ChocolateyLastPathUpdate": "132112310185616692",
+    "CLASSPATH": ".;",
+    "COLORTERM": "true",
+    "CommonProgramFiles": "C:\\Program Files\\Common Files",
+    "CommonProgramFiles(x86)": "C:\\Program Files (x86)\\Common Files",
+    "CommonProgramW6432": "C:\\Program Files\\Common Files",
+    "COMPUTERNAME": "ICE-RYZEN",
+    "ComSpec": "C:\\WINDOWS\\system32\\cmd.exe",
+    "DataGrip": "C:\\Program Files\\JetBrains\\DataGrip 2018.3.4\\bin;",
+    "DEBUG_COLORS": "true",
+    "DriverData": "C:\\Windows\\System32\\Drivers\\DriverData",
+    "ELECTRON_NO_ATTACH_CONSOLE": "true",
+    "FORCE_COLOR": "true",
+    "FPS_BROWSER_APP_PROFILE_STRING": "Internet Explorer",
+    "FPS_BROWSER_USER_PROFILE_STRING": "Default",
+    "HOME": "C:\\Users\\josei",
+    "HOMEDRIVE": "C:",
+    "HOMEPATH": "\\Users\\josei",
+    "INIT_CWD": "G:\\testjumbohub\\jumbo-dashboard-7",
+    "JAVA_HOME": "C:\\Program Files\\AdoptOpenJDK\\jdk8u192-b12",
+    "LOCALAPPDATA": "C:\\Users\\josei\\AppData\\Local",
+    "LOGONSERVER": "\\\\ICE-RYZEN",
+    "MOCHA_COLORS": "1",
+    "NODE": "C:\\Program Files\\nodejs\\node.exe",
+    "NODE_DEBUG_OPTION": " ",
+    "npm_config_access": "",
+    "npm_config_allow_same_version": "",
+    "npm_config_also": "",
+    "npm_config_always_auth": "",
+    "npm_config_argv": "{\"remain\":[],\"cooked\":[\"run\",\"start-debug\",\"--scripts-prepend-node-path\",\"auto\"],\"original\":[\"run\",\"start-debug\",\"--scripts-prepend-node-path=auto\"]}",
+    "npm_config_audit": "true",
+    "npm_config_audit_level": "low",
+    "npm_config_auth_type": "legacy",
+    "npm_config_before": "",
+    "npm_config_bin_links": "true",
+    "npm_config_browser": "",
+    "npm_config_ca": "",
+    "npm_config_cache": "C:\\Users\\josei\\AppData\\Roaming\\npm-cache",
+    "npm_config_cache_lock_retries": "10",
+    "npm_config_cache_lock_stale": "60000",
+    "npm_config_cache_lock_wait": "10000",
+    "npm_config_cache_max": "Infinity",
+    "npm_config_cache_min": "10",
+    "npm_config_cafile": "",
+    "npm_config_cert": "",
+    "npm_config_cidr": "",
+    "npm_config_color": "always",
+    "npm_config_commit_hooks": "true",
+    "npm_config_depth": "Infinity",
+    "npm_config_description": "true",
+    "npm_config_dev": "",
+    "npm_config_dry_run": "",
+    "npm_config_editor": "notepad.exe",
+    "npm_config_engine_strict": "",
+    "npm_config_fetch_retries": "2",
+    "npm_config_fetch_retry_factor": "10",
+    "npm_config_fetch_retry_maxtimeout": "60000",
+    "npm_config_fetch_retry_mintimeout": "10000",
+    "npm_config_force": "",
+    "npm_config_git": "git",
+    "npm_config_git_tag_version": "true",
+    "npm_config_global": "",
+    "npm_config_globalconfig": "C:\\Users\\josei\\AppData\\Roaming\\npm\\etc\\npmrc",
+    "npm_config_globalignorefile": "C:\\Users\\josei\\AppData\\Roaming\\npm\\etc\\npmignore",
+    "npm_config_global_style": "",
+    "npm_config_group": "",
+    "npm_config_ham_it_up": "",
+    "npm_config_heading": "npm",
+    "npm_config_https_proxy": "",
+    "npm_config_if_present": "",
+    "npm_config_ignore_prepublish": "",
+    "npm_config_ignore_scripts": "",
+    "npm_config_init_author_email": "",
+    "npm_config_init_author_name": "",
+    "npm_config_init_author_url": "",
+    "npm_config_init_license": "ISC",
+    "npm_config_init_module": "C:\\Users\\josei\\.npm-init.js",
+    "npm_config_init_version": "1.0.0",
+    "npm_config_json": "",
+    "npm_config_key": "",
+    "npm_config_legacy_bundling": "",
+    "npm_config_link": "",
+    "npm_config_local_address": "",
+    "npm_config_loglevel": "notice",
+    "npm_config_logs_max": "10",
+    "npm_config_long": "",
+    "npm_config_maxsockets": "50",
+    "npm_config_message": "%s",
+    "npm_config_metrics_registry": "https://registry.npmjs.org/",
+    "npm_config_node_gyp": "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js",
+    "npm_config_node_options": "",
+    "npm_config_node_version": "12.10.0",
+    "npm_config_noproxy": "",
+    "npm_config_offline": "",
+    "npm_config_onload_script": "",
+    "npm_config_only": "",
+    "npm_config_optional": "true",
+    "npm_config_otp": "",
+    "npm_config_package_lock": "true",
+    "npm_config_package_lock_only": "",
+    "npm_config_parseable": "",
+    "npm_config_prefer_offline": "",
+    "npm_config_prefer_online": "",
+    "npm_config_prefix": "C:\\Users\\josei\\AppData\\Roaming\\npm",
+    "npm_config_preid": "",
+    "npm_config_production": "",
+    "npm_config_progress": "true",
+    "npm_config_proxy": "",
+    "npm_config_read_only": "",
+    "npm_config_rebuild_bundle": "true",
+    "npm_config_registry": "https://registry.npmjs.org/",
+    "npm_config_rollback": "true",
+    "npm_config_save": "true",
+    "npm_config_save_bundle": "",
+    "npm_config_save_dev": "",
+    "npm_config_save_exact": "",
+    "npm_config_save_optional": "",
+    "npm_config_save_prefix": "",
+    "npm_config_save_prod": "",
+    "npm_config_scope": "",
+    "npm_config_scripts_prepend_node_path": "auto",
+    "npm_config_script_shell": "",
+    "npm_config_searchexclude": "",
+    "npm_config_searchlimit": "20",
+    "npm_config_searchopts": "",
+    "npm_config_searchstaleness": "900",
+    "npm_config_send_metrics": "",
+    "npm_config_shell": "C:\\WINDOWS\\system32\\cmd.exe",
+    "npm_config_shrinkwrap": "true",
+    "npm_config_sign_git_commit": "",
+    "npm_config_sign_git_tag": "",
+    "npm_config_sso_poll_frequency": "500",
+    "npm_config_sso_type": "oauth",
+    "npm_config_strict_ssl": "true",
+    "npm_config_tag": "latest",
+    "npm_config_tag_version_prefix": "v",
+    "npm_config_timing": "",
+    "npm_config_tmp": "C:\\Users\\josei\\AppData\\Local\\Temp",
+    "npm_config_umask": "0000",
+    "npm_config_unicode": "",
+    "npm_config_unsafe_perm": "true",
+    "npm_config_update_notifier": "true",
+    "npm_config_usage": "",
+    "npm_config_user": "",
+    "npm_config_userconfig": "C:\\Users\\josei\\.npmrc",
+    "npm_config_user_agent": "npm/6.10.3 node/v12.10.0 win32 x64",
+    "npm_config_version": "",
+    "npm_config_versions": "",
+    "npm_config_viewer": "browser",
+    "npm_execpath": "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js",
+    "npm_lifecycle_event": "start-debug",
+    "npm_lifecycle_script": "set PORT=3000 && node --inspect ./bin/www",
+    "npm_node_execpath": "C:\\Program Files\\nodejs\\node.exe",
+    "npm_package_dependencies_angular_calendar": "0.26.4",
+    "npm_package_dependencies_angular_in_memory_web_api": "0.7.0",
+    "npm_package_dependencies_bcrypt": "3.0.6",
+    "npm_package_dependencies_body_parser": "latest",
+    "npm_package_dependencies_chart_js": "2.7.3",
+    "npm_package_dependencies_classlist_js": "1.1.20150312",
+    "npm_package_dependencies_core_js": "2.5.7",
+    "npm_package_dependencies_cors": "^2.8.5",
+    "npm_package_dependencies_d3": "5.7.0",
+    "npm_package_dependencies_date_fns": "1.29.0",
+    "npm_package_dependencies_debug": "^4.1.1",
+    "npm_package_dependencies_express": "^4.16.4",
+    "npm_package_dependencies_hammerjs": "2.0.8",
+    "npm_package_dependencies_http_errors": "^1.7.1",
+    "npm_package_dependencies_jsonwebtoken": "8.5.1",
+    "npm_package_dependencies_lodash": "4.17.11",
+    "npm_package_dependencies_moment": "2.22.2",
+    "npm_package_dependencies_mongoose": "^5.4.5",
+    "npm_package_dependencies_mongoose_type_email": "^1.0.10",
+    "npm_package_dependencies_morgan": "^1.9.1",
+    "npm_package_dependencies_ng2_charts": "1.6.0",
+    "npm_package_dependencies_ngrx_store_freeze": "0.2.4",
+    "npm_package_dependencies_ngx_color_picker": "7.0.2",
+    "npm_package_dependencies_ngx_cookie_service": "2.0.0",
+    "npm_package_dependencies_node_sass": "4.12.0",
+    "npm_package_dependencies_perfect_scrollbar": "1.4.0",
+    "npm_package_dependencies_prismjs": "1.15.0",
+    "npm_package_dependencies_rxjs": "6.3.3",
+    "npm_package_dependencies_rxjs_compat": "6.3.3",
+    "npm_package_dependencies_serve_favicon": "^2.5.0",
+    "npm_package_dependencies_simple_crypto_js": "2.0.2",
+    "npm_package_dependencies_web_animations_js": "2.3.1",
+    "npm_package_dependencies_zone_js": "0.8.26",
+    "npm_package_dependencies__agm_core": "1.0.0-beta.5",
+    "npm_package_dependencies__angular_animations": "7.0.4",
+    "npm_package_dependencies__angular_cdk": "7.0.4",
+    "npm_package_dependencies__angular_common": "7.0.4",
+    "npm_package_dependencies__angular_compiler": "7.0.4",
+    "npm_package_dependencies__angular_core": "7.0.4",
+    "npm_package_dependencies__angular_flex_layout": "7.0.0-beta.19",
+    "npm_package_dependencies__angular_forms": "7.0.4",
+    "npm_package_dependencies__angular_http": "7.0.4",
+    "npm_package_dependencies__angular_material": "7.0.4",
+    "npm_package_dependencies__angular_material_moment_adapter": "7.0.4",
+    "npm_package_dependencies__angular_platform_browser": "7.0.4",
+    "npm_package_dependencies__angular_platform_browser_dynamic": "7.0.4",
+    "npm_package_dependencies__angular_router": "7.0.4",
+    "npm_package_dependencies__ngrx_effects": "6.1.2",
+    "npm_package_dependencies__ngrx_router_store": "6.1.2",
+    "npm_package_dependencies__ngrx_store": "6.1.2",
+    "npm_package_dependencies__ngrx_store_devtools": "6.1.2",
+    "npm_package_dependencies__ngx_translate_core": "11.0.1",
+    "npm_package_dependencies__swimlane_dragula": "3.7.3",
+    "npm_package_dependencies__swimlane_ngx_charts": "10.0.0",
+    "npm_package_dependencies__swimlane_ngx_datatable": "14.0.0",
+    "npm_package_dependencies__swimlane_ngx_dnd": "6.0.0",
+    "npm_package_dependencies__types_prismjs": "1.9.0",
+    "npm_package_description": "Material Design Admin Template with Angular 7+ and Angular Material",
+    "npm_package_devDependencies_bluebird": "~3.5.3",
+    "npm_package_devDependencies_codelyzer": "4.5.0",
+    "npm_package_devDependencies_jasmine_core": "2.99.1",
+    "npm_package_devDependencies_jasmine_spec_reporter": "4.2.1",
+    "npm_package_devDependencies_karma": "4.1.0",
+    "npm_package_devDependencies_karma_chrome_launcher": "2.2.0",
+    "npm_package_devDependencies_karma_coverage_istanbul_reporter": "2.0.4",
+    "npm_package_devDependencies_karma_jasmine": "1.1.2",
+    "npm_package_devDependencies_karma_jasmine_html_reporter": "0.2.2",
+    "npm_package_devDependencies_protractor": "5.4.1",
+    "npm_package_devDependencies_tslib": "~1.9.3",
+    "npm_package_devDependencies_tslint": "5.11.0",
+    "npm_package_devDependencies_ts_node": "7.0.1",
+    "npm_package_devDependencies_typescript": "3.1.6",
+    "npm_package_devDependencies_webpack_bundle_analyzer": "3.3.2",
+    "npm_package_devDependencies__angularclass_hmr": "2.1.3",
+    "npm_package_devDependencies__angular_cli": "7.3.8",
+    "npm_package_devDependencies__angular_compiler_cli": "7.2.13",
+    "npm_package_devDependencies__angular_devkit_build_angular": "0.13.8",
+    "npm_package_devDependencies__angular_language_service": "7.0.4",
+    "npm_package_devDependencies__types_jasmine": "2.8.11",
+    "npm_package_devDependencies__types_jasminewd2": "2.0.6",
+    "npm_package_devDependencies__types_lodash": "4.14.118",
+    "npm_package_devDependencies__types_node": "8.9.5",
+    "npm_package_gitHead": "73ed92f2e0ee9e60b7dad1a3f9478ce15705085b",
+    "npm_package_license": "https://themeforest.net/licenses/terms/regular",
+    "npm_package_name": "vjumbo",
+    "npm_package_private": "true",
+    "npm_package_readmeFilename": "README.md",
+    "npm_package_scripts_build": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --dev",
+    "npm_package_scripts_buildice": "ng build --prod --outputHashing=all",
+    "npm_package_scripts_build_prod": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod",
+    "npm_package_scripts_build_prod_stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --prod --stats-json",
+    "npm_package_scripts_build_stats": "node --max_old_space_size=6144 ./node_modules/@angular/cli/bin/ng build --dev --stats-json",
+    "npm_package_scripts_bundle_report": "webpack-bundle-analyzer dist/stats.json",
+    "npm_package_scripts_e2e": "ng e2e",
+    "npm_package_scripts_ice": "ng serve --port 6644",
+    "npm_package_scripts_iceo": "ng serve --port 6644 --open",
+    "npm_package_scripts_icessl": "ng serve --port 6644  --ssl true --ssl-cert \"/bin/cert.pem\" --ssl-key \"/bin/key.pem\"",
+    "npm_package_scripts_icesslo": "ng serve --port 6644 --open --ssl true --ssl-cert \"/bin/cert.pem\" --ssl-key \"/bin/key.pem\"",
+    "npm_package_scripts_lint": "ng lint",
+    "npm_package_scripts_ng": "ng",
+    "npm_package_scripts_start": "node ./bin/www",
+    "npm_package_scripts_start_build": "ng build && node ./bin/www",
+    "npm_package_scripts_start_debug": "set PORT=3000 && node --inspect ./bin/www",
+    "npm_package_scripts_start_hmr": "ng serve --configuration hmr --source-map=false --hmr-warning=false",
+    "npm_package_scripts_start_hmr_sourcemaps": "ng serve --configuration hmr --source-map=true --hmr-warning=false",
+    "npm_package_scripts_test": "ng test",
+    "npm_package_version": "0.7.1",
+    "NUMBER_OF_PROCESSORS": "16",
+    "OneDrive": "C:\\Users\\josei\\OneDrive",
+    "OS": "Windows_NT",
+    "Path": "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\npm-lifecycle\\node-gyp-bin;G:\\testjumbohub\\jumbo-dashboard-7\\node_modules\\.bin;C:\\Python27\\;C:\\Python27\\Scripts;C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.2+9\\bin;C:\\Program Files\\Amazon Corretto\\jdk1.8.0_202\\bin;C:\\Program Files (x86)\\Amazon Corretto\\jdk1.8.0_202\\bin;C:\\Program Files\\AdoptOpenJDK\\jdk8u202-b08\\bin;C:\\Program Files (x86)\\AdoptOpenJDK\\jdk8u202-b08\\bin;C:\\Program Files\\AdoptOpenJDK\\jdk-11.0.2+9-jre\\bin;C:\\Program Files\\AdoptOpenJDK\\jdk8u202-b08-jre\\bin;C:\\Program Files (x86)\\AdoptOpenJDK\\jdk8u202-b08-jre\\bin;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\PuTTY\\;C:\\Program Files\\Microsoft VS Code\\bin;C:\\Program Files\\TortoiseSVN\\bin;C:\\Program Files (x86)\\NVIDIA Corporation\\PhysX\\Common;C:\\WINDOWS\\system32;C:\\WINDOWS;C:\\WINDOWS\\System32\\Wbem;C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\;C:\\WINDOWS\\System32\\OpenSSH\\;C:\\Program Files\\NVIDIA Corporation\\NVIDIA NvDLISR;C:\\ProgramData\\chocolatey\\bin;C:\\Program Files\\AdoptOpenJDK\\jdk8u192-b12\\bin;C:\\Program Files\\Java\\jdk1.8.0_211\\bin;C:\\Android\\android-sdk\\tools;C:\\Android\\android-sdk\\platform-tools;C:\\Android\\android-sdk\\tools\\bin;C:\\Program Files\\Git\\cmd;C:\\Program Files\\nodejs\\;C:\\Users\\josei\\AppData\\Local\\Programs\\Python\\Python37-32\\Scripts\\;C:\\Users\\josei\\AppData\\Local\\Programs\\Python\\Python37-32\\;C:\\Users\\josei\\AppData\\Local\\Microsoft\\WindowsApps;;C:\\Program Files\\JetBrains\\PhpStorm 2018.3.5\\bin;;C:\\Program Files\\JetBrains\\WebStorm 2018.3.4\\bin;;C:\\Program Files\\JetBrains\\DataGrip 2018.3.4\\bin;;C:\\Users\\josei\\AppData\\Roaming\\npm",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC",
+    "PhpStorm": "C:\\Program Files\\JetBrains\\PhpStorm 2018.3.5\\bin;",
+    "PORT": "3000 ",
+    "PROCESSOR_ARCHITECTURE": "AMD64",
+    "PROCESSOR_IDENTIFIER": "AMD64 Family 23 Model 1 Stepping 1, AuthenticAMD",
+    "PROCESSOR_LEVEL": "23",
+    "PROCESSOR_REVISION": "0101",
+    "ProgramData": "C:\\ProgramData",
+    "ProgramFiles": "C:\\Program Files",
+    "ProgramFiles(x86)": "C:\\Program Files (x86)",
+    "ProgramW6432": "C:\\Program Files",
+    "PROMPT": "$P$G",
+    "PSModulePath": "C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\Modules\\;C:\\Program Files\\Intel\\Wired Networking\\",
+    "PUBLIC": "C:\\Users\\Public",
+    "SESSIONNAME": "Console",
+    "SystemDrive": "C:",
+    "SystemRoot": "C:\\WINDOWS",
+    "TEMP": "C:\\Users\\josei\\AppData\\Local\\Temp",
+    "TMP": "C:\\Users\\josei\\AppData\\Local\\Temp",
+    "USERDOMAIN": "ICE-RYZEN",
+    "USERDOMAIN_ROAMINGPROFILE": "ICE-RYZEN",
+    "USERNAME": "josei",
+    "USERPROFILE": "C:\\Users\\josei",
+    "VBOX_MSI_INSTALL_PATH": "C:\\Program Files\\Oracle\\VirtualBox\\",
+    "WebStorm": "C:\\Program Files\\JetBrains\\WebStorm 2018.3.4\\bin;",
+    "windir": "C:\\WINDOWS"
+  },
+  "sharedObjects": [
+    "C:\\Program Files\\nodejs\\node.exe",
+    "C:\\WINDOWS\\SYSTEM32\\ntdll.dll",
+    "C:\\WINDOWS\\System32\\KERNEL32.DLL",
+    "C:\\WINDOWS\\System32\\KERNELBASE.dll",
+    "C:\\WINDOWS\\System32\\WS2_32.dll",
+    "C:\\WINDOWS\\System32\\RPCRT4.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dbghelp.dll",
+    "C:\\WINDOWS\\System32\\ADVAPI32.dll",
+    "C:\\WINDOWS\\System32\\ucrtbase.dll",
+    "C:\\WINDOWS\\System32\\msvcrt.dll",
+    "C:\\WINDOWS\\System32\\sechost.dll",
+    "C:\\WINDOWS\\System32\\USER32.dll",
+    "C:\\WINDOWS\\System32\\win32u.dll",
+    "C:\\WINDOWS\\System32\\GDI32.dll",
+    "C:\\WINDOWS\\System32\\gdi32full.dll",
+    "C:\\WINDOWS\\System32\\msvcp_win.dll",
+    "C:\\WINDOWS\\System32\\PSAPI.DLL",
+    "C:\\WINDOWS\\System32\\CRYPT32.dll",
+    "C:\\WINDOWS\\System32\\MSASN1.dll",
+    "C:\\WINDOWS\\SYSTEM32\\IPHLPAPI.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\USERENV.dll",
+    "C:\\WINDOWS\\System32\\bcrypt.dll",
+    "C:\\WINDOWS\\System32\\profapi.dll",
+    "C:\\WINDOWS\\SYSTEM32\\WINMM.dll",
+    "C:\\WINDOWS\\SYSTEM32\\winmmbase.dll",
+    "C:\\WINDOWS\\System32\\cfgmgr32.dll",
+    "C:\\WINDOWS\\System32\\bcryptPrimitives.dll",
+    "C:\\WINDOWS\\System32\\IMM32.DLL",
+    "C:\\WINDOWS\\System32\\powrprof.dll",
+    "C:\\WINDOWS\\System32\\UMPDC.dll",
+    "C:\\WINDOWS\\system32\\uxtheme.dll",
+    "C:\\WINDOWS\\System32\\combase.dll",
+    "C:\\WINDOWS\\system32\\mswsock.dll",
+    "C:\\WINDOWS\\System32\\kernel.appcore.dll",
+    "C:\\WINDOWS\\SYSTEM32\\CRYPTBASE.DLL",
+    "C:\\WINDOWS\\System32\\NSI.dll",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc6.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\dhcpcsvc.DLL",
+    "C:\\WINDOWS\\SYSTEM32\\DNSAPI.dll",
+    "C:\\WINDOWS\\system32\\napinsp.dll",
+    "C:\\WINDOWS\\system32\\pnrpnsp.dll",
+    "C:\\WINDOWS\\System32\\winrnr.dll",
+    "C:\\WINDOWS\\system32\\NLAapi.dll",
+    "C:\\WINDOWS\\system32\\wshbth.dll",
+    "\\\\?\\G:\\testjumbohub\\jumbo-dashboard-7\\node_modules\\bcrypt\\lib\\binding\\bcrypt_lib.node",
+    "C:\\Windows\\System32\\rasadhlp.dll",
+    "C:\\WINDOWS\\System32\\fwpuclnt.dll"
+  ]
+}

@@ -319,6 +319,8 @@ THE SOFTWARE.
 
 @angular/material/button
 
+@angular/material/card
+
 @angular/material/checkbox
 
 @angular/material/core

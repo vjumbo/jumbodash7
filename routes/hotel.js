@@ -13,7 +13,7 @@ router.options('*', cors());
 router.get('/', cors(), async (req, res, next) => {
     const valid = await validToken(req.headers);
     if (!valid) return res.sendStatus(403);
-  Hotel.find( (err, hoteles) => {
+  Hotel.find({}, 'nombre segmetohotel categoria region descripcion sistema', (err, hoteles) => {
       if (!hoteles) {
           res.json([]);
       } else {
@@ -22,8 +22,8 @@ router.get('/', cors(), async (req, res, next) => {
       }
   }).populate('sistema.usuarioCreador', 'username')
       .populate('sistema.usuarioAsignado', 'username')
-      .populate('habitaciones').populate('servicios')
-      .populate('serviciosNoIncluidos').populate('penalidades');
+      /*.populate('habitaciones').populate('servicios')
+      .populate('serviciosNoIncluidos').populate('penalidades')*/;
 });
 
 router.get('/hoteltypes', cors(), async (req, res, next) => {

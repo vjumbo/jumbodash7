@@ -9,48 +9,57 @@ import {OportunidadesConst} from '../main/apps/jumboMod/oportunidades/oportunida
 export const navigation: FuseNavigation[] = [
     {
         id       : 'settings',
-        title    : 'Settings',
+        title    : 'Configuraciones',
         translate: 'NAV.SETTINGS',
         type     : 'group',
         icon     : 'apps',
         children : [
             {
-                id       : 'servicios',
-                title    : ServicioConst.names,
-                // translate: 'NAV.SERVICES.TITLE',
-                type     : 'item',
-                icon     : ServicioConst.icon,
-                url  : ServicioConst.urlEntidades
-            },
-            {
-                id       : 'habitaciones',
-                title    : HabitacionConst.names,
-                // 'translate': 'NAV.SERVICES.TITLE',
-                type     : 'item',
-                icon     : HabitacionConst.icon,
-                url  : HabitacionConst.urlEntidades
-            },
-            {
-                id       : 'penalidades',
-                title    : PenalidadConst.names,
-                // 'translate': 'NAV.SERVICES.TITLE',
-                type     : 'item',
-                icon     : PenalidadConst.icon,
-                url  : PenalidadConst.urlEntidades
-            },
-            {
                 id       : 'hoteles',
-                title    : HotelConst.names,
-                // 'translate': 'NAV.SERVICES.TITLE',
-                type     : 'item',
-                icon     : HotelConst.icon,
-                url  : HotelConst.urlEntidades
-            }
+                title    : 'Hoteles',
+                translate: 'NAV.HOTELES',
+                type     : 'collapsable',
+                icon     : 'border_all',
+                children : [
+                    {
+                        id       : 'servicios',
+                        title    : ServicioConst.names,
+                        // translate: 'NAV.SERVICES.TITLE',
+                        type     : 'item',
+                        icon     : ServicioConst.icon,
+                        url  : ServicioConst.urlEntidades
+                    },
+                    {
+                        id       : 'habitaciones',
+                        title    : HabitacionConst.names,
+                        // 'translate': 'NAV.SERVICES.TITLE',
+                        type     : 'item',
+                        icon     : HabitacionConst.icon,
+                        url  : HabitacionConst.urlEntidades
+                    },
+                    {
+                        id       : 'penalidades',
+                        title    : PenalidadConst.names,
+                        // 'translate': 'NAV.SERVICES.TITLE',
+                        type     : 'item',
+                        icon     : PenalidadConst.icon,
+                        url  : PenalidadConst.urlEntidades
+                    },
+                    {
+                        id       : 'hoteles',
+                        title    : HotelConst.names,
+                        // 'translate': 'NAV.SERVICES.TITLE',
+                        type     : 'item',
+                        icon     : HotelConst.icon,
+                        url  : HotelConst.urlEntidades
+                    }
+                ]
+            },
         ]
     },
     {
         id       : 'applications',
-        title    : 'Applications',
+        title    : 'Aplicaciones',
         translate: 'NAV.APPLICATIONS',
         type     : 'group',
         children : [

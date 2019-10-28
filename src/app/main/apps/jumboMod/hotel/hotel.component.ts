@@ -64,6 +64,10 @@ export class HotelComponent implements OnInit, OnDestroy
     hasFileCp = false;
     hasFileCon = false;
 
+    filteredHabOptions: Observable<string[]>;
+    filteredServOptions: Observable<string[]>;
+    filteredNoServiceOptions: Observable<string[]>;
+
 
     /**
      * Constructor

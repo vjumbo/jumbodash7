@@ -401,11 +401,21 @@
                                             </mat-option>
                                         </mat-select>
                                     </mat-form-field>
+                                    <!--<mat-form-field appearance="outline" class="mr-16 w-70-p" fxFlex>
+                                        &lt;!&ndash;<mat-label>Seleccionar Habitacion</mat-label>&ndash;&gt;
+                                        <input type="text" placeholder="Escoger una Habitacion" aria-label="Number"
+                                               matInput formControlName="habitacion" required [matAutocomplete]="autoHab">
+                                        <mat-autocomplete autoActiveFirstOption #autoHab="matAutocomplete">
+                                            <mat-option *ngFor="let option of filteredHabOptions | async" [value]="option">
+                                                {{option}}
+                                            </mat-option>
+                                        </mat-autocomplete>
+                                    </mat-form-field>
 
                                     <button mat-raised-button class="mat-accent w-30-p"
                                             [disabled]="habitacionesForm.invalid">
                                         Agregar habitacion
-                                    </button>
+                                    </button>-->
                                 </form>
 
                                 <table class="simple w-100-p">

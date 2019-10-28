@@ -8,6 +8,7 @@ export const locale = {
                 'LISTSERVICES': 'Listar Servicios',
                 'CREATESERVICE': 'Crear Servicio'
             },
+            'HOTELES': 'Hoteles',
             'APPLICATIONS': 'Aplicaciones',
             'POTENTIALS' : {
                 'TITLE': 'Oportunidades',
