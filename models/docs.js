@@ -6,6 +6,7 @@ const SistemaSchema = require('./sistema');
 const DocsSchema = new Schema({
   id: Schema.Types.ObjectId,
   crmPotential: {},
+    fechaElaboracion: Date,
   sistema: SistemaSchema
 });
 
